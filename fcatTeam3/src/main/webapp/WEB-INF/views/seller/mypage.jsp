@@ -10,7 +10,7 @@
 
 	<body>
 		<h1>알람 테스트</h1><br>
-		<h3><a href="/alertChat.do">알림 보내기</a></h3><br>
+		<h3><a href="/sendMsg.do">메세지 보내기</a></h3><br>
 		<h1>
 			읽지않은 쪽지 : <span id="alarmCount">0</span>
 		</h1>

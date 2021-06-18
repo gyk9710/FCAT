@@ -55,9 +55,9 @@
 	<tx:annotation-driven/>
 	
 	<!-- 웹 소켓 알림용 설정 -->
-	<beans:bean id="alert" class="kr.or.seller.model.service.AlarmMsg"/>
+	<beans:bean id="alarmMsg" class="kr.or.seller.model.service.AlarmMsg"/>
 	<websocket:handlers>
-		<websocket:mapping handler="alertChat" path="/alarmMsg.do"/>
+		<websocket:mapping handler="alarmMsg" path="/alarmMsg.do"/>
 	</websocket:handlers>
 	
 	<context:component-scan base-package="kr.or.iei" />
