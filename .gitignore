@@ -127,10 +127,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# ignore add
-*/.classpath
-.classpath
-*/.settings/
-.settings/
-
 # End of https://www.toptal.com/developers/gitignore/api/java-web,windows
