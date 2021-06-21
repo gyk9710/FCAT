@@ -17,4 +17,5 @@ public class SellerController {
 	public String dealChat() {
 		return "seller/mypage";
 	}
+
 }
