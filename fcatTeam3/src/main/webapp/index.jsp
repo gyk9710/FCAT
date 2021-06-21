@@ -8,8 +8,9 @@
 </head>
 <body>
 
-	프캣두번째시도
-	<br>
+	<!--  헤더  -->
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	
 
 	<!-- 셀러 페이지 테스트 -->
 	<h3>
