@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -21,8 +25,42 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- DB 접속정보를 저장하는 dataSource객체 생성 -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@1.220.236.74:15214:xe"/>
+		<beans:property name="username" value="KH_FINAL_3"/>
+		<beans:property name="password" value="1234"/>
+	</beans:bean>
+	
+	<!-- Mybatis 설정 -->
+	<!-- SqlSessionFactoryBean 설정 : 접속 정보 + config 경로 설정 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<beans:property name="mapperLocations" value="classpath:/mapper/*mapper.xml"/>
+	</beans:bean>
+	
+	<!-- SqlSessionTemplate 생성 -->
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSession"/>
+	</beans:bean>
+	
+	<!-- 트랜잭션 관리용 객체 / id는 spring에서 정해진 값 자동 check -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<!-- 트랜잭션 어노테이션 사용 -->
+	<tx:annotation-driven/>
+	
+	<!-- 웹 소켓 알림용 설정 -->
+	<beans:bean id="alarmMsg" class="kr.or.seller.model.service.AlarmMsg"/>
+	<websocket:handlers>
+		<websocket:mapping handler="alarmMsg" path="/alarmMsg.do"/>
+	</websocket:handlers>
+	
 	<context:component-scan base-package="kr.or.iei" />
-	
-	
+	<context:component-scan base-package="kr.or.seller" />
 	
 </beans:beans>
