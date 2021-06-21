@@ -13,6 +13,6 @@ public class CommonDao {
 	private SqlSessionTemplate sqlSession;
 
 	public int insertTattle(Tattle t) {
-		return sqlSession.insert("seller.insertTattle", t);
+		return sqlSession.insert("common.insertTattle", t);
 	}
 }

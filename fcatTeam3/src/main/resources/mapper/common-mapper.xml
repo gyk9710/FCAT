@@ -4,7 +4,7 @@
 
 	<!-- 신고 접수 -->
 	<insert id="insertTattle" parameterType="tt">
-		insert into values(
+		insert into tattle values(
 			tt_seq.nextval,				
 			#{victimId},
 			#{attackerId},
