@@ -30,4 +30,10 @@ public class CommonController {
 
 		return "common/msg.jsp";
 	}
+	
+	@RequestMapping(value = "/search.do")
+	public String search(String keyword) {
+		System.out.println(keyword);
+		return "/";
+	}
 }

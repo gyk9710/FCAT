@@ -59,9 +59,9 @@
             
    
         </div>
-            <form class="f_i">
-                <input type="text" placeholder="원하는 서비스를 검색해주세요" class="h_search">
-                    <button class="btn btn-outline-secondary b_search" type="button" id="button-addon1">검색</button>
+            <form action="/search.do" class="f_i">
+                <input type="text" placeholder="원하는 서비스를 검색해주세요" class="h_search" name="keyword">
+                    <button class="btn btn-outline-secondary b_search"  id="button-addon1">검색</button>
                     
                   
             </form>
