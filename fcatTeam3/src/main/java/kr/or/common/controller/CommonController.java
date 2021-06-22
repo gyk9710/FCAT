@@ -34,6 +34,6 @@ public class CommonController {
 	@RequestMapping(value = "/search.do")
 	public String search(String keyword) {
 		System.out.println(keyword);
-		return "/";
+		return "search/search";
 	}
 }
