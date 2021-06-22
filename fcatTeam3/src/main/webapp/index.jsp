@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 
 	<!--  헤더  -->
@@ -17,7 +18,8 @@
 		<a href="/sellerPage.do">판매자 마이 페이지</a>
 		<a href="/serviceFrm.do">서비스등록페이지</a>
 	</h3>
-
+		
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
 </body>
 </html>
