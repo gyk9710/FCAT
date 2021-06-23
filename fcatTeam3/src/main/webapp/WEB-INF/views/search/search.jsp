@@ -21,10 +21,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="search.css" />
 </head>
 <body>
-<%@include file="/WEB-INF/views/common/header.jsp" %>
+<%@include file="/WEB-INF/views/common/headerBootstrap5.jsp" %>
 	<div class="route-wrap">
       <div class="route">
         <span>a>b</span>
@@ -128,7 +127,7 @@
                 </button>
               </div>
               <div class="serviceTitle">
-                <h5>ㅎㅇ</h5>
+                <h5>ㅎㅇdd</h5>
               </div>
               <div class="serviceComment">상세</div>
               <div class="price">10,000</div>
@@ -190,4 +189,6 @@
       </div>
     </div>
 </body>
+  <link rel="stylesheet" href="/resources/css/search.css" /> 
+  
 </html>
