@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -296,6 +297,10 @@ ul, li {list-style:none;}
 	<h3>
 		<a href="/sellerPage.do">판매자 마이 페이지</a>
 		<a href="/serviceFrm.do">서비스등록페이지</a>
+<<<<<<< HEAD
+		
+	
+=======
 	</h3>
 		
 		<div class="wrapper">
@@ -473,7 +478,12 @@ ul, li {list-style:none;}
 					</div>
 				</div>
 			</div>
+>>>>>>> refs/remotes/origin/main
 
+<<<<<<< HEAD
+		
+
+=======
 		</div>
 		<br>
 		<div class="serviceList">
@@ -598,5 +608,6 @@ ul, li {list-style:none;}
 	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
+>>>>>>> refs/remotes/origin/main
 </body>
 </html>

@@ -176,7 +176,6 @@
 				<h4>추천 카테고리</h4>
 				<hr />
 				<div class="accordion" id="accordionPanelsStayOpenExample">
-				<c:choose>
 					<div class="accordion-item">
 						<div class="accordion-header" id="panelsStayOpen-headingOne">
 							<button class="accordion-button" type="button"
@@ -195,7 +194,6 @@
 							</div>
 						</div>
 					</div>
-						</c:choose>
 				</div>
 			</div>
 		</div>

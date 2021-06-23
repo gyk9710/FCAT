@@ -51,7 +51,6 @@ public class CommonController {
 				cc.setBusiness(cc.getBusinessMarketing() + 1);
 			}
 		}
-				
 		model.addAttribute("list", list);
 		model.addAttribute("count", cc);
 		return "search/search";
