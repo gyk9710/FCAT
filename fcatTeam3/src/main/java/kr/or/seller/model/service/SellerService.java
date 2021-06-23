@@ -12,8 +12,8 @@ public class SellerService {
 	@Autowired
 	private SellerDao dao;
 
-	public int insertService(TestService fs) {
+	public int insertService(TestService ts) {
 		// TODO Auto-generated method stub
-		return dao.insertService(fs);
+		return dao.insertService(ts);
 	}
 }

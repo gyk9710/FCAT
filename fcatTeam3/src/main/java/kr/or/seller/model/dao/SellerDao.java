@@ -12,8 +12,8 @@ public class SellerDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int insertService(TestService fs) {
-		System.out.println(fs.getFsChildCategory());
-		return sqlSession.insert("seller.insertService",fs);
+	public int insertService(TestService ts) {
+		System.out.println(ts.getFsChildCategory());
+		return sqlSession.insert("seller.insertService",ts);
 	}
 }
