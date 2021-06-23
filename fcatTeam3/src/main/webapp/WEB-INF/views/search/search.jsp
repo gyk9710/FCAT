@@ -160,6 +160,11 @@
 	padding-bottom: 0px;
 	float: left;
 }
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
 </style>
 <!--  <link rel="stylesheet" href="/resources/css/search.css" />-->
 </head>
@@ -226,8 +231,34 @@
 
 			</div>
 			<hr />
+			<div id="pagination">
+				<ul class="pagination">
+
+					<c:if test="${paging.startPage != 1 }">
+						<li class="page-item"><a class="page-link"
+							href="/searchList.do?nowPage=${paging.startPage - 1 }">&lt;</a></li>
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+						var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<li class="page-item active"><a class="page-link" href="#"><b>${p }</b></a></li>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<li class="page-item"><a class="page-link"
+									href="/searchList.do?nowPage=${p }&keyword=${search.keyword }">${p }</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<li class="page-item"><a class="page-link"
+							href="/searchList.do?nowPage=${paging.endPage+1 }">&gt;</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</div>
+		<!-- 페이지 -->
+
+	</div>
 </body>
-
-
 </html>
