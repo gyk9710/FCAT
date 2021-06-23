@@ -12,5 +12,7 @@
 			alias="tm" />
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
+		<!-- fService 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
 	</typeAliases>
 </configuration>
