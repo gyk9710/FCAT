@@ -16,6 +16,7 @@
 		</h1>
 		<hr>
 		<h3><a href="/insertTattle.do">신고하기</a></h3><br>
+		<h3><a href="/requestServiceList.do?serviceNo=1007">서비스 요청 리스트</a></h3>
 	</body>
 	
 	<script>

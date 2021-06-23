@@ -15,7 +15,7 @@ public class CommonController {
 	@Autowired
 	private CommonService service;
 
-	// 신고 접수 테스트
+	// 신고 접수
 	@Transactional
 	@RequestMapping(value = "/insertTattle.do")
 	public String insertTattle(Model model, Tattle t) {
@@ -30,11 +30,12 @@ public class CommonController {
 
 		return "common/msg.jsp";
 	}
-	
+
 	@RequestMapping(value = "/search.do")
 	public String search(String keyword) {
 		System.out.println(keyword);
-		
+
 		return "search/search";
 	}
+
 }
