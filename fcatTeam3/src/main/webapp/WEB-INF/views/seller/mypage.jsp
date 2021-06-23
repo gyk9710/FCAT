@@ -14,7 +14,10 @@
 		<h1>
 			읽지않은 쪽지 : <span id="alarmCount">0</span>
 		</h1>
+		<hr>
+		<h3><a href="/insertTattle.do">신고하기</a></h3><br>
 	</body>
+	
 	<script>
 		var ws;
 		var sender = "user01"; // 추 후 member로 변경 해야 함

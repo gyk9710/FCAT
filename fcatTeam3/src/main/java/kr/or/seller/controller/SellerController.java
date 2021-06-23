@@ -17,10 +17,10 @@ public class SellerController {
 	public String dealChat() {
 		return "seller/mypage";
 	}
-	
+
 	@RequestMapping(value = "/serviceFrm.do")
 	public String insertService() {
 		return "seller/serviceFrm";
 	}
-	
+
 }
