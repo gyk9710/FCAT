@@ -177,8 +177,6 @@
 				<hr />
 				<div class="accordion" id="accordionPanelsStayOpenExample">
 				<c:choose>
-				<c:when>
-				</c:when>
 					<div class="accordion-item">
 						<div class="accordion-header" id="panelsStayOpen-headingOne">
 							<button class="accordion-button" type="button"
@@ -189,7 +187,6 @@
 								<div class="badge rounded-pill bg-primary" id="badge">14</div>
 							</button>
 						</div>
-						<c:when>
 						<div id="panelsStayOpen-collapseOne"
 							class="accordion-collapse collapse show"
 							aria-labelledby="panelsStayOpen-headingOne">
@@ -197,7 +194,6 @@
 								<strong>This is the first item's accordion body.</strong>
 							</div>
 						</div>
-						</c:when>
 					</div>
 						</c:choose>
 				</div>
