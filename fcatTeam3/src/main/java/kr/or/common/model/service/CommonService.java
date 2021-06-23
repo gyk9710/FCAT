@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.common.model.dao.CommonDao;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
 @Service
@@ -19,7 +20,12 @@ public class CommonService {
 		return dao.insertTattle(t);
 	}
 
-	public ArrayList<FService> selectSearchedFService(String keyword) {
-		return dao.selectSearchedFservice(keyword);
+	public ArrayList<FService> selectSearchedFService(Search search) {
+		return dao.selectSearchedFservice(search);
 	}
+
+	public int selectSearchedCountFservice(String keyword) {
+		return dao.selectSearchedCountFservice(keyword);
+	}
+
 }

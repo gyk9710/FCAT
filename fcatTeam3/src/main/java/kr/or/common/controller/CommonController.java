@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.common.model.service.CommonService;
 import kr.or.common.model.vo.CategoryCount;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Paging;
+import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
 @Controller
@@ -36,9 +39,15 @@ public class CommonController {
 	}
 
 	@RequestMapping(value = "/search.do")
-	public String search(String keyword, Model model) {
-		ArrayList<FService> list = service.selectSearchedFService(keyword);
-		System.out.println(list);
+	public String search(String keyword, Model model, Paging page) {
+//			@RequestParam(value = "nowPage", required = false) String nowPage) {
+		int total = service.selectSearchedCountFservice(keyword);
+		page = new Paging(total, 1);
+		Search search = new Search();
+		search.setStart(page.getStart());
+		search.setEnd(page.getEnd());
+		search.setKeyword(keyword);
+		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
 			if ("디자인/개발".equals(item.getFsCategory())) {
@@ -51,8 +60,38 @@ public class CommonController {
 				cc.setBusiness(cc.getBusinessMarketing() + 1);
 			}
 		}
+		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
-		model.addAttribute("count", cc);
+		model.addAttribute("search",search);
+		return "search/search";
+	}
+
+	@RequestMapping(value = "/searchList.do")
+	public String search(String keyword, Model model, Paging page,
+			@RequestParam(value = "nowPage", required = false) String nowPage) {
+		int total = service.selectSearchedCountFservice(keyword);
+		System.out.println("keyword: " + keyword);
+		page = new Paging(total, Integer.parseInt(nowPage));
+		Search search = new Search();
+		search.setStart(page.getStart());
+		search.setEnd(page.getEnd());
+		search.setKeyword(keyword);
+		ArrayList<FService> list = service.selectSearchedFService(search);
+		CategoryCount cc = new CategoryCount();
+		for (FService item : list) {
+			if ("디자인/개발".equals(item.getFsCategory())) {
+				cc.setDesign(cc.getDesign() + 1);
+			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
+				cc.setDesign((cc.getDesignApp() + 1));
+			} else if ("비즈니스".equals(item.getFsCategory())) {
+				cc.setBusiness(cc.getBusiness() + 1);
+			} else if ("마케팅".equals(item.getFsChildCategory())) {
+				cc.setBusiness(cc.getBusinessMarketing() + 1);
+			}
+		}
+		model.addAttribute("paging", page);
+		model.addAttribute("list", list);
+		model.addAttribute("search",search);
 		return "search/search";
 	}
 
