@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/resources/css/styles.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <style>
         .s1{
@@ -102,7 +103,68 @@
             width: 100%;
             background-color: thistle;
         }
+        
+        .ti1-2{
+           
+          position: relative;
+           left: 30px;
+            width: 30%;
+            border: 1px solid rgb(153, 151, 151);
+            border-radius: 2px;
+            padding-left: 30px;
+            display: none;
+        }
+   
     </style>
+            <script>
+        $(function(){
+          
+            $(".ca_d").change(function(){
+                var name= $(".ca_d option:selected").val();
+                console.log(name);
+				$(".ti1-2").prop("disabled",true);
+				$(".ti1-2").hide();
+                if(name=='레슨'){                	
+                    $(".ca_j1").show();
+                    $(".ca_j1").prop("disabled",false);
+                }
+                if(name=='홈/리빙'){
+                    $(".ca_j2").show();
+                    $(".ca_j2").prop("disabled",false);
+                }
+                if(name=='이벤트'){
+                    $(".ca_j3").show();
+                    $(".ca_j3").prop("disabled",false);
+                }
+
+                if(name=='비즈니스'){
+                    $(".ca_j4").show();
+                    $(".ca_j4").prop("disabled",false);
+                }
+
+                if(name=='디자인/개발'){
+                    $(".ca_j5").show();
+                    $(".ca_j5").prop("disabled",false);
+                }
+
+                if(name=='건강/미용'){
+                    $(".ca_j6").show();
+                    $(".ca_j6").prop("disabled",false);
+                }
+
+                if(name=='알바'){
+                    $(".ca_j7").show();
+                    $(".ca_j7").prop("disabled",false);
+                }
+
+                if(name=='기타'){
+                    $(".ca_j8").show();
+                    $(".ca_j8").prop("disabled",false);
+                }
+            })
+        });    
+    </script>
+    	
 <body>
 
 
@@ -166,6 +228,7 @@
             </section>
             <hr class="m-0" />
             <!-- Experience-->
+            <form action="/service.do" method="post">
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
                     
@@ -178,20 +241,103 @@
                                 <div class="tit">
                                     제목
                                 </div>
-                                <input type="text" class="ti1" placeholder="나만의 특색있는 서비스의 제목을 등록해주세요" >
+                                <input type="text" name="fsTitle" class="ti1" placeholder="나만의 특색있는 서비스의 제목을 등록해주세요" >
                             </div>
                             <div class="input-group mb-3">
                                 <div class="tit">
                                     카테고리
                                 </div>
-                                <select class="ti1">
+                                <select class="ti1-1 ca_d" name="fsCategory">
                                     <option selected>카테고리를 선택해주세요</option>
-                                    <option value="1">디자인</option>
-                                    <option value="2">번역/외국어</option>
-                                    <option value="3">프로그래밍</option>
-                                    <option value="4">음악/영상</option>
+                                    <option value="레슨">레슨</option>
+                                    <option value="홈/리빙">홈/리빙</option>
+                                    <option value="이벤트">이벤트</option>
+                                    <option value="비즈니스">비즈니스</option>
+                                    <option value="디자인/개발">디자인/개발</option>
+                                    <option value="건강/미용">건강/미용</option>
+                                    <option value="알바">알바</option>
+                                    <option value="기타">기타</option>
+                                    
                                   </select>
+
+                                  <select class="ti1-2 ca_j1" id="lesson" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="보컬레슨">보컬레슨</option>
+                                    <option value="기타레슨">기타레슨</option>
+                                    <option value="수학과외">수학과외</option>
+                                    <option value="영어과외">영어과외</option>
+                                    <option value="PT">PT</option>
+                                    <option value="골프레슨">골프레슨</option>
+                                  </select>
+
+                                  <select class="ti1-2 ca_j2" id="home" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="집인테리어">집인테리어</option>
+                                    <option value="조명인테리어">조명인테리어</option>
+                                    <option value="타일시공">타일시공</option>
+                                    <option value="도배장판시공">도배장판시공</option>
+                                    <option value="해충방역">해충방역</option>
+                                    <option value="세탁기청소">세탁기청소</option>
+                                    
+                                  </select>
+
+                                  <select class="ti1-2 ca_j3" id="event" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="결혼식사회">결혼식사회</option>
+                                    <option value="댄스공연">댄스공연</option>
+                                    <option value="행사MC">행사MC</option>
+                                    <option value="파티기획">파티기획</option>
+                                    <option value="영상편집">영상편집</option>
+                                    <option value="의상대여">의상대여</option>
+                                  </select>
+
+                                <select class="ti1-2 ca_j4" id="business" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="회계/세무">회계/세무</option>
+                                    <option value="영상광고">영상광고</option>
+                                    <option value="출판">출판</option>
+                                    <option value="나레이션/더빙">나레이션/더빙</option>
+                                    <option value="블로그마케팅">블로그마케팅</option>
+                                    <option value="현수막제작">현수막제작</option>
+                                </select>
+                                <select class="ti1-2 ca_j5" id="design" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="제품디자인">제품디자인</option>
+                                    <option value="프레젠테이션디자인">프레젠테이션디자인</option>
+                                    <option value="일러스트디자인">일러스트디자인</option>
+                                    <option value="로고디자인">로고디자인</option>
+                                    <option value="라벨디자인">라벨디자인</option>
+                                    <option value="간판디자인">간판디자인</option>
+                                </select>
+                                <select class="ti1-2 ca_j6" id="health" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="심리검사">심리검사</option>
+                                    <option value="언어치료">언어치료</option>
+                                    <option value="연극치료">연극치료</option>
+                                    <option value="독서치료">독서치료</option>
+                                    <option value="네일">네일</option>
+                                    <option value="피부관리">피부관리</option>
+                                </select>
+                                <select class="ti1-2 ca_j7" id="parttime" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="편의점알바">편의점알바</option>
+                                    <option value="배달알바">배달알바</option>
+                                    <option value="포장알바">포장알바</option>
+                                    <option value="사무보조알바">사무보조알바</option>
+                                    <option value="서빙알바">서빙알바</option>
+                                    <option value="행사스텝">행사스텝</option>
+                                </select>
+                                <select class="ti1-2 ca_j8" id="etc" name="fsChildCategory">
+                                    <option selected>2차 카테고리를 선택해주세요</option>
+                                    <option value="맞춤옷제작">맞춤옷제작</option>
+                                    <option value="패키지여행">패키지여행</option>
+                                    <option value="재무설계">재무설계</option>
+                                    <option value="커스텀제작">커스텀제작</option>
+                                    <option value="이모티콘제작">이모티콘제작</option>
+                                    <option value="악기조율">악기조율</option>
+                                </select> 
                             </div>
+                           
                             
                                 <table class="t3">       
                                     <tr>
@@ -200,7 +346,7 @@
                                                 작업기간
                                             </div>
                                             <div>
-                                            <input type="text" class="ti2"> 일
+                                            <input type="text" class="ti2" name="fsworking"> 일
                                             </div>
         
                                         </td>
@@ -211,7 +357,7 @@
                                                 가격
                                             </div>
                                             <div>
-                                            <input type="text" class="ti2"> 원
+                                            <input type="text" class="ti2" name="fsPrice"> 원
                                             </div>
                                             
                                         </td>
@@ -241,7 +387,7 @@
                         </div>
                         <table class="t1">
                             <tr>
-                                <td colspan="3" class="t1-1"><textarea class="ta1" placeholder="*카테고리에 적합한 서비스가 아닐경우 검수과정 통과하지 못할수 있습니다."></textarea></td>
+                                <td colspan="3" class="t1-1"><textarea class="ta1" placeholder="*카테고리에 적합한 서비스가 아닐경우 검수과정 통과하지 못할수 있습니다." name="fscontent"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="t1-2">
@@ -259,12 +405,15 @@
 
                        
                 </div>
-
+				
 
             </section>
+            </form>
             <hr class="m-0" />
             
         </div>
+     
+        
     
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
