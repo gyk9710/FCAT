@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -16,8 +17,10 @@
 	<h3>
 		<a href="/sellerPage.do">판매자 마이 페이지</a>
 		<a href="/serviceFrm.do">서비스등록페이지</a>
-	</h3>
+		
+	
 
+		
 
 </body>
 </html>
