@@ -12,5 +12,21 @@
 			#{ttContent},		
 			to_char(sysdate, 'yyyy-mm-dd'))
 	</insert>
-
+	<select id="selectSearchedFservice" parameterType="String"  resultType="fs">
+	select 
+		fs_no as fsNo,
+		fs_writer as fsWriter,
+		fs_title as fsTitle,
+		fs_content as fsContent,
+		fs_category as fsCategory,
+		fs_price as fsPrice,
+		fs_working as fsWorking,
+		fs_child_category as fsChildCategory,
+		fs_photo as fsPhoto
+	from fservice 
+	where
+		fs_title like '%'||#{keyword}||'%'
+		or fs_child_category like '%'||#{keyword}||'%'
+		or fs_writer like '%'||#{keyword}||'%'
+	</select>
 </mapper>
