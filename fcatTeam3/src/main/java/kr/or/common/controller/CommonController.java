@@ -1,5 +1,7 @@
 package kr.or.common.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.common.model.service.CommonService;
+import kr.or.common.model.vo.CategoryCount;
+import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Tattle;
 
 @Controller
@@ -30,11 +34,26 @@ public class CommonController {
 
 		return "common/msg.jsp";
 	}
-	
+
 	@RequestMapping(value = "/search.do")
-	public String search(String keyword) {
-		System.out.println(keyword);
-		
+	public String search(String keyword, Model model) {
+		ArrayList<FService> list = service.selectSearchedFService(keyword);
+		System.out.println(list);
+		CategoryCount cc = new CategoryCount();
+		for (FService item : list) {
+			if ("디자인/개발".equals(item.getFsCategory())) {
+				cc.setDesign(cc.getDesign() + 1);
+			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
+				cc.setDesign((cc.getDesignApp() + 1));
+			} else if ("비즈니스".equals(item.getFsCategory())) {
+				cc.setBusiness(cc.getBusiness() + 1);
+			} else if ("마케팅".equals(item.getFsChildCategory())) {
+				cc.setBusiness(cc.getBusinessMarketing() + 1);
+			}
+		}
+				
+		model.addAttribute("list", list);
+		model.addAttribute("count", cc);
 		return "search/search";
 	}
 }
