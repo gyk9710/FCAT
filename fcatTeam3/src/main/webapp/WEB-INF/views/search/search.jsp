@@ -51,6 +51,10 @@
 
 		<!--  -->
 		<div class="searchList-wrap">
+			<div id="seacrhResult">
+				<span id="searchCount1">'${search.keyword}'에 대한 검색결과 </span><span id="searchCount2">${search.searchCount}건</span>			
+			</div>
+		<hr>
 			<div class="searchRow">
 				<c:forEach items="${list }" var="fs" varStatus="i">
 					<div class="searchItem">

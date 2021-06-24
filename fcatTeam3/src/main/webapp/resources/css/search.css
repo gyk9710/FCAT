@@ -83,8 +83,8 @@
 	width: 270px;
 	padding-left: 30px;
 	padding-right: 30px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 #thumbnail > img{
 	height: 160px;
@@ -172,9 +172,27 @@
 	color: #777777;
 	font-size: 14px;
 	font-weight: lighter;
+	
+}
+.serviceComment{
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 #fsPriceFont {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+#seacrhResult{
+	margin:10px;
+}
+#searchCount1{
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+#searchCount2{
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	font-weight: bolder;

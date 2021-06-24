@@ -4,15 +4,24 @@ public class Search {
 	int end;
 	int start;
 	String keyword;
-	public Search() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Search(int end, int start, String keyword) {
+	String searchCount;
+	public Search(int end, int start, String keyword, String searchCount) {
 		super();
 		this.end = end;
 		this.start = start;
 		this.keyword = keyword;
+		this.searchCount = searchCount;
+	}
+	public Search() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getSearchCount() {
+		return searchCount;
+	}
+	public void setSearchCount(String searchCount) {
+		this.searchCount = searchCount;
 	}
 	public int getEnd() {
 		return end;

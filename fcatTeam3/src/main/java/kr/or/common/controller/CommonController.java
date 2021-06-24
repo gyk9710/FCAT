@@ -48,6 +48,7 @@ public class CommonController {
 		search.setStart(page.getStart());
 		search.setEnd(page.getEnd());
 		search.setKeyword(keyword);
+		search.setSearchCount(NumberFormat.getInstance().format(total));
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
@@ -68,7 +69,6 @@ public class CommonController {
 		model.addAttribute("search", search);
 		return "search/search";
 	}
-
 	@RequestMapping(value = "/searchList.do")
 	public String search(String keyword, Model model, Paging page,
 			@RequestParam(value = "nowPage", required = false) String nowPage) {
@@ -78,6 +78,7 @@ public class CommonController {
 		search.setStart(page.getStart());
 		search.setEnd(page.getEnd());
 		search.setKeyword(keyword);
+		search.setSearchCount(NumberFormat.getInstance().format(total));
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
@@ -98,5 +99,4 @@ public class CommonController {
 		model.addAttribute("search", search);
 		return "search/search";
 	}
-
 }
