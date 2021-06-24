@@ -1,5 +1,7 @@
 package kr.or.seller.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,5 +40,16 @@ public class SellerController {
 		
 	}
 	
+
+	// 서비스 요청 리스트 조회
+	@RequestMapping(value = "/requestServiceList.do")
+	public String requestServiceList(Model model, int serviceNo) {
+		// 서비스 요청 리스트
+		List list = service.requestServiceList(serviceNo);
+
+		model.addAttribute("list", list);
+
+		return "seller/requestServiceList";
+	}
 
 }

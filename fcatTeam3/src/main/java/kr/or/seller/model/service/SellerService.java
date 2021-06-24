@@ -1,5 +1,7 @@
 package kr.or.seller.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,13 @@ public class SellerService {
 	@Autowired
 	private SellerDao dao;
 
+
 	public int insertService(TestService fs) {
 		// TODO Auto-generated method stub
 		return dao.insertService(fs);
+	}
+	public List requestServiceList(int serviceNo) {
+		return dao.requestServiceList(serviceNo);
+
 	}
 }

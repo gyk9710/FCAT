@@ -8,15 +8,16 @@
 
 	<!-- 별칭 설정 -->
 	<typeAliases>
-		<typeAlias type="kr.or.seller.model.vo.TestMember"
-			alias="tm" />
+		<!-- 서비스 요청 테이블 -->
+		<typeAlias type="kr.or.seller.model.vo.ServiceRequest" alias="sr" />
+		
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
 
-		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="fs"/>
-=======
+		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="ts"/>
+
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
->>>>>>> branch 'main' of https://github.com/gyk9710/FCAT.git
+
 	</typeAliases>
 </configuration>
