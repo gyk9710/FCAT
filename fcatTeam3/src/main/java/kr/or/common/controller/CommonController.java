@@ -1,5 +1,6 @@
 package kr.or.common.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class CommonController {
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
+			//가격 천단위 포맷
+			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
 			if ("디자인/개발".equals(item.getFsCategory())) {
 				cc.setDesign(cc.getDesign() + 1);
 			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
@@ -62,7 +65,7 @@ public class CommonController {
 		}
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
-		model.addAttribute("search",search);
+		model.addAttribute("search", search);
 		return "search/search";
 	}
 
@@ -70,7 +73,6 @@ public class CommonController {
 	public String search(String keyword, Model model, Paging page,
 			@RequestParam(value = "nowPage", required = false) String nowPage) {
 		int total = service.selectSearchedCountFservice(keyword);
-		System.out.println("keyword: " + keyword);
 		page = new Paging(total, Integer.parseInt(nowPage));
 		Search search = new Search();
 		search.setStart(page.getStart());
@@ -79,6 +81,8 @@ public class CommonController {
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
+			//가격 천단위 포맷
+			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
 			if ("디자인/개발".equals(item.getFsCategory())) {
 				cc.setDesign(cc.getDesign() + 1);
 			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
@@ -91,7 +95,7 @@ public class CommonController {
 		}
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
-		model.addAttribute("search",search);
+		model.addAttribute("search", search);
 		return "search/search";
 	}
 
