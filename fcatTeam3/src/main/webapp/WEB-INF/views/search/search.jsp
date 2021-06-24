@@ -86,7 +86,7 @@
 
 					<c:if test="${paging.startPage != 1 }">
 						<li class="page-item"><a class="page-link"
-							href="/searchList.do?nowPage=${paging.startPage - 1 }">&lt;</a></li>
+							href="/searchList.do?nowPage=${paging.startPage - 1 }&keyword=${search.keyword }">&lt;</a></li>
 					</c:if>
 					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 						var="p">
