@@ -1,26 +1,32 @@
 .route-wrap {
-  background-color: #f0f0f0;
-}
-.route {
-  width: 1280px;
-  margin: 0 auto;
-}
-.content-wrap {
-  width: 1280px;
-  margin: 0 auto;
-}
-.categori-wrap {
-  width: 200px;
-  float: left;
-}
-.categori-title > h4 {
-  margin: 0;
-  padding: 0;
-}
-.categori-title > hr {
-  margin: 0;
+	background-color: #f0f0f0;
 }
 
+.route {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.content-wrap {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.categori-wrap {
+	width: 200px;
+	float: left;
+}
+
+.categori-title>h4 {
+	margin: 0;
+	padding: 0;
+}
+
+.categori-title>hr {
+	margin: 0;
+}
+
+/*
 .parent-catagori {
   position: relative;
   padding: 2px 0;
@@ -51,82 +57,143 @@
 .child-categori::before {
   display: inline-block;
   content: "";
-  width: 10px; /* 사이즈 */
-  height: 10px; /* 사이즈 */
-  border-top: 1px solid #121212; /* 선 두께 */
-  border-right: 1px solid #121212; /* 선 두께 */
-  transform: rotate(45deg); /* 각도 */
+  width: 10px; 
+  height: 10px; 
+  border-top: 1px solid #121212; 
+  border-right: 1px solid #121212; 
+  transform: rotate(45deg); 
   margin-right: 5px;
 }
-
+*/
 .searchList-wrap {
-  width: 1080;
-  float: left;
-}
-.searchRow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 1080px;
-  padding: 0px;
-}
-.searchItem {
-  width: 270px;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+	width: 1080;
+	float: left;
 }
 
-/* .searchItem > .photo {
-  width: 240px;
-  height: 160px;
-  overflow: hidden;
-  border: solid #f0f0f0 1px;
-} */
-/* .photo > img {
-  width: 240px;
-} */
+.searchRow {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 1080px;
+	/*overflow: hidden;*/
+}
+
+.searchItem {
+	float: left;
+	width: 270px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#thumbnail > img{
+	height: 160px;
+	object-fit: contain;
+	background-color: #fcfcfc;
+}
 .icon-wrap {
-  height: 20px;
-  float: right;
+	height: 20px;
+	float: right;
 }
-.icon-wrap > img {
-  height: 20px;
-  padding-left: 5px;
+
+.icon-wrap>img {
+	height: 20px;
+	padding-left: 5px;
 }
+
 .price {
-  float: right;
+	float: right;
 }
-.accordion-header > button {
-  padding: 2px;
+
+.accordion-header>button {
+	padding: 2px;
 }
+
 #badge {
-  float: right;
+	float: right;
 }
+
 #star {
-  color: yellow;
+	color: yellow;
 }
+
 .accordion-body {
-  padding: 0px;
-  padding-left: 14px;
+	padding: 0px;
+	padding-left: 14px;
 }
+
 .box-shadow {
-  width: 240px;
-  height: 413px;
-  border: 1px solid white;
-  padding: 10px;
+	width: 240px;
+	height: 340px;
+	border: 1px solid white;
+	padding: 10px;
 }
+
 .box-shadow:hover {
-  border: 1px solid #dddddd;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 5px #f0f0f0;
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 5px #f0f0f0;
 }
+
 #heart {
-  border: 0px;
+	border: 0px;
 }
+
 .search-header {
-  padding: 10px;
-  padding-bottom: 0px;
-  float: left;
+	padding: 10px;
+	padding-bottom: 0px;
+	float: left;
+}
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
+
+#hr {
+	margin-top: 10px;
+}
+
+#fsWriterFont {
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #999999;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#fsTitleFont {
+	font-family: 'Jua', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#fsContentFont {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #777777;
+	font-size: 14px;
+	font-weight: lighter;
+	
+}
+.serviceComment{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#fsPriceFont {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+#seacrhResult{
+	margin:10px;
+}
+#searchCount1{
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+#searchCount2{
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
 }

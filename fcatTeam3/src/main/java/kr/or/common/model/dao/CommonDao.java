@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
 @Repository
@@ -20,9 +21,12 @@ public class CommonDao {
 		return sqlSession.insert("common.insertTattle", t);
 	}
 
-	public ArrayList<FService> selectSearchedFservice(String keyword) {
-		
-		List<FService> list = sqlSession.selectList("common.selectSearchedFservice", keyword);
+	public ArrayList<FService> selectSearchedFservice(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectSearchedFservice", search);
 		return (ArrayList<FService>)list;
+	}
+
+	public int selectSearchedCountFservice(String keyword) {
+		return sqlSession.selectOne("common.selectSearchedCountFservice", keyword);
 	}
 }
