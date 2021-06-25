@@ -26,9 +26,10 @@ public class SellerController {
 	public String insertService() {
 		return "seller/serviceFrm"; //web-inf/view 뒤에 .jsp자동
 	}
+	
 	@RequestMapping(value="/service.do")
-	public String service(TestService fs, Model model) {
-		int result = service.insertService(fs);
+	public String service(TestService ts, Model model) {
+		int result = service.insertService(ts);
 		if(result>0) {
 			model.addAttribute("msg","서비스등록을 요청하였습니다");
 		}

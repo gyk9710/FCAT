@@ -18,6 +18,7 @@
 
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
+
 		<!-- 멤버 테이블 -->
 		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
 
