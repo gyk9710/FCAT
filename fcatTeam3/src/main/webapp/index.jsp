@@ -435,11 +435,12 @@
 								고수를 찾아드려요
 							</span><br>
 							<br>
+							<!-- 
 							<div class="search">
 								<input class="searchText" type="text" placeholder="서비스를 입력하세요">
 								<button class="searchButton" type="button">검색</button>
 							</div>
-
+							 -->
 							<br>
 							<ul style="padding-left: 0px;">
 								<li class="category">
