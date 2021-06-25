@@ -62,7 +62,7 @@
 	top: 0;
 	width: 100%; /* Full width */
 	height: 100%; /* Full height */
-	overflow: auto; /* Enable scroll if needed */
+	 /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
@@ -72,7 +72,7 @@
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 70%; /* Could be more or less, depending on screen size */
+	width: 30%; /* Could be more or less, depending on screen size */
 }
 </style>
 <script>
@@ -108,7 +108,8 @@
 			<input type="text" placeholder="원하는 서비스를 검색해주세요" class="h_search"
 				name="keyword">
 			<button class="btn btn-outline-secondary b_search" id="button-addon1">
-				<i class="bi bi-search"></i>
+				<!-- <i class="bi bi-search">검색</i> -->
+				<i class="glyphicon glyphicon-search"></i>
 			</button>
 		</form>
 		<ul class="nav navbar-top-links navbar-right" id="myThing">
@@ -126,9 +127,14 @@
 				data-activates="dropdown2"><i class="fa fa-bell fa-fw"></i> <i
 					class="material-icons right">arrow_drop_down</i></a></li>
 
+
+			<!-- 로그인 됐을때 부분  -->
 			<c:choose>
 				<c:when test="${empty sessionScope.m}">
-					<li><a class="dropdown-button waves-effect waves-dark" href="/loginFrm.do" onClick="login();return false;" style="padding:17px; font-weight: bold;">로그인</a></li>
+					<li><a class="dropdown-button waves-effect waves-dark" href="/loginFrm.do" onClick="login();return false;" style="padding:17px; font-weight: bold; padding:17px;">
+					<img src="/resources/img/login.png"></a>
+					
+					</li>
 				</c:when>
 				<c:otherwise>
 				<li>
@@ -151,6 +157,8 @@
 	</nav>
 
 
+			<!-- 로그인 모달부분 -->
+
 	<div id="login" class="searchModal">
 		<div class="search-modal-content">
 			<div class="page-header">
@@ -163,9 +171,10 @@
 							<hr>
 							<form action="/login.do" method="post">
 								아이디 : <input type="text" name="memberId"> <br> 비밀번호
-								: <input type="password" name="memberPw"> <br> <input
-									type="submit" value="로그인"
-									style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;">
+								: <input type="password" name="memberPw"> <br>
+								<div style="cursor: pointer; background-color: #DDDDDD; text-align: center; height: 44px;">
+								<input type="submit" value="로그인" style="width : 100%; height:100%;">
+									</div>
 							</form>
 
 
@@ -174,11 +183,10 @@
 				</div>
 			</div>
 			<hr>
-			<div
-				style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-				onClick="closeModal();">
-				<span class="pop_bt modalCloseBtn" style="font-size: 13pt;">닫기
-				</span>
+			<div			
+				style="cursor: pointer; background-color: #DDDDDD; text-align: center; height: 44px;">
+				<button onClick="closeModal();" style="width : 100%; height:100%;">닫기</button>
+				<!-- <span class="pop_bt modalCloseBtn" style="font-size: 13pt;">닫기	</span>-->
 			</div>
 		</div>
 	</div>
