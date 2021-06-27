@@ -30,7 +30,7 @@
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" value="${m.memberId }" id="memberId">
 	<div class="searchList-wrap">
 		<div id="seacrhResult">
 			<span id="searchCount1">'${search.keyword}'에 대한 검색결과 </span><span
@@ -47,9 +47,33 @@
 						<span id="fsWriterFont">${fs.fsWriter }</span>
 						<div class="icon-wrap">
 							<i class="bi bi-star-fill" id="star"></i>
-								<span id="heart">
-								<i class="far fa-heart  " style="color:#FE8E86;font-size: 20px;"></i>
-								</span>
+							<!--하트  -->
+							<c:choose>
+								<c:when test="${empty sessionScope.m  }">
+									<span id="heartSpan" class="noright"><i
+										class="far fa-heart"></i> </span>
+								</c:when>
+								<c:when test="${not empty sessionScope.m  }">
+									<c:set var="like" value="0" />
+									<c:forEach items="${likeList }" var="num">
+										<c:if test="${num eq fs.fsNo }">
+											<span id="heartSpan" class="hearts"
+												onclick="heartsClick(this)"><i class="fas fa-heart"></i>
+											</span>
+											<!-- like 찾은 경우 구분값 설정 -->
+											<c:set var="like" value="1" />
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${like eq '0'}">
+										<span id="heartSpan" class="hearts"
+											onclick="heartsClick(this)"><i class="far fa-heart"
+											id="nofilling"></i> </span>
+									</c:if>
+								</c:when>
+							</c:choose>
+							<!--찜하기 정보 -->
+							<input type="hidden" id="fsNo" value="${fs.fsNo }">
 						</div>
 						<div class="serviceTitle">
 							<span id="fsTitleFont">${fs.fsTitle }</span>
@@ -60,6 +84,7 @@
 						<div class="price">
 							<span id="fsPriceFont">${fs.fsPriceAsString }</span>
 						</div>
+
 					</div>
 				</div>
 			</c:forEach>
@@ -92,4 +117,47 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	function heartsClick(e) {
+		if ($(e).children().attr("id") == "nofilling") {
+			$(e).html("<i class='fas fa-heart'></i>");
+			var memberId = $("#memberId").val();
+			var fsNo = $(e).next().val();
+			$.ajax({
+				url : "/serviceLike.do",
+				type : "post",
+				data : {
+					memberId : memberId,
+					fsNo : fsNo,
+				},
+				success : function(data) {
+				},
+				error : function() {
+					alert("서버 연결 이상");
+				}
+			})
+		} else {
+			$(e).html("<i class='far fa-heart' id='nofilling'></i>");
+			var memberId = $("#memberId").val();
+			var fsNo = $(e).next().val();
+			$.ajax({
+				url : "/serviceCancelLike.do",
+				type : "post",
+				data : {
+					memberId : memberId,
+					fsNo : fsNo,
+				},
+				success : function(data) {
+				},
+				error : function() {
+					alert("서버 연결 이상");
+				}
+			})
+		}
+	}
+	$(".noright").click(function() {
+		alert("로그인 후 사용해주세요.");
+	})
+</script>
+
 </html>

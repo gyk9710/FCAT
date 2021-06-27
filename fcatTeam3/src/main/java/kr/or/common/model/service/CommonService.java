@@ -1,6 +1,7 @@
 package kr.or.common.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,18 @@ public class CommonService {
 
 	public int selectSearchedCountFservice(String keyword) {
 		return dao.selectSearchedCountFservice(keyword);
+	}
+
+	public void serviceLike(HashMap<String, String> map) {
+		dao.serviceLike(map);
+	}
+
+	public void serviceCancelLike(HashMap<String, String> map) {
+		dao.serviceCancelLike(map);
+	}
+
+	public ArrayList<Integer> selectLike(String memberId) {
+		return dao.selectLike(memberId);
 	}
 
 }

@@ -2,6 +2,9 @@ package kr.or.common.controller;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
 import kr.or.common.model.vo.CategoryCount;
@@ -16,6 +20,7 @@ import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
+import kr.or.member.model.vo.Member;
 
 @Controller
 public class CommonController {
@@ -40,11 +45,17 @@ public class CommonController {
 	}
 
 	@RequestMapping(value = "/search.do")
-	public String search(String keyword, Model model, Paging page) {
+	public String search(String keyword, HttpSession session, Model model, Paging page) {
 //			@RequestParam(value = "nowPage", required = false) String nowPage) {
+		Search search = new Search();
+		ArrayList<Integer> likeList = new ArrayList<Integer>();
+		if ((Member) session.getAttribute("m") != null) {
+			Member member = (Member) session.getAttribute("m");
+			likeList = service.selectLike(member.getMemberId());
+			model.addAttribute("likeList", likeList);
+		}
 		int total = service.selectSearchedCountFservice(keyword);
 		page = new Paging(total, 1);
-		Search search = new Search();
 		search.setStart(page.getStart());
 		search.setEnd(page.getEnd());
 		search.setKeyword(keyword);
@@ -52,7 +63,7 @@ public class CommonController {
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
-			//가격 천단위 포맷
+			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
 			if ("디자인/개발".equals(item.getFsCategory())) {
 				cc.setDesign(cc.getDesign() + 1);
@@ -69,12 +80,19 @@ public class CommonController {
 		model.addAttribute("search", search);
 		return "search/search";
 	}
+
 	@RequestMapping(value = "/searchList.do")
-	public String search(String keyword, Model model, Paging page,
+	public String search(String keyword, Model model, Paging page, HttpSession session,
 			@RequestParam(value = "nowPage", required = false) String nowPage) {
+		Search search = new Search();
+		ArrayList<Integer> likeList = new ArrayList<Integer>();
+		if ((Member) session.getAttribute("m") != null) {
+			Member member = (Member) session.getAttribute("m");
+			likeList = service.selectLike(member.getMemberId());
+			model.addAttribute("likeList", likeList);
+		}
 		int total = service.selectSearchedCountFservice(keyword);
 		page = new Paging(total, Integer.parseInt(nowPage));
-		Search search = new Search();
 		search.setStart(page.getStart());
 		search.setEnd(page.getEnd());
 		search.setKeyword(keyword);
@@ -82,7 +100,7 @@ public class CommonController {
 		ArrayList<FService> list = service.selectSearchedFService(search);
 		CategoryCount cc = new CategoryCount();
 		for (FService item : list) {
-			//가격 천단위 포맷
+			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
 			if ("디자인/개발".equals(item.getFsCategory())) {
 				cc.setDesign(cc.getDesign() + 1);
@@ -98,5 +116,25 @@ public class CommonController {
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
 		return "search/search";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/serviceLike.do")
+	public String searchLike(String memberId, String fsNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("fsNo", fsNo);
+		service.serviceLike(map);
+		return "/";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/serviceCancelLike.do")
+	public String serviceCancelLike(String memberId, String fsNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("fsNo", fsNo);
+		service.serviceCancelLike(map);
+		return "/";
 	}
 }
