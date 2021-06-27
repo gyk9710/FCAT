@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="seller">
 
+	<insert id ="insertService" parameterType="ts">
+		insert into fservice values(
+		fservice_seq.nextval,
+		'gy',
+		#{fsTitle},
+		#{fscontent},
+		#{fsCategory},
+		#{fsPrice},
+		#{fsworking},
+		#{fsChildCategory},
+		'img/13.img'
+		) 
+	</insert>
+	
 	<!-- 요청 리스트 조회 -->
 	<select id="requestServiceList" resultType="sr" parameterType="int">
 		SELECT
@@ -15,10 +29,13 @@
 		ON SR.SERVICE_NO = FS.FS_NO
 		WHERE SR.SERVICE_NO = #{serviceNo}
 	</select>
+
 	
 	<!-- 알람 수 조회 -->
 	<select id="selectAlarmCount" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM MESSAGE WHERE MSG_RECEIVER = #{memberId} AND MSG_STATUS = 0
 	</select>
-	
 </mapper>
+
+
+

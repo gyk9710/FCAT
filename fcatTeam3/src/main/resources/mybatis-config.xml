@@ -13,9 +13,14 @@
 		
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
+
+		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="ts"/>
+
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
+
 		<!-- 멤버 테이블 -->
 		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
+
 	</typeAliases>
 </configuration>
