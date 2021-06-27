@@ -19,7 +19,7 @@
 		or fs_writer like '%'||#{keyword}||'%'
 	</select>
 	<select id="selectSearchedFservice" parameterType="kr.or.common.model.vo.Search"  resultType="fs">
-	SELECT * 
+					SELECT * 
 		FROM (
 			SELECT ROWNUM RN, A.* 
 				FROM (
@@ -41,5 +41,21 @@
 						) A
 				)
 	WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<insert id="insertServiceLike" parameterType="map">
+		insert into service_like values(
+			#{fsNo}, #{memberId}
+		)
+	</insert>
+	<delete id="deleteServiceLike" parameterType="map">
+		delete from service_like
+		where fs_no = #{fsNo} and member_id = #{memberId}
+	</delete>
+	<select id="selectLike" parameterType="String" resultType="int">
+		select
+			fs_no as fsNo
+		from
+			service_like
+		where member_id = #{memberId}
 	</select>
 </mapper>

@@ -197,3 +197,11 @@
 	font-size: 20px;
 	font-weight: bolder;
 }
+.fa-heart:hover{
+	color: #FF4033;
+}
+.fa-heart{
+	color: #FE8E86;
+	font-size: 20px;
+	cursor:pointer;
+}

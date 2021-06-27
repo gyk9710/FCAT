@@ -14,16 +14,11 @@
 <!-- Bootstrap Styles-->
 <link href="/resources/headerassets/css/headerbootstrap.css"
 	rel="stylesheet" />
-<<<<<<< HEAD
 
 <!-- jquery -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 
-=======
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
->>>>>>> bowwow2115
 <!-- FontAwesome Styles-->
 <link href="/resources/headerassets/css/headerfont-awesome.css"
 	rel="stylesheet" />
@@ -48,13 +43,11 @@
 	left: 30px;
 	top: 10px;
 }
-
 .b_search {
 	position: relative;
 	left: 30px;
 	top: 10px;
 }
-
 .f_i {
 	display: inline;
 }

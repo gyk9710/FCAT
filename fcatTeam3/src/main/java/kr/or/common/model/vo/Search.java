@@ -5,17 +5,35 @@ public class Search {
 	int start;
 	String keyword;
 	String searchCount;
-	public Search(int end, int start, String keyword, String searchCount) {
+	String memberId;
+	int fsNo;
+	
+	public Search() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	public Search(int end, int start, String keyword, String searchCount, String memberId, int fsNo) {
 		super();
 		this.end = end;
 		this.start = start;
 		this.keyword = keyword;
 		this.searchCount = searchCount;
+		this.memberId = memberId;
+		this.fsNo = fsNo;
 	}
-	public Search() {
-		super();
-		// TODO Auto-generated constructor stub
+
+
+	public int getFsNo() {
+		return fsNo;
 	}
+
+
+	public void setFsNo(int fsNo) {
+		this.fsNo = fsNo;
+	}
+
 
 	public String getSearchCount() {
 		return searchCount;
@@ -40,5 +58,11 @@ public class Search {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 }
