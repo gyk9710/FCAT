@@ -61,23 +61,37 @@ public class CommonController {
 		search.setKeyword(keyword);
 		search.setSearchCount(NumberFormat.getInstance().format(total));
 		ArrayList<FService> list = service.selectSearchedFService(search);
-		CategoryCount cc = new CategoryCount();
+		ArrayList<FService> listForCategory = service.selectSearchedCategory(search);
+		CategoryCount cc = new CategoryCount(0,0,0,0,0,0,0,0,0,0,0); 
+		////////////////////////////
 		for (FService item : list) {
 			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
-			if ("디자인/개발".equals(item.getFsCategory())) {
-				cc.setDesign(cc.getDesign() + 1);
-			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
-				cc.setDesign((cc.getDesignApp() + 1));
+		}
+		for(FService item: listForCategory) {
+			if ("레슨".equals(item.getFsCategory())) {
+				cc.setLesson(cc.getLesson() + 1);
+			} else if ("홈/리빙".equals(item.getFsCategory())) {
+				cc.setHome(cc.getHome() + 1);
+			} else if ("이벤트".equals(item.getFsCategory())) {
+				cc.setBusiness(cc.getEvent() + 1);
 			} else if ("비즈니스".equals(item.getFsCategory())) {
 				cc.setBusiness(cc.getBusiness() + 1);
-			} else if ("마케팅".equals(item.getFsChildCategory())) {
-				cc.setBusiness(cc.getBusinessMarketing() + 1);
+			} else if ("디자인/개발".equals(item.getFsCategory())) {
+				cc.setDesign(cc.getDesign() + 1);
+			} else if ("건강/미용".equals(item.getFsCategory())) {
+				cc.setHealth(cc.getHealth() + 1);
+			} else if ("알바".equals(item.getFsCategory())) {
+				cc.setAlba(cc.getAlba() + 1);
+			} else if ("기타".equals(item.getFsCategory())) {
+				cc.setEtcMovie(cc.getEtc() + 1);
 			}
 		}
+		model.addAttribute("cc",cc);
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
+		model.addAttribute("listForCategory", listForCategory);
 		return "search/search";
 	}
 
@@ -115,6 +129,7 @@ public class CommonController {
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
+		model.addAttribute("cc",cc);
 		return "search/search";
 	}
 
@@ -137,4 +152,5 @@ public class CommonController {
 		service.serviceCancelLike(map);
 		return "/";
 	}
+
 }

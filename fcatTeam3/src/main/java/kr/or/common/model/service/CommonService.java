@@ -41,4 +41,8 @@ public class CommonService {
 		return dao.selectLike(memberId);
 	}
 
+	public ArrayList<FService> selectSearchedCategory(Search search) {
+		return dao.selectSearchedCategory(search);
+	}
+
 }

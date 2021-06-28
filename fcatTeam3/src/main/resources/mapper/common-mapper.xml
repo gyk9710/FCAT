@@ -17,6 +17,7 @@
 		fs_title like '%'||#{keyword}||'%'
 		or fs_child_category like '%'||#{keyword}||'%'
 		or fs_writer like '%'||#{keyword}||'%'
+		or fs_category like '%'||#{keyword}||'%'
 	</select>
 	<select id="selectSearchedFservice" parameterType="kr.or.common.model.vo.Search"  resultType="fs">
 					SELECT * 
@@ -36,6 +37,7 @@
                          where
                           	fs_title like '%'||#{keyword}||'%'
 							or fs_child_category like '%'||#{keyword}||'%'
+							or fs_category like '%'||#{keyword}||'%'
 							or fs_writer like '%'||#{keyword}||'%'
 						ORDER BY fs_no DESC 
 						) A
@@ -57,5 +59,25 @@
 		from
 			service_like
 		where member_id = #{memberId}
+	</select>
+	<select id="selectSearchedCategory" parameterType="kr.or.common.model.vo.Search"  resultType="fs">
+		
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+                          	fs_title like '%'||#{keyword}||'%'
+							or fs_child_category like '%'||#{keyword}||'%'
+							or fs_category like '%'||#{keyword}||'%'
+							or fs_writer like '%'||#{keyword}||'%'
+						ORDER BY fs_no DESC 
+						
 	</select>
 </mapper>

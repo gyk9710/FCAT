@@ -27,6 +27,88 @@
 			<div class="categori-title">
 				<h4>추천 카테고리</h4>
 				<hr />
+				<ul class="accordion">
+					<c:if test="${ cc.lesson ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								레슨 (${cc.lesson }) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.home ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								홈/리빙 (${cc.home}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.event ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								이벤트 (${cc.event}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.business ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								비즈니스 (${cc.business}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.design ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								디자인 (${cc.design}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.health ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								헬스 (${cc.health}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.alba ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								알바 (${cc.alba}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+					<c:if test="${ cc.etc ne 0}">
+						<li class="item">
+							<h2 class="accordionTitle">
+								기타 (${cc.etc}) 
+								<span class="accIcon"></span>
+							</h2>
+							
+							<div class="text">asd</div>
+						</li>
+					</c:if>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -158,6 +240,33 @@
 	$(".noright").click(function() {
 		alert("로그인 후 사용해주세요.");
 	})
+	// accordion
+	// variables 
+	var accordionBtn = document.querySelectorAll(".accordionTitle");
+	var allTexts = document.querySelectorAll(".text");
+	var accIcon = document.querySelectorAll(".accIcon");
+
+	// event listener
+	accordionBtn.forEach(function(el) {
+		el.addEventListener("click", toggleAccordion);
+	});
+
+	// function
+	function toggleAccordion(el) {
+		var targetText = el.currentTarget.nextElementSibling.classList;
+		var targetAccIcon = el.currentTarget.children[0];
+		var target = el.currentTarget;
+
+		if (targetText.contains("show")) {
+			targetText.remove("show");
+			targetAccIcon.classList.remove("anime");
+			target.classList.remove("accordionTitleActive");
+		} else {
+			targetText.add("show");
+			target.classList.add("accordionTitleActive");
+			targetAccIcon.classList.add("anime");
+		}
+	}
 </script>
 
 </html>

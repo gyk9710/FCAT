@@ -43,4 +43,9 @@ public class CommonDao {
 		List<Integer> likeList = sqlSession.selectList("common.selectLike", memberId);
 		return (ArrayList<Integer>)likeList;
 	}
+
+	public ArrayList<FService> selectSearchedCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectSearchedCategory", search);
+		return (ArrayList<FService>)list;
+	}
 }
