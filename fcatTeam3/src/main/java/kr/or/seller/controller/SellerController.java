@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.seller.model.service.SellerService;
 
@@ -33,8 +35,17 @@ public class SellerController {
 		List list = service.requestServiceList(serviceNo);
 
 		model.addAttribute("list", list);
+		model.addAttribute("serviceNo", serviceNo);
 
 		return "seller/requestServiceList";
+	}
+	
+	// 서비스 요청 리스트 삭제 - 승인 / 반려
+	@Transactional
+	@ResponseBody
+	@RequestMapping(value = "/confirmRequestService.do")
+	public int confirmRequestService(int srNo) {
+		return service.confirmRequestService(srNo);
 	}
 
 }

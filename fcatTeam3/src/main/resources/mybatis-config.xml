@@ -15,7 +15,11 @@
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
+		<!-- 메시지 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.Message" alias="msg"/>
+		
 		<!-- 멤버 테이블 -->
-		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />
+				
 	</typeAliases>
 </configuration>
