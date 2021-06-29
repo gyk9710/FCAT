@@ -43,13 +43,11 @@
 	left: 30px;
 	top: 10px;
 }
-
 .b_search {
 	position: relative;
 	left: 30px;
 	top: 10px;
 }
-
 .f_i {
 	display: inline;
 }
