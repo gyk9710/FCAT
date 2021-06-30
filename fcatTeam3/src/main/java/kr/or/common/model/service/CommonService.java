@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.common.model.dao.CommonDao;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
@@ -43,6 +44,10 @@ public class CommonService {
 
 	public ArrayList<FService> selectSearchedCategory(Search search) {
 		return dao.selectSearchedCategory(search);
+	}
+
+	public ArrayList<Review> selectReview(int fsNo) {
+		return dao.selectReview(fsNo);
 	}
 
 }

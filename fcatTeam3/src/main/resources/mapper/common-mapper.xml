@@ -80,4 +80,13 @@
 						ORDER BY fs_no DESC 
 						
 	</select>
+	<select id="selectReview" parameterType="int" resultType="kr.or.common.model.vo.Review">
+		select review_no as reviewNo,
+			fs_no as fsNo,
+			fs_working as fsWorking,
+			fs_child_category as fsChildCategory,
+			review_score as reviewScore
+		from review_service
+		where fs_no = #{fsNo} 
+	</select>
 </mapper>

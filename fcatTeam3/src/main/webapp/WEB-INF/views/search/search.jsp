@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -28,86 +29,25 @@
 				<h4>추천 카테고리</h4>
 				<hr />
 				<ul class="accordion">
-					<c:if test="${ cc.lesson ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								레슨 (${cc.lesson }) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.home ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								홈/리빙 (${cc.home}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.event ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								이벤트 (${cc.event}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.business ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								비즈니스 (${cc.business}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.design ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								디자인 (${cc.design}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.health ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								헬스 (${cc.health}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.alba ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								알바 (${cc.alba}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
-					<c:if test="${ cc.etc ne 0}">
-						<li class="item">
-							<h2 class="accordionTitle">
-								기타 (${cc.etc}) 
-								<span class="accIcon"></span>
-							</h2>
-							
-							<div class="text">asd</div>
-						</li>
-					</c:if>
+					<c:forEach items="${cc.motherCategory }" var="cm" varStatus="i">
+						<c:if test="${ cm.value ne 0}">
+							<li class="item">
+								<h2 class="accordionTitle">
+									${cm.key }(${cm.value}) <span class="accIcon"></span>
+								</h2> <%-- 									<c:if test="${child.value ne 0 }"> --%>
+								<div class="text">
+									<c:forEach items="${cc.childCategory[i.count-1] }" var="child">
+										<c:if test="${child.value ne 0 }">
+											<a href="search.do?childCategory=보컬레슨&keyword=">
+												${child.key }(${child.value })<br>
+											</a>
+										</c:if>
+									</c:forEach>
+								</div> <%-- 									</c:if> --%>
+
+							</li>
+						</c:if>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -128,7 +68,7 @@
 						</div>
 						<span id="fsWriterFont">${fs.fsWriter }</span>
 						<div class="icon-wrap">
-							<i class="bi bi-star-fill" id="star"></i>
+
 							<!--하트  -->
 							<c:choose>
 								<c:when test="${empty sessionScope.m  }">
@@ -163,6 +103,93 @@
 						<div class="serviceComment">
 							<span id="fsContentFont">${fs.fsContent}</span>
 						</div>
+						<c:forEach items="${listForCategory}" var="star">
+							<c:if test="${star.fsNo eq fs.fsNo }">
+								<c:if test="${star.reviewScore ne '0.0' }">
+									<c:choose>
+										<c:when test="${star.reviewScoreAsStar eq '0.5' }">
+											<i class="fas fa-star-half-alt"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '1.0' }">
+											<i class="fas fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '1.5' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star-half-alt"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '2.0' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '2.5' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star-half-alt"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '3.0' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="far fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '3.5' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star-half-alt"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '4.0' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="far fa-star"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '4.5' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star-half-alt"></i>
+										</c:when>
+										<c:when test="${star.reviewScoreAsStar eq '5.0' }">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</c:when>
+									</c:choose>
+								</c:if>
+								<c:if test="${star.reviewScore eq '0.0' }">
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+								</c:if>
+								<span class="starCount"> (${star.reviewCount }) </span>
+							</c:if>
+						</c:forEach>
+
 						<div class="price">
 							<span id="fsPriceFont">${fs.fsPriceAsString }</span>
 						</div>
