@@ -3,6 +3,7 @@ package kr.or.common.controller;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
-import kr.or.common.model.vo.CategoryCount;
+import kr.or.common.model.vo.CountCategory;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
+import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 import kr.or.member.model.vo.Member;
@@ -48,7 +50,9 @@ public class CommonController {
 	public String search(String keyword, HttpSession session, Model model, Paging page) {
 //			@RequestParam(value = "nowPage", required = false) String nowPage) {
 		Search search = new Search();
+		Review review = new Review();
 		ArrayList<Integer> likeList = new ArrayList<Integer>();
+		ArrayList<FService> list = new ArrayList<FService>();
 		if ((Member) session.getAttribute("m") != null) {
 			Member member = (Member) session.getAttribute("m");
 			likeList = service.selectLike(member.getMemberId());
@@ -60,34 +64,49 @@ public class CommonController {
 		search.setEnd(page.getEnd());
 		search.setKeyword(keyword);
 		search.setSearchCount(NumberFormat.getInstance().format(total));
-		ArrayList<FService> list = service.selectSearchedFService(search);
+		list = service.selectSearchedFService(search);
 		ArrayList<FService> listForCategory = service.selectSearchedCategory(search);
-		CategoryCount cc = new CategoryCount(0,0,0,0,0,0,0,0,0,0,0); 
-		////////////////////////////
+		CountCategory cc = new CountCategory();
 		for (FService item : list) {
+			
 			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
+			
 		}
-		for(FService item: listForCategory) {
-			if ("레슨".equals(item.getFsCategory())) {
-				cc.setLesson(cc.getLesson() + 1);
-			} else if ("홈/리빙".equals(item.getFsCategory())) {
-				cc.setHome(cc.getHome() + 1);
-			} else if ("이벤트".equals(item.getFsCategory())) {
-				cc.setBusiness(cc.getEvent() + 1);
-			} else if ("비즈니스".equals(item.getFsCategory())) {
-				cc.setBusiness(cc.getBusiness() + 1);
-			} else if ("디자인/개발".equals(item.getFsCategory())) {
-				cc.setDesign(cc.getDesign() + 1);
-			} else if ("건강/미용".equals(item.getFsCategory())) {
-				cc.setHealth(cc.getHealth() + 1);
-			} else if ("알바".equals(item.getFsCategory())) {
-				cc.setAlba(cc.getAlba() + 1);
-			} else if ("기타".equals(item.getFsCategory())) {
-				cc.setEtcMovie(cc.getEtc() + 1);
+//		 카테고리, 리뷰점수 설정
+		for (FService item : listForCategory) {
+			//전체 별점 필터 용
+			//리뷰점수 가져와 객체에 넣기
+			ArrayList<Review> reviewList = service.selectReview(item.getFsNo());
+			for(Review rev : reviewList) {
+				if (rev.getFsNo()==item.getFsNo()) {
+					item.setReviewScore(item.getReviewScore()+ rev.getReviewScore());
+					item.setReviewCount(item.getReviewCount()+1);
+				}
+			}
+			item.setReviewScore(Math.round(item.getReviewScore()/item.getReviewCount()*100)/100.0);
+			item.setReviewScoreAsStar((review.xxx(item.getReviewScore())));
+			if(Double.isNaN(item.getReviewScoreAsStar())) {
+				item.setReviewScoreAsStar(0);
+			}
+			System.out.println("fsNo: " + item.getFsNo());
+			System.out.println("star: " + item.getReviewScoreAsStar());
+//			while(item.getFsNo()==review.get)
+//			item.setReviewScore();
+			for (Entry<String, Integer> mother : cc.getMotherCategory().entrySet()) {
+				if (mother.getKey().equals(item.getFsCategory())) {
+					mother.setValue((mother.getValue() + 1));
+					for (HashMap<String, Integer> childListItem : cc.getChildCategory()) {
+						for (Entry<String, Integer> child : childListItem.entrySet()) {
+							if (child.getKey().equals(item.getFsChildCategory())) {
+								child.setValue(child.getValue() + 1);
+							}
+						}
+					}
+				}
 			}
 		}
-		model.addAttribute("cc",cc);
+		model.addAttribute("cc", cc);
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
@@ -112,24 +131,31 @@ public class CommonController {
 		search.setKeyword(keyword);
 		search.setSearchCount(NumberFormat.getInstance().format(total));
 		ArrayList<FService> list = service.selectSearchedFService(search);
-		CategoryCount cc = new CategoryCount();
+		CountCategory cc = new CountCategory();
+		ArrayList<FService> listForCategory = service.selectSearchedCategory(search);
 		for (FService item : list) {
 			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
-			if ("디자인/개발".equals(item.getFsCategory())) {
-				cc.setDesign(cc.getDesign() + 1);
-			} else if ("모바일앱개발".equals(item.getFsChildCategory())) {
-				cc.setDesign((cc.getDesignApp() + 1));
-			} else if ("비즈니스".equals(item.getFsCategory())) {
-				cc.setBusiness(cc.getBusiness() + 1);
-			} else if ("마케팅".equals(item.getFsChildCategory())) {
-				cc.setBusiness(cc.getBusinessMarketing() + 1);
+		}
+//		 카테고리 설정
+		for (FService item : listForCategory) {
+			for (Entry<String, Integer> mother : cc.getMotherCategory().entrySet()) {
+				if (mother.getKey().equals(item.getFsCategory())) {
+					mother.setValue((mother.getValue() + 1));
+					for (HashMap<String, Integer> childListItem : cc.getChildCategory()) {
+						for (Entry<String, Integer> child : childListItem.entrySet()) {
+							if (child.getKey().equals(item.getFsChildCategory())) {
+								child.setValue(child.getValue() + 1);
+							}
+						}
+					}
+				}
 			}
 		}
 		model.addAttribute("paging", page);
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
-		model.addAttribute("cc",cc);
+		model.addAttribute("cc", cc);
 		return "search/search";
 	}
 

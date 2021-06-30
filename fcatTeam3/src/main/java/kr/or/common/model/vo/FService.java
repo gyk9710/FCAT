@@ -12,6 +12,9 @@ public class FService {
 	String fsChildCategory;
 	String fsPhoto;
 	String memberIdLike;
+	double reviewScore;
+	int reviewCount;
+	double reviewScoreAsStar;
 
 	public FService() {
 		super();
@@ -20,7 +23,7 @@ public class FService {
 
 	public FService(int fsNo, String fsWriter, String fsTitle, String fsContent, String fsCategory,
 			String fsPriceAsString, int fsPrice, String fsWorking, String fsChildCategory, String fsPhoto,
-			String memberIdLike) {
+			String memberIdLike, double reviewScore, int reviewCount, double reviewScoreAsStar) {
 		super();
 		this.fsNo = fsNo;
 		this.fsWriter = fsWriter;
@@ -33,6 +36,33 @@ public class FService {
 		this.fsChildCategory = fsChildCategory;
 		this.fsPhoto = fsPhoto;
 		this.memberIdLike = memberIdLike;
+		this.reviewScore = reviewScore;
+		this.reviewCount = reviewCount;
+		this.reviewScoreAsStar = reviewScoreAsStar;
+	}
+
+	public double getReviewScore() {
+		return reviewScore;
+	}
+
+	public void setReviewScore(double reviewScore) {
+		this.reviewScore = reviewScore;
+	}
+
+	public double getReviewScoreAsStar() {
+		return reviewScoreAsStar;
+	}
+
+	public void setReviewScoreAsStar(double reviewScoreAsStar) {
+		this.reviewScoreAsStar = reviewScoreAsStar;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public String getMemberIdLike() {
