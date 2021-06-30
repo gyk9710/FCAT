@@ -12,5 +12,8 @@
 			alias="tm" />
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
+		
+		<!-- 고객센터 -->
+		<typeAlias type="kr.or.admin.model.vo.Board" alias="board"/>
 	</typeAliases>
 </configuration>

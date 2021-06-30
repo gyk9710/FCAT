@@ -63,5 +63,6 @@
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.seller" />
 	<context:component-scan base-package="kr.or.common" />
+	<context:component-scan base-package="kr.or.admin" />
 	
 </beans:beans>
