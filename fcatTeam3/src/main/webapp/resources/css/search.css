@@ -381,6 +381,14 @@ ul {
 	font-size: 10px;
 }
 
+.fa-star {
+	color: yellow;
+}
+
+fa-star-half-alt {
+	color: yellow;
+}
+
 .starSpan  i {
 	color: yellow;
 	background-color: yellow;
