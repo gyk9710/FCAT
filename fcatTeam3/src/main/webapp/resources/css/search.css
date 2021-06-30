@@ -276,7 +276,7 @@ ul {
 	bottom: 0;
 	left: 0;
 	display: flex;
- 	justify-content: center; 
+	justify-content: center;
 	align-items: center;
 }
 
@@ -373,18 +373,20 @@ ul {
 	z-index: 0;
 	border-radius: 0px 0px 3px 3px;
 }
-.badge{
+
+.badge {
 	margin: 0;
 	height: 14px;
 	line-height: 14px;
-	font-size:10px;
+	font-size: 10px;
 }
-.starSpan{
+
+.starSpan  i {
 	color: yellow;
+	background-color: yellow;
 }
-.fa-star-half-alt{
+
+.starSpan svg {
 	color: yellow;
-}
-.fa-star{
-	color: yellow;
+	background-color: yellow;
 }

@@ -104,6 +104,7 @@
 							<span id="fsContentFont">${fs.fsContent}</span>
 						</div>
 						<c:forEach items="${listForCategory}" var="star">
+							<span class="starSpan">
 							<c:if test="${star.fsNo eq fs.fsNo }">
 								<c:if test="${star.reviewScore ne '0.0' }">
 									<c:choose>
@@ -188,6 +189,7 @@
 								</c:if>
 								<span class="starCount"> (${star.reviewCount }) </span>
 							</c:if>
+							</span>
 						</c:forEach>
 
 						<div class="price">

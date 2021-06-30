@@ -89,8 +89,6 @@ public class CommonController {
 			if(Double.isNaN(item.getReviewScoreAsStar())) {
 				item.setReviewScoreAsStar(0);
 			}
-			System.out.println("fsNo: " + item.getFsNo());
-			System.out.println("star: " + item.getReviewScoreAsStar());
 //			while(item.getFsNo()==review.get)
 //			item.setReviewScore();
 			for (Entry<String, Integer> mother : cc.getMotherCategory().entrySet()) {
