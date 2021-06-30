@@ -133,6 +133,7 @@
 					<img src="/resources/img/login.png"></a>
 					
 					</li>
+					<li><a class="dropdown-button waves-effect waves-dark" href="/joinCheck.do">회원가입</a></li>
 				</c:when>
 				<c:otherwise>
 				<li>

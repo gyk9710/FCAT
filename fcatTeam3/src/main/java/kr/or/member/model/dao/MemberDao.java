@@ -16,4 +16,9 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectOneMember",m);
 	}
 
+	public int insertMember(Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("member.insertMember",m);
+	}
+
 }

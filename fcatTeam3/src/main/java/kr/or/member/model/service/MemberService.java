@@ -16,4 +16,9 @@ public class MemberService {
 		return dao.selectOneMember(m);
 	}
 
+	public int insertMember(Member m) {
+		// TODO Auto-generated method stub
+		return dao.insertMember(m);
+	}
+
 }
