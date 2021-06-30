@@ -13,6 +13,11 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
+       <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
     <!-- FontAwesome Styles-->
     <link href="/resources/headerassets/css/headerfont-awesome.css" rel="stylesheet" />
     <!-- Morris Chart Styles-->
@@ -55,7 +60,7 @@
         </li>
       </ul>
       <form action="search.do" class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+        <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

@@ -1,0 +1,381 @@
+.route-wrap {
+	background-color: #f0f0f0;
+}
+
+.route {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.content-wrap {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+.categori-wrap {
+	width: 200px;
+	float: left;
+}
+
+.categori-title>h4 {
+	margin: 0;
+	padding: 0;
+}
+
+.categori-title>hr {
+	margin: 0;
+}
+
+/*
+.parent-catagori {
+  position: relative;
+  padding: 2px 0;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.parent-catagori::before {
+  display: inline-block;
+  content: " ";
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.parent-catagori.on > span {
+  font-weight: bold;
+}
+
+.child-categori {
+  display: none;
+  overflow: hidden;
+  font-size: 14px;
+  background-color: #afaf91;
+  padding: 0px 0;
+}
+
+.child-categori::before {
+  display: inline-block;
+  content: "";
+  width: 10px; 
+  height: 10px; 
+  border-top: 1px solid #121212; 
+  border-right: 1px solid #121212; 
+  transform: rotate(45deg); 
+  margin-right: 5px;
+}
+*/
+.searchList-wrap {
+	float: left;
+}
+
+.searchRow {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 1080px;
+	/*overflow: hidden;*/
+}
+
+.searchItem {
+	float: left;
+	width: 270px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#thumbnail>img {
+	height: 160px;
+	object-fit: contain;
+	background-color: #fcfcfc;
+}
+
+.icon-wrap {
+	height: 20px;
+	float: right;
+}
+
+.icon-wrap>img {
+	height: 20px;
+	padding-left: 5px;
+}
+
+.price {
+	float: right;
+}
+
+.accordion-header>button {
+	padding: 2px;
+}
+
+#badge {
+	float: right;
+}
+
+#star {
+	color: yellow;
+}
+
+.accordion-body {
+	padding: 0px;
+	padding-left: 14px;
+}
+
+.box-shadow {
+	width: 240px;
+	height: 340px;
+	border: 1px solid white;
+	padding: 10px;
+}
+
+.box-shadow:hover {
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px 5px #f0f0f0;
+}
+
+#heart {
+	border: 0px;
+}
+
+.search-header {
+	padding: 10px;
+	padding-bottom: 0px;
+	float: left;
+}
+
+#pagination {
+	display: flex;
+	justify-content: center;
+}
+
+#hr {
+	margin-top: 10px;
+}
+
+#fsWriterFont {
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #999999;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#fsTitleFont {
+	font-family: 'Jua', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#fsContentFont {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #777777;
+	font-size: 14px;
+	font-weight: lighter;
+}
+
+.serviceComment {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#fsPriceFont {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+#seacrhResult {
+	margin: 10px;
+}
+
+#searchCount1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#searchCount2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.fa-heart:hover {
+	color: #FF4033;
+}
+
+.fa-heart {
+	color: #FE8E86;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/* Accordion */
+
+/* Accordion Container */
+.container {
+	width: 100%;
+	max-width: 500px;
+	min-width: 300px;
+	position: relative;
+}
+
+/* shadow */
+.container:before {
+	content: "";
+	position: absolute;
+	width: calc(100% - 30px);
+	height: 100%;
+	margin: 0;
+	left: 15px;
+	background-color: transparent;
+	top: 0px;
+	box-shadow: 0px 20px 40px #52616b;
+	opacity: 0.2;
+	z-index: -1;
+	transition: ease-in-out 0.6s all;
+}
+
+.container:hover.container:before {
+	box-shadow: 0px 40px 90px #52616b;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	border-radius: 3px;
+}
+
+.accordionTitle {
+	padding: 5px;
+	position: relative;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 0.8px;
+	color: #bacbd6;
+	transition: ease-in-out 0.2s all;
+	cursor: pointer;
+}
+
+.accordionTitle:hover {
+	
+}
+
+/* Accordion Item line */
+.accordionTitle:before, .accordionTitle:after {
+	content: "";
+	position: absolute;
+	height: 2px;
+	border-radius: 50px;
+	transition: ease-in-out 0.6s all;
+	bottom: 0;
+	left: 0;
+	display: flex;
+ 	justify-content: center; 
+	align-items: center;
+}
+
+.accordionTitle:before {
+	width: 100%;
+	background-color: #f0f0f0;
+}
+
+.accordionTitle:after {
+	background-image: linear-gradient(90deg, #76c5cc, #a6f2db);
+	width: 0%;
+}
+
+.accordionTitle:hover::after {
+	width: 100%;
+}
+
+/* Accordion Item line - Active */
+.accordionTitleActive:after {
+	content: "";
+	position: absolute;
+	height: 2px;
+	border-radius: 50px;
+	transition: ease-in-out 0.6s all;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.accordionTitleActive:after {
+	background-image: linear-gradient(90deg, #76c5cc, #a6f2db);
+	width: 100%;
+}
+
+/* Accordion Item Icon  */
+.accIcon {
+	float: right;
+	width: 21px;
+	height: 19px;
+	display: flex;
+	margin-top: -3px;
+	align-items: center;
+	justify-content: center;
+}
+
+.accIcon:before, .accIcon:after {
+	content: "";
+	position: absolute;
+	border-radius: 50px;
+	background-color: #76c5cc;
+	transition: ease 0.3s all;
+}
+
+.accIcon:before {
+	width: 2px;
+	height: 12px;
+}
+
+.accIcon:after {
+	width: 12px;
+	height: 1.5px;
+}
+
+.accordionTitle:hover .accIcon:before, .accordionTitle:hover .accIcon:after
+	{
+	background-color: #76c5cc;
+}
+
+.accIcon.anime.accIcon:before {
+	transform: rotate(90deg);
+}
+
+/* Text Content */
+.accordion .item .text {
+	opacity: 0;
+	height: 0;
+	padding: 0px 20px;
+	position: relative;
+	font-weight: 200;
+	transition: all 0.6s cubic-bezier(0.42, 0.2, 0.08, 1);
+	overflow: hidden;
+	background-color: #white;
+	letter-spacing: 0.5px;
+}
+
+/* Text Content - Class for JS to hide and show */
+.accordion .item .text.show {
+	opacity: 1;
+	height: auto;
+	padding: 0 14px;
+	position: relative;
+	z-index: 0;
+	border-radius: 0px 0px 3px 3px;
+}
+.badge{
+	margin: 0;
+	height: 14px;
+	line-height: 14px;
+	font-size:10px;
+}

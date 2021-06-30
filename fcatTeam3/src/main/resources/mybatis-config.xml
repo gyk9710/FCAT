@@ -8,9 +8,20 @@
 
 	<!-- 별칭 설정 -->
 	<typeAliases>
-		<typeAlias type="kr.or.seller.model.vo.TestMember"
-			alias="tm" />
+		<!-- 서비스 요청 테이블 -->
+		<typeAlias type="kr.or.seller.model.vo.ServiceRequest" alias="sr" />
+		
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
+
+		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="ts"/>
+
+		<!-- fService 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
+		<!-- 메시지 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.Message" alias="msg"/>
+		<!-- 멤버 테이블 -->
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
+
 	</typeAliases>
 </configuration>

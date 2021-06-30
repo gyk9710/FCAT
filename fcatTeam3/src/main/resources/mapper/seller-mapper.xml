@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="seller">
+
+	<insert id ="insertService" parameterType="ts">
+		insert into fservice values(
+		fservice_seq.nextval,
+		'gy',
+		#{fsTitle},
+		#{fscontent},
+		#{fsCategory},
+		#{fsPrice},
+		#{fsworking},
+		#{fsChildCategory},
+		'img/13.img'
+		) 
+	</insert>
+	
+	<!-- 요청 리스트 조회 -->
+	<select id="requestServiceList" resultType="sr" parameterType="int">
+		SELECT
+			SR.REQUEST_ID as requestId,
+			SR.SERVICE_NO as serviceNo,
+			SR.SR_NO as srNo,
+			FS.FS_CATEGORY as fsCategory,
+			FS.FS_CHILD_CATEGORY as fsChildCategory
+		FROM SERVICE_REQUEST SR
+		JOIN FSERVICE FS
+		ON SR.SERVICE_NO = FS.FS_NO
+		WHERE SR.SERVICE_NO = #{serviceNo}
+	</select>
+
+	
+	<!-- 알람 수 조회 -->
+	<select id="selectAlarmCount" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM MESSAGE WHERE MSG_RECEIVER = #{memberId} AND MSG_STATUS = 0
+	</select>
+	
+	<!-- 서비스 요청 수락/거절 -->
+	<delete id="confirmRequestService" parameterType="int">
+		delete from service_request where sr_no = #{srNo}
+	</delete>
+	
+	<!-- 서비스 요청 수락/거절 MSG -->
+	<insert id="sendConfirmMsg" parameterType="msg">
+		insert into message values(
+			msg_seq.nextval, #{msgSender}, #{msgReceiver}, #{msgTitle}, #{msgContent}, 0, to_char(sysdate, 'yyyy-mm-dd')
+		)
+	</insert>
 	
 </mapper>
