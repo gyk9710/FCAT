@@ -19,7 +19,8 @@
   </select>
   <insert id="insertMember" parameterType="m">
   	insert into member values
-  	(#{memberId},#{memberPw},#{memberName},#{phone},#{address},#{gender})
+  	(#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberAddr},#{memberEmail}
+  	,to_char(sysdate,'yyyy-mm-dd'),'0',#{pfNo})
   </insert>
   <select id="searchId" parameterType="m" resultType="m">
   		select

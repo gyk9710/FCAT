@@ -155,7 +155,6 @@
 			}
 
 			.section .slidelist {
-
 				white-space: nowrap;
 				font-size: 0;
 			}
@@ -225,7 +224,6 @@
 				list-style: none;
 			}
 
-<<<<<<< HEAD
 			.slidebox {
 				max-width: 900px;
 				margin: 0 auto;
@@ -417,6 +415,16 @@
 		<!--  헤더  -->
 		<%@include file="/WEB-INF/views/common/header.jsp" %>
 
+			<!-- 관리자 페이지 테스트 -->
+			<h3>
+				<a href="/adminPage.do">관리자 페이지</a>
+			</h3>
+			
+			<!-- 고객센터 테스트 -->
+			<h3>
+				<a href="boardList.do">고객센터</a>
+			</h3>
+			
 			<!-- 셀러 페이지 테스트 -->
 			<h3>
 				<a href="/sellerPage.do">판매자 마이 페이지</a>
@@ -436,12 +444,11 @@
 								고수를 찾아드려요
 							</span><br>
 							<br>
-							<!-- 
-							<div class="search">
+							<!-- <div class="search">
 								<input class="searchText" type="text" placeholder="서비스를 입력하세요">
 								<button class="searchButton" type="button">검색</button>
-							</div>
-							 -->
+							</div> -->
+
 							<br>
 							<ul style="padding-left: 0px;">
 								<li class="category">
@@ -619,27 +626,6 @@
 						</div>
 					</div>
 				</div>
-
-	<!-- 셀러 페이지 테스트 -->
-	<h3>
-		<a href="/sellerPage.do">판매자 마이 페이지</a>
-		<a href="/serviceFrm.do">서비스등록페이지</a>
-
-	</h3>
-		
-		<div class="wrapper">
-		<div class="wrapperContent">
-		<div class="wrapperLeft">
-			<div class="emptyLeftUp"></div>
-			<div class="emptyLeftDown">
-				<ul class="SearchDown">
-					<li class="serviceSearch">서비스 찾기</li>
-					<li class="userSearch">고객 찾기</li>
-				</ul>
-				<br> <br> <span	style="font-weight: bolder; font-size: 30px;">1분 만에 <br>
-					고수를 찾아드려요
-				</span><br>
-
 				<br>
 				<div class="serviceList">
 					<span class="textbolder">인기 로고 서비스</span><br>
@@ -767,131 +753,7 @@
 							</div>
 						</div>
 					</div>
-		<div class="control02">
-						<label for="slide01" class="prev"></label>
-						<label for="slide03" class="next"></label>
-					</div>
-					<div class="control03">
-						<label for="slide02" class="prev"></label>
-						<label for="slide01" class="next"></label>
-					</div>
-				</div>
-			</div>
 
-		</div>
-		<br>
-		<div class="serviceList">
-			<span class="textbolder">인기 로고 서비스</span><br>
-			<div class="slidebox">
-				<input type="radio" name="slide1" id="slide04" checked>
-				<input type="radio" name="slide1" id="slide05">
-				<input type="radio" name="slide1" id="slide06">
-				<!-- <input type="radio" name="slide1" id="slide04"> -->
-				<ul class="slidelist">
-					<li class="slideitem">
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo3.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black; ">원하시는 캐릭터 심볼 로고 드립니다. <br>55,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo4.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">따뜻한 감성이 돋보이는 로고 제작해드려요 많은 연락 부탁드립니다 <br>30,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo5.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">즉시 상담 100퍼센트 만족도 신속하고 정확한 로고를 드립니다. <br>99,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo6.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">"심플 끝판왕" 평점 5.0점 만점 김로고가 제작해 드립니다. <br>80,000원</span>								
-							</a>
-						</div>						
-					</li>
-					<li class="slideitem">
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo7.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">마음을 이끄는 감각적이고 세련된 일러스트로고를 디자인해 드립니다. <br>100,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo8.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">MAMUSEDESIGN 로고디자인 드립니다. <br>75,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo9.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">심플 감성 일러스트 로고를 드립니다. <br>100,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo10.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">"디자이너 마케터 변호사"가 완벽한 로고를 만들어 드립니다.<br>90,000원</span>								
-							</a>
-						</div>
-					</li>
-					<li class="slideitem">
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo11.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">CI, BI 간단하고 심플한 로고디자인을 만들어 드립니다. <br>60,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/logo12.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">깔끔한 로고 요즘 디자인 1대1 맞춤 디자인을 드립니다.립니다. <br>159,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/alone.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">될 때까지 하는 구매대행 홀로서기 프로젝트 도와드립니다.<br>150,000원</span>								
-							</a>
-						</div>
-						<div class="slideitem1">
-							<a href="#" class="categoryitem">
-								<img src="/resources/img/sense.png"style="width:217px; height: 150px;" >
-								<br>
-								<span style="font-weight : bold; font-size:12px;color:black;">애드센스 따상상 월 800만원 수익화 만들었던 노하루를 드립니다. <br>19,000원</span>								
-							</a>
-						</div>
-					</li>
-				</ul>
-				<div class="slide-control">
-					<div class="control01">
-						<label for="slide06" class="prev1"></label>
-						<label for="slide05" class="next1"></label>
-					</div>
-					<div class="control02">
-						<label for="slide04" class="prev1"></label>
-						<label for="slide06" class="next1"></label>
-					</div>
-					<div class="control03">
-						<label for="slide05" class="prev1"></label>
-						<label for="slide04" class="next1"></label>
-					</div>
 				</div>
 				<br>
 				<hr>
@@ -899,4 +761,5 @@
 			</div>
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</body>
+
 	</html>

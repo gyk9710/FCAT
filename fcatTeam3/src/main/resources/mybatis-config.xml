@@ -18,9 +18,11 @@
 
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
-
+		<!-- 메시지 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.Message" alias="msg"/>
 		<!-- 멤버 테이블 -->
 		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
-
+		<!-- 고객센터 -->
+		<typeAlias type="kr.or.admin.model.vo.Board" alias="board"/>
 	</typeAliases>
 </configuration>

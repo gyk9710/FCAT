@@ -1,0 +1,177 @@
+body {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+/* nav bar */
+.sidebar {
+	/*width: 257px;*/
+	height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: 5px 7px 25px #999;
+}
+
+.bottom-border {
+	border-bottom: 2px groove #eee;
+}
+
+.sidebar-link {
+	transition: all 0.4s;
+}
+
+.sidebar-link:hover {
+	background-color: #444;
+	border-radius: 5px;
+}
+
+.icon-parent {
+	position: relative;
+}
+
+.icon-bullet::after {
+	content: "";
+	position: absolute;
+	top: 7px;
+	left: 15px;
+	height: 12px;
+	width: 12px;
+	background-color: #f44336;
+	border-radius: 50%;
+}
+
+@media ( max-width : 768px) {
+	.sidebar {
+		position: static;
+		height: auto;
+	}
+	.top-navbar {
+		position: static;
+	}
+}
+/* cards*/
+.card-common {
+	box-shadow: 1px 2px 5px #999;
+	transition: all 0.4s;
+}
+
+.card-common:hover {
+	box-shadow: 2px 3px 15px #999;
+	transform: translateY(-1px);
+}
+/* end cards */
+.nav.child_menu li a:hover {
+	background-color: rgba(255, 255, 255, 0.06);
+	text-decoration: none;
+}
+
+.nav.child_menu li {
+	padding-left: 36px;
+	width: 100%;
+}
+
+.nav.child_menu>li>a {
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 16px;
+}
+
+/*고객센터 글쓰기 */
+.selectform {
+	float: left;
+	width: 120px;
+	height: calc(1.5em + 1.5rem);
+	padding: 0.75rem 1.5rem;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #55595c;
+	background-color: #f7f7f9;
+	background-clip: padding-box;
+	border: 0 solid #ced4da;
+	border-radius: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.titleform {
+	float: left;
+	width: 90%;
+	height: calc(1.5em + 1.5rem);
+	padding: 0.75rem 1.5rem;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #55595c;
+	background-color: #f7f7f9;
+	background-clip: padding-box;
+	border: 0 solid #ced4da;
+	border-radius: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/*고객센터 글쓰기 끝 */
+
+/* 관리자 페이지 회원 검색 */
+.search-input {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #999;
+  transition: all 0.4s;
+}
+
+.search-input:focus {
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid #dc3545;
+}
+
+.search-button {
+  border-radius: 50%;
+  padding: 10px 16px;
+  transition: all 0.4s;
+}
+.search-button:hover {
+  background-color: #eee;
+  transform: translateY(-1px);
+}
+/* 관리자 페이지 회원 검색 끝*/
+
+/* 고객센터 */
+.home-list-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #333333;
+}
+
+.home-list {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgba(102, 102, 102, 1);
+  overflow: auto;
+  list-style: none;
+  border-bottom: 1px solid #e4e5ed;
+}
+
+.home-list a {
+  color: rgba(102, 102, 102, 1);
+}
+
+.knowledge-base {
+  margin-bottom: 60px;
+}
+
+.board-more {
+  color: rgba(51, 51, 51, 1);
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 10px;
+}
+/* 고객센터 끝 */

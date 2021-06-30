@@ -35,7 +35,17 @@
 	<select id="selectAlarmCount" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM MESSAGE WHERE MSG_RECEIVER = #{memberId} AND MSG_STATUS = 0
 	</select>
+	
+	<!-- 서비스 요청 수락/거절 -->
+	<delete id="confirmRequestService" parameterType="int">
+		delete from service_request where sr_no = #{srNo}
+	</delete>
+	
+	<!-- 서비스 요청 수락/거절 MSG -->
+	<insert id="sendConfirmMsg" parameterType="msg">
+		insert into message values(
+			msg_seq.nextval, #{msgSender}, #{msgReceiver}, #{msgTitle}, #{msgContent}, 0, to_char(sysdate, 'yyyy-mm-dd')
+		)
+	</insert>
+	
 </mapper>
-
-
-

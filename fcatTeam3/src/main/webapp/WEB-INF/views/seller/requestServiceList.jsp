@@ -67,17 +67,18 @@
 								<td>${rs.fsChildCategory}</td>
 								<td>${rs.requestId}</td>
 								<td>
-									<button class="btn btn-sm btn-outline-info checkBtn">승인</button>
-									<button class="btn btn-sm btn-outline-danger">반려</button>
+									<button class="btn btn-sm btn-outline-info confirmService">수락</button>
+									<button class="btn btn-sm btn-outline-danger confirmService">거절</button>
 								</td>
+								<td style="display: none;">${rs.srNo }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<br>
 				<div class="text-center center">
-					<button class="btn btn-sm btn-outline-info">체크 승인</button>
-					<button class="btn btn-sm btn-outline-danger">체크 반려</button>
+					<button class="btn btn-sm btn-outline-info">체크 수락</button>
+					<button class="btn btn-sm btn-outline-danger">체크 거절</button>
 				</div>
 			</div>
 			<br>
@@ -104,17 +105,50 @@
 				// td 정렬
 				$("td").addClass("align-middle");
 
-				// 서비스 요청 승인
-				$(".checkBtn").on("click", function () {
-					var requestId = $(this).parent().parent().children().eq(4).text(); // 요청한 회원 ID
+				// 서비스 요청 수락 / 거절
+				$(".confirmService").on("click", function () {
+					var srNo = $(this).parent().next().text(); // 요청한 서비스 요청 번호
+					var requestId = $(this).parent().prev().text(); // 요청한 회원 ID
+					var confirm = $(this).text(); // 수락/거절 확인
+					//console.log(confirm);
+
+					$.ajax({
+						url: "/confirmRequestService.do",
+						type: "post",
+						data: { srNo: srNo },
+						success: function (data) {
+							// 요청 리스트 수락
+							if (confirm == '수락') {
+								if (data == 1) {
+									alert("요청 수락 성공!!");
+									confirmRequestService(requestId, 1); // 성공
+									location.reload();
+								} else {
+									alert("요청 수락 실패!!");
+								}
+								// 요청 리스트 거절
+							} else if (confirm == '거절') {
+								if (data == 1) {
+									alert("요청 거절 성공!!");
+									confirmRequestService(requestId, 0); // 거절
+									location.reload();
+								}
+								else {
+									alert("요청 승인 실패!!");
+								}
+							}
+
+						}
+					});
+
 				});
 
 				// 알람
 				var ws; // 웹소켓용 변수
-				var sender = "test01"; // 추 후 세션 member로 변경 해야 함
+				var sender = "${sessionScope.m.memberId}"; // 추 후 세션 member로 변경 해야 함
 
 				// 웹 소켓 생성
-				ws = new WebSocket("ws://192.168.10.16/alarmMsg.do"); // 웹 소켓 연결
+				ws = new WebSocket("ws://127.0.0.1/alarmMsg.do"); // 웹 소켓 연결
 				// ws://khdsa1.iptime.org:18080/ - 추 후 강사님 주소
 				ws.onopen = alarmStart;
 				ws.onmessage = alarmMsg;
@@ -126,16 +160,14 @@
 						type: "conn",
 						memberId: sender
 					};
-
 					ws.send(JSON.stringify(data)); // json 문자열로 전송
-
 					alarmCount(sender); // 현재 연결 된 세션 알람 체크
-					//console.log("웹소켓 화면 준비")
 				};
 
 				// 서버 소통 로직
 				function alarmMsg(param) {
 					$("#alarmCount").text(param.data); // 알림 숫자 갱신
+					//console.log("통신 성공~!");
 				};
 
 				// 웹 소켓 연결 종료
@@ -149,7 +181,28 @@
 						type: "alarm",
 						memberId: receiver
 					};
+					ws.send(JSON.stringify(data));
+				};
 
+				// 요청 수락 / 거절
+				function confirmRequestService(requestId, flag) {
+					var msgTitle = "서비스 요청 결과 알림!";
+					var msgContent = "";
+
+					// 수락
+					if (flag == 1) {
+						msgContent = "서비스 요청이 승락 되었어요~!";
+					} else {// 거절
+						msgContent = "서비스 요청이 거절 되었어요..ㅠ";
+					}
+
+					var data = {
+						type: "confirm",
+						msgReceiver: requestId,
+						msgSender: sender,
+						msgTitle: msgTitle,
+						msgContent: msgContent,
+					};
 					ws.send(JSON.stringify(data));
 				};
 			</script>
