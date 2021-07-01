@@ -3,6 +3,7 @@ package kr.or.common.controller;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
+import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.CountCategory;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
@@ -29,6 +31,16 @@ public class CommonController {
 
 	@Autowired
 	private CommonService service;
+
+	// 1:1 채팅 창 이동 - 1:1 채팅 리스트 조회
+	@RequestMapping(value = "/chatList.do")
+	public String chatList(Model model, String memberId) {
+		// 현재 로그인한 회원의 채팅 List 받아와서 전달 해야 함
+		List<Chat> list = service.selectChatList(memberId);
+
+		model.addAttribute("list", list);
+		return "common/chatList";
+	}
 
 	// 신고 접수
 	@Transactional
@@ -68,25 +80,25 @@ public class CommonController {
 		ArrayList<FService> listForCategory = service.selectSearchedCategory(search);
 		CountCategory cc = new CountCategory();
 		for (FService item : list) {
-			
+
 			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
-			
+
 		}
 //		 카테고리, 리뷰점수 설정
 		for (FService item : listForCategory) {
-			//전체 별점 필터 용
-			//리뷰점수 가져와 객체에 넣기
+			// 전체 별점 필터 용
+			// 리뷰점수 가져와 객체에 넣기
 			ArrayList<Review> reviewList = service.selectReview(item.getFsNo());
-			for(Review rev : reviewList) {
-				if (rev.getFsNo()==item.getFsNo()) {
-					item.setReviewScore(item.getReviewScore()+ rev.getReviewScore());
-					item.setReviewCount(item.getReviewCount()+1);
+			for (Review rev : reviewList) {
+				if (rev.getFsNo() == item.getFsNo()) {
+					item.setReviewScore(item.getReviewScore() + rev.getReviewScore());
+					item.setReviewCount(item.getReviewCount() + 1);
 				}
 			}
-			item.setReviewScore(Math.round(item.getReviewScore()/item.getReviewCount()*100)/100.0);
+			item.setReviewScore(Math.round(item.getReviewScore() / item.getReviewCount() * 100) / 100.0);
 			item.setReviewScoreAsStar((review.xxx(item.getReviewScore())));
-			if(Double.isNaN(item.getReviewScoreAsStar())) {
+			if (Double.isNaN(item.getReviewScoreAsStar())) {
 				item.setReviewScoreAsStar(0);
 			}
 //			while(item.getFsNo()==review.get)
