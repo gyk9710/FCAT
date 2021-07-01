@@ -80,4 +80,16 @@
 						ORDER BY fs_no DESC 
 						
 	</select>
+	
+	<!-- 채팅 리스트 불러오기 - 판매자/구매자 -->
+	<select id="selectChatList" parameterType="string" resultType="c">
+		SELECT
+			chat_no as chatNo,
+			receiver,
+			sender
+		FROM
+			CHAT
+		WHERE
+			receiver = #{memberId} or sender = #{memberId}
+	</select>
 </mapper>

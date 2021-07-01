@@ -9,19 +9,24 @@
 	<!-- 별칭 설정 -->
 	<typeAliases>
 		<!-- 서비스 요청 테이블 -->
-		<typeAlias type="kr.or.seller.model.vo.ServiceRequest" alias="sr" />
-		
+		<typeAlias type="kr.or.seller.model.vo.ServiceRequest"
+			alias="sr" />
+
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
 
-		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="ts"/>
+		<typeAlias type="kr.or.fservice.model.vo.TestService" alias="ts" />
 
 		<!-- fService 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.FService" alias="fs" />
 		<!-- 메시지 테이블 -->
-		<typeAlias type="kr.or.common.model.vo.Message" alias="msg"/>
+		<typeAlias type="kr.or.common.model.vo.Message" alias="msg" />
 		<!-- 멤버 테이블 -->
-		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
+		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />
 
+		<!-- 채팅 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.Chat" alias="c" />
+		<!-- 채팅 저장 테이블 -->
+		<typeAlias type="kr.or.common.model.vo.SaveChat" alias="sc" />
 	</typeAliases>
 </configuration>

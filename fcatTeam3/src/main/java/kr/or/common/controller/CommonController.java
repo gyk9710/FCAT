@@ -3,6 +3,7 @@ package kr.or.common.controller;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
 import kr.or.common.model.vo.CategoryCount;
+import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
 import kr.or.common.model.vo.Search;
@@ -28,6 +30,15 @@ public class CommonController {
 	@Autowired
 	private CommonService service;
 
+	// 1:1 채팅 창 이동 - 1:1 채팅 리스트 조회
+	@RequestMapping(value = "/chatList.do")
+	public String chatList(Model model, String memberId){
+		// 현재 로그인한 회원의 채팅 List 받아와서 전달 해야 함
+		List<Chat> list = service.selectChatList(memberId);
+		
+		model.addAttribute("list", list);
+		return "common/chatList";
+	}
 	// 신고 접수
 	@Transactional
 	@RequestMapping(value = "/insertTattle.do")

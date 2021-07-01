@@ -2,11 +2,13 @@ package kr.or.common.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.common.model.dao.CommonDao;
+import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -43,6 +45,11 @@ public class CommonService {
 
 	public ArrayList<FService> selectSearchedCategory(Search search) {
 		return dao.selectSearchedCategory(search);
+	}
+
+	// 1:1 채팅 리스트 조회
+	public List<Chat> selectChatList(String memberId) {
+		return dao.selectChatList(memberId);
 	}
 
 }
