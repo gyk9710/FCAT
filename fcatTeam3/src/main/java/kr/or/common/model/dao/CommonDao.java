@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
@@ -25,7 +26,7 @@ public class CommonDao {
 
 	public ArrayList<FService> selectSearchedFservice(Search search) {
 		List<FService> list = sqlSession.selectList("common.selectSearchedFservice", search);
-		return (ArrayList<FService>)list;
+		return (ArrayList<FService>) list;
 	}
 
 	public int selectSearchedCountFservice(String keyword) {
@@ -42,16 +43,21 @@ public class CommonDao {
 
 	public ArrayList<Integer> selectLike(String memberId) {
 		List<Integer> likeList = sqlSession.selectList("common.selectLike", memberId);
-		return (ArrayList<Integer>)likeList;
+		return (ArrayList<Integer>) likeList;
 	}
 
 	public ArrayList<FService> selectSearchedCategory(Search search) {
 		List<FService> list = sqlSession.selectList("common.selectSearchedCategory", search);
-		return (ArrayList<FService>)list;
+		return (ArrayList<FService>) list;
 	}
 
 	public ArrayList<Review> selectReview(int fsNo) {
-		List<Review> list = sqlSession.selectList("common.selectReview",fsNo);
-		return (ArrayList<Review>)list;
+		List<Review> list = sqlSession.selectList("common.selectReview", fsNo);
+		return (ArrayList<Review>) list;
+	}
+
+	// 1:1 채팅 리스트 조회
+	public List<Chat> selectChatList(String memberId) {
+		return sqlSession.selectList("common.selectChatList", memberId);
 	}
 }
