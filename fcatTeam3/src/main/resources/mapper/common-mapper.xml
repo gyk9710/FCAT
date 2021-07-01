@@ -101,4 +101,25 @@
 		WHERE
 			receiver = #{memberId} or sender = #{memberId}
 	</select>
+	<select id="selectOneFSevice" parameterType="int" resultType="fs">
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto,
+                            fs_description_image as fsDescriptionImage,
+                            fs_description_text as fsDescriptionText 
+						FROM fservice 
+                         where
+                         	fs_no = #{fsNo}
+	</select>
+	<select id="selectOneLike" parameterType="java.util.HashMap" resultType="int" >
+		select fs_no
+			from service_like
+			where member_id = #{memberId} and fs_no = #{fsNo}
+	</select>
 </mapper>

@@ -60,4 +60,14 @@ public class CommonDao {
 	public List<Chat> selectChatList(String memberId) {
 		return sqlSession.selectList("common.selectChatList", memberId);
 	}
+
+	public FService selectOneFService(int fsNo) {
+		return sqlSession.selectOne("common.selectOneFSevice", fsNo);
+	}
+
+	public int selectOneLike(HashMap<String, String> map) {
+		return sqlSession.selectOne("common.selectOneLike",map);
+	}
+
+	
 }

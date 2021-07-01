@@ -3,7 +3,6 @@ package kr.or.common.controller;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
-import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.CountCategory;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
@@ -36,9 +34,9 @@ public class CommonController {
 	@RequestMapping(value = "/chatList.do")
 	public String chatList(Model model, String memberId) {
 		// 현재 로그인한 회원의 채팅 List 받아와서 전달 해야 함
-		List<Chat> list = service.selectChatList(memberId);
+//		List<Chat> list = service.selectChatList(memberId);
 
-		model.addAttribute("list", list);
+//		model.addAttribute("list", list);
 		return "common/chatList";
 	}
 
@@ -150,18 +148,18 @@ public class CommonController {
 		}
 //		 카테고리, 리뷰점수 설정
 		for (FService item : listForCategory) {
-			//전체 별점 필터 용
-			//리뷰점수 가져와 객체에 넣기
+			// 전체 별점 필터 용
+			// 리뷰점수 가져와 객체에 넣기
 			ArrayList<Review> reviewList = service.selectReview(item.getFsNo());
-			for(Review rev : reviewList) {
-				if (rev.getFsNo()==item.getFsNo()) {
-					item.setReviewScore(item.getReviewScore()+ rev.getReviewScore());
-					item.setReviewCount(item.getReviewCount()+1);
+			for (Review rev : reviewList) {
+				if (rev.getFsNo() == item.getFsNo()) {
+					item.setReviewScore(item.getReviewScore() + rev.getReviewScore());
+					item.setReviewCount(item.getReviewCount() + 1);
 				}
 			}
-			item.setReviewScore(Math.round(item.getReviewScore()/item.getReviewCount()*100)/100.0);
+			item.setReviewScore(Math.round(item.getReviewScore() / item.getReviewCount() * 100) / 100.0);
 			item.setReviewScoreAsStar((review.xxx(item.getReviewScore())));
-			if(Double.isNaN(item.getReviewScoreAsStar())) {
+			if (Double.isNaN(item.getReviewScoreAsStar())) {
 				item.setReviewScoreAsStar(0);
 			}
 //			while(item.getFsNo()==review.get)
@@ -207,4 +205,41 @@ public class CommonController {
 		return "/";
 	}
 
+	@RequestMapping(value = "/serviceDetail.do")
+	public String serviceDetail(int fsNo, Model model, HttpSession session) {
+		FService fservice = service.selectOneFSerivce(fsNo);
+		System.out.println(fservice.getFsDescriptionImage());
+		ArrayList<Review> reviewList = service.selectReview(fsNo);
+		int like = 0;
+		Review review = new Review();
+		double score = 0;
+		int count = 0;
+		double starScore;
+		if ((Member) session.getAttribute("m") != null) {
+			Member member = (Member) session.getAttribute("m");
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("memberId", member.getMemberId());
+			map.put("fsNo", Integer.toString(fsNo));
+			try {
+			like = service.selectOneLike(map);
+			}catch (Exception e) {
+			}
+			if(like != 0) {
+			model.addAttribute("like", like);
+			}
+		}
+		for (Review rev : reviewList) {
+			score = (score + rev.getReviewScore());
+			count++;
+		}
+		score = Math.round(score / count * 100) / 100.0;
+		starScore = ((review.xxx(score)));
+		fservice.setFsPriceAsString(NumberFormat.getInstance().format((fservice.getFsPrice())));
+		model.addAttribute("fs", fservice);
+		model.addAttribute("score", score);
+		model.addAttribute("starScore", starScore);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("count", count);
+		return "search/serviceDetail";
+	}
 }

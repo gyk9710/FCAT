@@ -11,6 +11,8 @@ public class FService {
 	String fsWorking;
 	String fsChildCategory;
 	String fsPhoto;
+	String fsDescriptionImage;
+	String fsDescriptionText;
 	String memberIdLike;
 	double reviewScore;
 	int reviewCount;
@@ -21,9 +23,11 @@ public class FService {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public FService(int fsNo, String fsWriter, String fsTitle, String fsContent, String fsCategory,
 			String fsPriceAsString, int fsPrice, String fsWorking, String fsChildCategory, String fsPhoto,
-			String memberIdLike, double reviewScore, int reviewCount, double reviewScoreAsStar) {
+			String fsDescriptionImage, String fsDescriptionText, String memberIdLike, double reviewScore,
+			int reviewCount, double reviewScoreAsStar) {
 		super();
 		this.fsNo = fsNo;
 		this.fsWriter = fsWriter;
@@ -35,11 +39,34 @@ public class FService {
 		this.fsWorking = fsWorking;
 		this.fsChildCategory = fsChildCategory;
 		this.fsPhoto = fsPhoto;
+		this.fsDescriptionImage = fsDescriptionImage;
+		this.fsDescriptionText = fsDescriptionText;
 		this.memberIdLike = memberIdLike;
 		this.reviewScore = reviewScore;
 		this.reviewCount = reviewCount;
 		this.reviewScoreAsStar = reviewScoreAsStar;
 	}
+
+
+	public String getFsDescriptionImage() {
+		return fsDescriptionImage;
+	}
+
+
+	public void setFsDescriptionImage(String fsDescriptionImage) {
+		this.fsDescriptionImage = fsDescriptionImage;
+	}
+
+
+	public String getFsDescriptionText() {
+		return fsDescriptionText;
+	}
+
+
+	public void setFsDescriptionText(String fsDescriptionText) {
+		this.fsDescriptionText = fsDescriptionText;
+	}
+
 
 	public double getReviewScore() {
 		return reviewScore;

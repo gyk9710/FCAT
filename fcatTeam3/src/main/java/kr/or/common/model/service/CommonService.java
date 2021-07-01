@@ -57,4 +57,13 @@ public class CommonService {
 		return dao.selectChatList(memberId);
 	}
 
+	public FService selectOneFSerivce(int fsNo) {
+		return dao.selectOneFService(fsNo);
+	}
+
+	public int selectOneLike(HashMap<String, String> map) {
+		return dao.selectOneLike(map);
+	}
+
+
 }
