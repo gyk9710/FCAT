@@ -15,6 +15,16 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="/resources/css/search.css" />
+<style>
+.fa-star {
+	color: #ffbf00;
+}
+
+.fa-star-half-alt {
+	color: #ffbf00;
+}
+
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>

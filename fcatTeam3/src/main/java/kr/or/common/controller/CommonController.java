@@ -116,6 +116,7 @@ public class CommonController {
 	public String search(String keyword, Model model, Paging page, HttpSession session,
 			@RequestParam(value = "nowPage", required = false) String nowPage) {
 		Search search = new Search();
+		Review review = new Review();
 		ArrayList<Integer> likeList = new ArrayList<Integer>();
 		if ((Member) session.getAttribute("m") != null) {
 			Member member = (Member) session.getAttribute("m");
@@ -135,8 +136,24 @@ public class CommonController {
 			// 가격 천단위 포맷
 			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
 		}
-//		 카테고리 설정
+//		 카테고리, 리뷰점수 설정
 		for (FService item : listForCategory) {
+			//전체 별점 필터 용
+			//리뷰점수 가져와 객체에 넣기
+			ArrayList<Review> reviewList = service.selectReview(item.getFsNo());
+			for(Review rev : reviewList) {
+				if (rev.getFsNo()==item.getFsNo()) {
+					item.setReviewScore(item.getReviewScore()+ rev.getReviewScore());
+					item.setReviewCount(item.getReviewCount()+1);
+				}
+			}
+			item.setReviewScore(Math.round(item.getReviewScore()/item.getReviewCount()*100)/100.0);
+			item.setReviewScoreAsStar((review.xxx(item.getReviewScore())));
+			if(Double.isNaN(item.getReviewScoreAsStar())) {
+				item.setReviewScoreAsStar(0);
+			}
+//			while(item.getFsNo()==review.get)
+//			item.setReviewScore();
 			for (Entry<String, Integer> mother : cc.getMotherCategory().entrySet()) {
 				if (mother.getKey().equals(item.getFsCategory())) {
 					mother.setValue((mother.getValue() + 1));
@@ -154,6 +171,7 @@ public class CommonController {
 		model.addAttribute("list", list);
 		model.addAttribute("search", search);
 		model.addAttribute("cc", cc);
+		model.addAttribute("listForCategory", listForCategory);
 		return "search/search";
 	}
 
