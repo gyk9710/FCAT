@@ -27,11 +27,7 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-	<div class="route-wrap">
-		<div class="route">
-			<span>a>b</span>
-		</div>
-	</div>
+
 	<div class="content-wrap">
 		<div class="categori-wrap">
 			<div class="categori-title">
@@ -47,7 +43,8 @@
 								<div class="text">
 									<c:forEach items="${cc.childCategory[i.count-1] }" var="child">
 										<c:if test="${child.value ne 0 }">
-											<a href="search.do?childCategory=보컬레슨&keyword=">
+											<a
+												href="/categorySearch.do?category=${cm.key }&childCategory=${child.key }&nowPage=1">
 												${child.key }(${child.value })<br>
 											</a>
 										</c:if>

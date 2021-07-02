@@ -69,5 +69,47 @@ public class CommonDao {
 		return sqlSession.selectOne("common.selectOneLike",map);
 	}
 
+	public ArrayList<FService> selectCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public int selectCategoryTotalCount(String category) {
+		return sqlSession.selectOne("common.selectCategoryTotalCount", category);
+	}
+
+	public int selectChildCategoryTotalCount(String childCategory) {
+		return sqlSession.selectOne("common.selectChildCategoryTotalCount", childCategory);
+	}
+
+	public ArrayList<FService> selectAllCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectAllChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public int selectKeyWordAndChildCategoryTotalCount(HashMap<String, String> categoryAndKeywordMap) {
+		return sqlSession.selectOne("common.selectKeyWordAndChildCategoryTotalCount", categoryAndKeywordMap);
+	}
+
+	public ArrayList<FService> selectSearchAndChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectSearchAndChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllSearchAndChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
 	
 }

@@ -9,18 +9,19 @@ public class Review {
 	String reviewTitle;
 	String reviewContent;
 	String reviewPhoto;
-	
+	String reviewDate;
+
 	public double xxx(double x) {
-		return Math.ceil(x *2 ) / 2;
-		}
-	
+		return Math.ceil(x * 2) / 2;
+	}
+
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Review(int reviewNo, int fsNo, String fsWorking, String fsChildCategory, float reviewScore,
-			String reviewTitle, String reviewContent, String reviewPhoto) {
+			String reviewTitle, String reviewContent, String reviewPhoto, String reviewDate) {
 		super();
 		this.reviewNo = reviewNo;
 		this.fsNo = fsNo;
@@ -30,6 +31,15 @@ public class Review {
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewPhoto = reviewPhoto;
+		this.reviewDate = reviewDate;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 	public String getReviewTitle() {

@@ -65,5 +65,42 @@ public class CommonService {
 		return dao.selectOneLike(map);
 	}
 
+	public ArrayList<FService> selectCategory(Search search) {
+		return dao.selectCategory(search);
+	}
+
+	public int selectCategoryTotalCount(String category) {
+		return dao.selectCategoryTotalCount(category);
+	}
+
+	public int selectChildCategoryTotalCount(String childCategory) {
+		return dao.selectChildCategoryTotalCount(childCategory);
+	}
+
+	public ArrayList<FService> selectAllCategory(Search search) {
+		return dao.selectAllCategory(search);
+	}
+
+	public ArrayList<FService> selectAllChildCategory(Search search) {
+		return dao.selectAllChildCategory(search);
+	}
+
+	public ArrayList<FService> selectChildCategory(Search search) {
+		return dao.selectChildCategory(search);
+	}
+
+	public int selectKeyWordAndChildCategoryTotalCount(HashMap<String, String> categoryAndKeywordMap) {
+		return dao.selectKeyWordAndChildCategoryTotalCount(categoryAndKeywordMap);
+	}
+
+	public ArrayList<FService> selectSearchAndChildCategory(Search search) {
+		
+		return dao.selectSearchAndChildCategory(search);
+	}
+
+	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
+		return dao.selectAllSearchAndChildCategory(search);
+	}
+
 
 }
