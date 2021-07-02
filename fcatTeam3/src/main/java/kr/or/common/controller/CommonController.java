@@ -205,6 +205,10 @@ public class CommonController {
 		return "/";
 	}
 
+	@RequestMapping(value = "mypage.do")
+	public String mypage() {
+		return "/common/mypage";
+	}
 	@RequestMapping(value = "/serviceDetail.do")
 	public String serviceDetail(int fsNo, Model model, HttpSession session) {
 		FService fservice = service.selectOneFSerivce(fsNo);

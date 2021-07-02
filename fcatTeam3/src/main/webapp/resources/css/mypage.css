@@ -1,0 +1,150 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.container{
+    padding-top: 30px;
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;    
+    
+}
+.my_l{
+    border-right: 1px solid rgb(202, 202, 202);
+    float: left;
+    margin-right: 30px;
+    width: 300px;
+    height: 500px;
+    
+
+    }
+.my_r{
+    
+    width: 860px;
+    display: inline-block;
+   
+
+}
+.main-menu>li>a{
+    font-size: 17px;
+}
+
+.menu{
+    width: 250px;
+    float: left;
+    margin: auto;
+    margin-left: 25px;
+}
+.menu ul{
+    list-style-type: none;
+    padding: 0;
+    
+    margin: 0;
+    position: relative;
+}
+.menu a{
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding-left: 20px;
+}
+.main-menu>li:hover>a{
+    border-bottom: 2px solid #00c7ae;
+    
+}
+
+.sub-menu>li:hover>a{
+    font-weight: 700;
+}
+.sub-menu>li>a{
+    margin-left: 30px;
+}
+.sub-menu{
+    display: none;
+}
+.more{
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    transition-duration: 0.5s;
+
+}
+.active{
+    transform : rotate(45deg);
+}
+
+.my_list{
+    height: 500px;
+    
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    width : 100%;
+  }
+.list_title {
+    width: 170px !important;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    white-space: nowrap; 
+    
+    
+    text-overflow: ellipsis; 
+    
+    
+}
+td {
+    border-bottom: 1px solid #d3d3d3;
+    padding: 10px;
+    
+  }
+.my_list_tr>th{
+    font-size: 13px;
+}
+th{
+    border-bottom: 1px solid #d3d3d3;
+
+    border-collapse: collapse;
+    height: 50px;
+
+}
+.mybtn{
+    width: 43px;
+    border: 1px solid ;
+    color: white;
+    background-color: #00c7ae;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 3px;
+    float: left;
+    position: relative;
+    left: 40px;
+}
+.mybtn:hover{
+    background-color: #00c7acad;
+}
+.submit_btn{
+    
+    width: 240px;
+    margin: auto;
+}
+.mybtn2:hover{
+    background-color: #00c7acad;
+}
+.mybtn2{
+    width: 100px;
+    border: 1px solid ;
+    color: white;
+    background-color: #00c7ae;
+    height: 40px;
+    border-radius: 4px;
+    margin-left: 14px;
+    float: left;
+}
