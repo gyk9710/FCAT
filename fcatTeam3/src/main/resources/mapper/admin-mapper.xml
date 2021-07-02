@@ -11,10 +11,77 @@
   			#{boardClass}
   		)
   	</insert>
+  	
   	<select id="boardList" resultType="board" >
-  		select board_no boardNo, board_title as boardTitle , board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board order by 1 desc 
+  		select * from(select rownum as rnum, b.*from(select board_no as boardNo, board_title as boardTitle , board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board order by 1 desc)b) where rnum between #{start} and #{end}
   	</select>
+  	
+  	<select id="boardClassList" resultType="board" >
+	select * from(select rownum as rnum, b.*from(select board_no as boardNo, board_title as boardTitle , board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board where board_class = #{boardClass})b) where rnum between #{start} and #{end}
+  	</select>
+  	
   	<delete id="deleteBoard" parameterType="int">
-  			delete from board where board_no = #{boardNo}
+  	delete from board where board_no = #{boardNo}
   	</delete>
+
+  	 <update id="updateBoard" parameterType="board">
+  	 update board set
+  	 	board_class = #{boardClass},
+  	 	board_title = #{boardTitle},
+  	 	board_content = #{boardContent}
+  	 	where board_no = #{boardNo}
+  	 </update>
+  	 
+  	<select id="memberList" resultType="m">
+		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member order by 1 desc)m) where rnum between #{start} and #{end}
+  	</select>
+  	
+  	 <select id="memberGradeList" resultType="m">
+		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member where grade = #{grade})m) where rnum between #{start} and #{end}
+  	</select>
+  	
+
+  	
+  	<select id="totalBoardCount" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<select id="totalBoardClassCount" resultType="int">
+		select count(*) from board where board_class = #{boardClass}
+	</select>
+  	
+  	<select id="noticeCount" resultType="int">
+		select count(*) from board where board_class = 1
+	</select>
+	
+	<select id="faqCount" resultType="int">
+		select count(*) from board where board_class = 0
+	</select>
+
+	<select id="adminCount" resultType="int">
+		select count(*) from member where grade = 3
+	</select>	
+	
+	<select id="memberCount" resultType="int">
+		select count(*) from member where grade = 0
+	</select>	
+	
+	<select id="sellerCount" resultType="int">
+		select count(*) from member where grade = 1
+	</select>			
+  	
+  	<select id="totalMemberCount" resultType="int">
+  		select count(*) from member
+  	</select>
+	
+	<select id="totalGradeCount" resultType="int">
+		select count(*) from member where grade = #{grade}
+	</select>
+	
+
+	
+	<select id="selectOneBoard" parameterType="int" resultType="board">
+		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass  from board where board_no = #{boardNo}
+	</select>
+	
 </mapper>

@@ -24,5 +24,6 @@
 		<typeAlias type="kr.or.member.model.vo.Member" alias="m" />		
 		<!-- 고객센터 -->
 		<typeAlias type="kr.or.admin.model.vo.Board" alias="board"/>
+	
 	</typeAliases>
 </configuration>

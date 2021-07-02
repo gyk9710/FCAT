@@ -34,6 +34,8 @@
 </head>
 
 <body>
+<%@include file="/WEB-INF/views/common/header.jsp" %>
+<br><br><br><br><br><br><br><br>
 	<div class="container">
 		<section class="section knowledge-base">
 			<div class="home-list-title">

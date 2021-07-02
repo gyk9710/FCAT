@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,28 @@
                 <br>
                 <br>
                 <h1 class="text-muted text-center mb-3">전체 회원 리스트</h1>
+             <!-- 분류 목록-->
+              <div class="col-2">
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="/adminMember.do?reqPage=1" class="text-Secondary">전체회원</a>
+                  <span class="badge bg-Secondary">${adminCount+memberCount+sellerCount } </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="/memberGradeList.do?reqPage=1&grade=3">관리자</a>
+                  <span class="badge bg-Secondary">${adminCount }</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="/memberGradeList.do?reqPage=1&grade=0">일반회원</a>
+                  <span class="badge bg-Secondary">${memberCount }</span>
+                </li>
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+                  <a href="/memberGradeList.do?reqPage=1&grade=1">판매자</a>
+                  <span class="badge bg-Secondary">${sellerCount }</span>
+                </li>
+              </ul>
+            </div>
+            <!-- 분류목록 끝-->
                 <!-- 회원검색창 -->
                <div class="col-md-3 float-right">
                   <form action="">
@@ -43,28 +66,33 @@
                   </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${list }" var="m" varStatus="i">
                   <tr>
                   <th><input type="checkbox" class="chk"></th>
-                  <th>test1</th>
-                  <th>테스트</th>
-                  <th>010-1234-5678</th>
-                  <th>서울</th>
-                  <th>2021-06-21</th>
-                  <th>일반회원</th>
+				  <th>${m.memberId }</th>
+				  <th>${m.memberName }</th>
+				  <th>${m.memberPhone }</th>
+				  <th>${m.memberAddr }</th>
+				  <th>${m.enrollDate }</th>
+				  <th>
+					<c:choose>
+						<c:when test="${m.grade == 0 }">
+							일반회원
+						</c:when>
+						<c:when test="${m.grade == 1 }">
+							판매자
+						</c:when>
+						<c:when test="${m.grade == 3 }">
+							관리자
+						</c:when>
+					</c:choose>
+				  </th>
                   <th><button type="button" class="btn btn-info btn-sm">쪽지</button></th>
                 </tr>
-                <tr>
-                  <th><input type="checkbox" class="chk"></th>
-                  <th>test2</th>
-                  <th>테스트2</th>
-                  <th>010-1234-5678</th>
-                  <th>서울</th>
-                  <th>2021-06-20</th>
-                  <th>일반회원</th>
-                  <th><button type="button" class="btn btn-info btn-sm">쪽지</button></th>
-                </tr>
+                </c:forEach>
                 </tbody>
-                </table>  
+                </table>
+                <div >${pageNavi }</div>  
               </div>
             </div>
           </div>

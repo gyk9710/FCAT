@@ -32,11 +32,11 @@
                   <span class="badge bg-Secondary">${noticeCount+faqCount }</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="adminBoardClassList.do?reqPage=1&boardClass=1">공지사항</a>
+                  <a href="adminBoardClassList.do?boardClass=1">공지사항</a>
                   <span class="badge bg-Secondary">${noticeCount }</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="adminBoardClassList.do?reqPage=1&boardClass=0">FAQ</a>
+                  <a href="adminBoardClassList.do?boardClass=0">FAQ</a>
                   <span class="badge bg-Secondary">${faqCount }</span>
                 </li>
               </ul>
@@ -73,14 +73,13 @@
               	</tr>
               </c:forEach>
             </tbody>
-          </table>
-          <div >${pageNavi }</div>    
+          </table>  
+          <div >${pageNavi }</div>   
           <div class="float-right">
             <a href="adminBoardWriteFrm.do" class="btn btn-info">글쓰기</a>
             <button class="btn btn-info " data-toggle="modal" data-target="#deleteBoard" >삭제</button>
             
-            
-                <!-- 삭제 모달 -->
+                            <!-- 삭제 모달 -->
     <div class="modal fade" id="deleteBoard">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -126,7 +125,9 @@
  			inputs.each(function(idx,item){
  			num.push($(item).parent().next().next().html());	
  			console.log(num);
- 			location.href="/adminBoardDelete.do?num="+num.join("/")
+ 			
+ 			console.log(num.join("/"));
+ 			location.href="/adminBoardDelete.do?num="+num.join("/");
  			});
 		});
      </script>

@@ -42,7 +42,7 @@
                     <i class="fas fa-user text-white fa-lg mr-3"></i> 사용자 관리 <span class="fa fa-chevron-down"></span>
                   </a>
                   <ul class="nav child_menu collapse" id="user">
-                    <li><a href="/adminMember.do">회원 관리</a></li>
+                    <li><a href="/adminMember.do?reqPage=1">회원 관리</a></li>
                     <li><a href="#">판매자 권한</a></li>
                     <li><a href="#">신고관리</a></li>
                   </ul>
@@ -53,7 +53,7 @@
                     <i class="fas fa-table text-white fa-lg mr-3"></i> 컨텐츠 관리 <span class="fa fa-chevron-down"></span>
                   </a>
                   <ul class="nav child_menu collapse" id="contentsmenu">
-                    <li><a href="adminBoardList.do">게시판관리</a></li>
+                    <li><a href="/adminBoardList.do?reqPage=1">게시판관리</a></li>
                     <li><a href="#">메뉴2</a></li>
                   </ul>
                 </li>                                
@@ -85,7 +85,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 calss="modal-title">로그아웃</h4>
+            <h4 class="modal-title">로그아웃</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
