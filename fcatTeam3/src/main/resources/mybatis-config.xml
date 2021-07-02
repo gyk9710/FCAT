@@ -28,6 +28,7 @@
 		<typeAlias type="kr.or.common.model.vo.Chat" alias="c" />
 		<!-- 채팅 저장 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.SaveChat" alias="sc" />
-		
+		<!-- 쿠폰 테이블 -->
+		<typeAlias type="kr.or.member.model.vo.Coupon" alias="o"/>
 	</typeAliases>
 </configuration>

@@ -1,9 +1,12 @@
 package kr.or.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 
 @Repository
@@ -19,6 +22,20 @@ public class MemberDao {
 	public int insertMember(Member m) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("member.insertMember",m);
+	}
+	
+	public int insertCoupon(Coupon coupon)
+	{
+		return sqlSession.insert("member.insertCoupon",coupon);
+	}
+
+	public int deleteMember(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("member.deleteMember",memberId);
+	}
+	public List<Coupon> selectAllCoupon(String memberId)
+	{
+		return sqlSession.selectList("member.selectAllCoupon",memberId);
 	}
 
 }

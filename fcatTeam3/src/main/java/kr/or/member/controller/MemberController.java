@@ -1,5 +1,7 @@
 package kr.or.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.service.MemberService;
+import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 @Controller
 public class MemberController {
@@ -28,6 +31,9 @@ public class MemberController {
 		if(member!=null) {
 			session.setAttribute("m", member);
 			model.addAttribute("msg", "로그인 성공");
+			List<Coupon> list=service.selectAllCoupon(member.getMemberId());
+			session.setAttribute("coupon", list);
+			
 		}else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");			
 		}
@@ -65,6 +71,7 @@ public class MemberController {
 		int result = service.insertMember(m);
 		if(result>0) {
 			model.addAttribute("msg","회원가입 성공");
+			service.insertCoupon(m.getMemberId());
 		}else {
 			model.addAttribute("msg","회원가입 실패");
 		}
@@ -79,6 +86,26 @@ public class MemberController {
 			return "1";
 		return "0";
 		
+	}
+	
+	@RequestMapping(value="/payment.do")
+	public String payment(HttpSession session) {
+		return "member/payment";
+	}
+	
+			
+	@RequestMapping(value="/deleteMember.do")
+	public String deleteMember(HttpSession session,Model model) {
+		Member m=(Member)session.getAttribute("m");
+		int result=service.deleteMember(m.getMemberId());
+		if(result>0) {
+			session.invalidate();
+			model.addAttribute("msg","bye bye");			
+		}else {
+			model.addAttribute("msg","에러발생");
+		}
+		model.addAttribute("loc","/");
+		return "common/msg";
 	}
 	
 }
