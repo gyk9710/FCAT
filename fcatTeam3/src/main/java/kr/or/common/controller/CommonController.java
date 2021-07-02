@@ -3,6 +3,7 @@ package kr.or.common.controller;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.common.model.service.CommonService;
+import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.CountCategory;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
@@ -34,9 +36,9 @@ public class CommonController {
 	@RequestMapping(value = "/chatList.do")
 	public String chatList(Model model, String memberId) {
 		// 현재 로그인한 회원의 채팅 List 받아와서 전달 해야 함
-//		List<Chat> list = service.selectChatList(memberId);
+		List<Chat> list = service.selectChatList(memberId);
 
-//		model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		return "common/chatList";
 	}
 
@@ -212,7 +214,6 @@ public class CommonController {
 	@RequestMapping(value = "/serviceDetail.do")
 	public String serviceDetail(int fsNo, Model model, HttpSession session) {
 		FService fservice = service.selectOneFSerivce(fsNo);
-		System.out.println(fservice.getFsDescriptionImage());
 		ArrayList<Review> reviewList = service.selectReview(fsNo);
 		int like = 0;
 		Review review = new Review();
@@ -225,11 +226,11 @@ public class CommonController {
 			map.put("memberId", member.getMemberId());
 			map.put("fsNo", Integer.toString(fsNo));
 			try {
-			like = service.selectOneLike(map);
-			}catch (Exception e) {
+				like = service.selectOneLike(map);
+			} catch (Exception e) {
 			}
-			if(like != 0) {
-			model.addAttribute("like", like);
+			if (like != 0) {
+				model.addAttribute("like", like);
 			}
 		}
 		for (Review rev : reviewList) {
@@ -245,5 +246,101 @@ public class CommonController {
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("count", count);
 		return "search/serviceDetail";
+	}
+
+	@RequestMapping(value = "/categorySearch.do")
+	public String categorySearch(String category, String childCategory, Model model, Paging page, HttpSession session,
+			String keyword, @RequestParam(value = "nowPage", required = false) String nowPage) {
+		ArrayList<FService> list = new ArrayList<FService>();
+		ArrayList<FService> listForCategory = new ArrayList<FService>();
+		int total = 0;
+		Search search = new Search();
+		Review review = new Review();
+		ArrayList<Integer> likeList = new ArrayList<Integer>();
+		HashMap<String,String> categoryAndKeywordMap = new HashMap<String, String>();
+		if ((Member) session.getAttribute("m") != null) {
+			Member member = (Member) session.getAttribute("m");
+			likeList = service.selectLike(member.getMemberId());
+			model.addAttribute("likeList", likeList);
+		}
+		if (category != null && childCategory == null) {
+			total = service.selectCategoryTotalCount(category);
+		} else if (childCategory != null && keyword == null) {
+			total = service.selectChildCategoryTotalCount(childCategory);
+		} else if (childCategory != null && keyword != null) {
+			categoryAndKeywordMap.put("childCategory", childCategory);
+			categoryAndKeywordMap.put("keyword", keyword);
+			total = service.selectKeyWordAndChildCategoryTotalCount(categoryAndKeywordMap);
+		}
+		page = new Paging(total, Integer.parseInt(nowPage));
+		search.setStart(page.getStart());
+		search.setEnd(page.getEnd());
+		search.setSearchCount(NumberFormat.getInstance().format(total));
+		// 상위카테고리 값만 받아온 경우
+		if (category != null  && childCategory == null) {
+			search.setKeyword(category);
+			list = service.selectCategory(search);
+			listForCategory = service.selectAllCategory(search);
+			model.addAttribute("category" ,category);
+			// 자식카테고리까지 받아 온  경우
+		}else if (childCategory != null && keyword == null) {
+			search.setKeyword(childCategory);
+			list = service.selectChildCategory(search);
+			listForCategory = service.selectAllChildCategory(search);
+			model.addAttribute("category" , category);
+			model.addAttribute("childCategory" , childCategory);
+			//검색 시 추천 카테고리 클릭 한 경우
+		}else if (childCategory != null && keyword != null) {
+			search.setKeyword(keyword);
+			search.setChildCategory(childCategory);
+			list = service.selectSearchAndChildCategory(search);
+			listForCategory = service.selectAllSearchAndChildCategory(search);
+			model.addAttribute("category",category);
+			model.addAttribute("childCategory",childCategory);
+			model.addAttribute("keyword",keyword);
+		}
+		CountCategory cc = new CountCategory();
+
+		for (FService item : list) {
+			// 가격 천단위 포맷
+			item.setFsPriceAsString(NumberFormat.getInstance().format((item.getFsPrice())));
+		}
+//		 카테고리, 리뷰점수 설정
+		for (FService item : listForCategory) {
+			// 전체 별점 필터 용
+			// 리뷰점수 가져와 객체에 넣기
+			ArrayList<Review> reviewList = service.selectReview(item.getFsNo());
+			for (Review rev : reviewList) {
+				if (rev.getFsNo() == item.getFsNo()) {
+					item.setReviewScore(item.getReviewScore() + rev.getReviewScore());
+					item.setReviewCount(item.getReviewCount() + 1);
+				}
+			}
+			item.setReviewScore(Math.round(item.getReviewScore() / item.getReviewCount() * 100) / 100.0);
+			item.setReviewScoreAsStar((review.xxx(item.getReviewScore())));
+			if (Double.isNaN(item.getReviewScoreAsStar())) {
+				item.setReviewScoreAsStar(0);
+			}
+//			while(item.getFsNo()==review.get)
+//			item.setReviewScore();
+			for (Entry<String, Integer> mother : cc.getMotherCategory().entrySet()) {
+				if (mother.getKey().equals(item.getFsCategory())) {
+					mother.setValue((mother.getValue() + 1));
+					for (HashMap<String, Integer> childListItem : cc.getChildCategory()) {
+						for (Entry<String, Integer> child : childListItem.entrySet()) {
+							if (child.getKey().equals(item.getFsChildCategory())) {
+								child.setValue(child.getValue() + 1);
+							}
+						}
+					}
+				}
+			}
+		}
+		model.addAttribute("paging", page);
+		model.addAttribute("list", list);
+		model.addAttribute("search", search);
+		model.addAttribute("cc", cc);
+		model.addAttribute("listForCategory", listForCategory);
+		return "search/categorySearch";
 	}
 }
