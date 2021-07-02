@@ -24,6 +24,11 @@ public class MemberService {
 		return dao.insertMember(m);
 	}
 	
+	public int deleteMember(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.deleteMember(memberId);
+	}
+	
 	public int insertCoupon(String memberId)
 	{
 		Coupon coupon = new Coupon();
@@ -37,12 +42,10 @@ public class MemberService {
 		return dao.insertCoupon(coupon);
 	}
 
-	public int deleteMember(String memberId) {
-		// TODO Auto-generated method stub
-		return dao.deleteMember(memberId);
-	}
+	
 	public List<Coupon> selectAllCoupon(String memberId)
 	{
 		return dao.selectAllCoupon(memberId);
 	}
+	
 }

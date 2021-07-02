@@ -56,7 +56,6 @@
   	update member set member_pw=#{memberPw}
   	where member_id=#{memerId}
   </update>
-  
   <insert id="insertCoupon" parameterType="o">
   	insert into coupon values(coupon_seq.nextval,
   	#{couponName},
@@ -68,9 +67,10 @@
   	#{couponStatus})
   </insert>
   
-  <select id="selectAllCoupon" parameterType="string">
+  <select id="selectAllCoupon" parameterType="string" resultType="c">
   select * from coupon where member_id=#{memberId}
   </select>
+  
 </mapper>
 
 

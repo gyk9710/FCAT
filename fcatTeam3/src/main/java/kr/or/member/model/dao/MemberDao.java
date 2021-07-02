@@ -24,18 +24,20 @@ public class MemberDao {
 		return sqlSession.insert("member.insertMember",m);
 	}
 	
-	public int insertCoupon(Coupon coupon)
-	{
-		return sqlSession.insert("member.insertCoupon",coupon);
-	}
+	
 
 	public int deleteMember(String memberId) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("member.deleteMember",memberId);
 	}
+	
 	public List<Coupon> selectAllCoupon(String memberId)
 	{
 		return sqlSession.selectList("member.selectAllCoupon",memberId);
+	}
+	public int insertCoupon(Coupon coupon)
+	{
+		return sqlSession.insert("member.insertCoupon",coupon);
 	}
 
 }
