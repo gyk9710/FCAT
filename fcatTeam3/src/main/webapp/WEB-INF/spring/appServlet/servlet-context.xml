@@ -33,8 +33,6 @@
 		<beans:property name="password" value="1234"/>
 	</beans:bean>
 	
-	
-	
 	<!-- Mybatis 설정 -->
 	<!-- SqlSessionFactoryBean 설정 : 접속 정보 + config 경로 설정 -->
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -46,10 +44,6 @@
 	<!-- SqlSessionTemplate 생성 -->
 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSession"/>
-	</beans:bean>
-	
-	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
 	<!-- 트랜잭션 관리용 객체 / id는 spring에서 정해진 값 자동 check -->
@@ -64,6 +58,12 @@
 	<beans:bean id="alarmMsg" class="kr.or.seller.model.service.AlarmMsg"/>
 	<websocket:handlers>
 		<websocket:mapping handler="alarmMsg" path="/alarmMsg.do"/>
+	</websocket:handlers>
+	
+	<!-- 1:1 채팅용 설정 -->
+	<beans:bean id="chatting" class="kr.or.common.model.service.Chatting"/>
+		<websocket:handlers>
+		<websocket:mapping handler="chatting" path="/chatting.do"/>
 	</websocket:handlers>
 	
 	<context:component-scan base-package="kr.or.iei" />

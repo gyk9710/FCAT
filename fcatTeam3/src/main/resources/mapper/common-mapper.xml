@@ -99,6 +99,6 @@
 		FROM
 			CHAT
 		WHERE
-			receiver = #{memberId} or sender = #{memberId}
+			sender = #{memberId} or receiver = #{memberId}
 	</select>
 </mapper>
