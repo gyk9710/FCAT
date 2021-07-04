@@ -150,7 +150,14 @@
 				</div>
 				<div class="productDiscription">${fs.fsContent }</div>
 				<div class="price">${fs.fsPriceAsString }</div>
+				<c:choose>
+				<c:when test="${not empty sessionScope.m  }">
 				<button type="button" class="btn btn-success" onclick="sendRequest('${sessionScope.m.memberId}')">서비스 요청</button>
+				</c:when>
+				<c:when test="${empty sessionScope.m  }">
+				<button type="button" class="btn btn-success">로그인 후 이용하실 수 있습니다.</button>
+				</c:when>
+				</c:choose>
 			</div>
 
 		</div>
@@ -441,7 +448,9 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 <script>
+	
 	function sendRequest(msgSender){
+	
 		var msgReceiver = $("#fsWriterFont").html();
 		var msgTitle = "서비스 요청!";
 		var msgContent = msgSender+"님이"+$("#fsTitle").html()+"에 대해 서비스를 요청하였습니다";
@@ -458,6 +467,8 @@
 				}
 			}
 		});
+	
+		
 	}
 
 	(function(global, $) {
