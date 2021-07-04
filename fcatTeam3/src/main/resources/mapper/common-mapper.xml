@@ -264,4 +264,60 @@
 						ORDER BY fs_no DESC 
 			
 	</select>
+	<insert id="insertQuestion"  parameterType="java.util.HashMap" >
+		insert into fservice_question values(
+			question_no_seq.nextval,
+			#{comment},
+			#{fsNo},
+			0,
+			0,
+			question_no_seq.currval,
+			#{getToday},
+			#{memberId}
+		)
+	</insert>
+	<select id="selectQuestion" parameterType="int" resultType="kr.or.common.model.vo.QuestionService" >
+		select 
+			question_no as qNo,
+			question_content as qContent,
+			fs_no as fsNo,
+			question_class as qClass,
+			question_order as qOrder,
+			question_index as qIndex,
+			question_date as qDate,
+			member_id as memberId
+		from fservice_question
+		where fs_no = #{fsNo}
+		ORDER BY question_no DESC 
+	</select>
+	<insert id="insertAnswer"  parameterType="java.util.HashMap" >
+		insert into fservice_question values(
+			question_no_seq.nextval,
+			#{comment},
+			#{fsNo},
+			1,
+			0,
+			#{qNo},
+			#{getToday},
+			#{memberId}
+		)
+	</insert>
+	<select id="selectAnswer" parameterType="int" resultType="kr.or.common.model.vo.QuestionService" >
+		select 
+			question_no as qNo,
+			question_content as qContent,
+			fs_no as fsNo,
+			question_class as qClass,
+			question_order as qOrder,
+			question_index as qIndex,
+			question_date as qDate,
+			member_id as memberId
+		from fservice_question
+		where fs_no = #{fsNo} and question_class = 1
+		ORDER BY question_no DESC 
+	</select>
+	<delete id="deleteComment" parameterType="int">
+		delete from fservice_question 
+		where question_no = #{qNo} or question_index = #{qNo}
+	</delete>
 </mapper>

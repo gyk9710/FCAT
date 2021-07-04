@@ -14,7 +14,7 @@
 <script src="https://kit.fontawesome.com/b4fd1bff4b.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="/resources/css/search.css?ver=3>" />
+<link rel="stylesheet" href="/resources/css/search.css?ver=2" />
 <style>
 .fa-star {
 	color: #ffbf00;
@@ -23,23 +23,33 @@
 .fa-star-half-alt {
 	color: #ffbf00;
 }
-.norignt{
-	z-index: 100;
-}
-.searchItem a{
-	text-decoration: none;
-	z-index: 99;
-	opacity: .99;
+
+#breadcrumb {
+	background-color: #fcfcfc;
+	width: 1280px;
+	margin: 0 auto;
 }
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
+	<div id="breadcrumb">
+		<ol class="breadcrumb">
+			<c:choose>
+				<c:when test="${not empty childCategory }">
+					<li><a
+						href="/categorySearch.do?category=${category }&nowPage=1">${category}</a></li>
+					<li class="active">${childCategory }</li>
+				</c:when>
+				<c:when test="${empty childCategory }">
+					<li class="active">${category}</li>
+				</c:when>
+			</c:choose>
+		</ol>
+	</div>
 	<div class="content-wrap">
 		<div class="categori-wrap">
 			<div class="categori-title">
-				<h4>추천 카테고리</h4>
 				<hr />
 				<ul class="accordion">
 					<c:forEach items="${cc.motherCategory }" var="cm" varStatus="i">
@@ -47,18 +57,17 @@
 							<li class="item">
 								<h2 class="accordionTitle">
 									${cm.key }(${cm.value}) <span class="accIcon"></span>
-								</h2> <%-- 									<c:if test="${child.value ne 0 }"> --%>
+								</h2> 
 								<div class="text">
 									<c:forEach items="${cc.childCategory[i.count-1] }" var="child">
 										<c:if test="${child.value ne 0 }">
 											<a
-												href="/categorySearch.do?category=${cm.key }&childCategory=${child.key }&keyword=${search.keyword}&nowPage=1">
+												href="/categorySearch.do?category=${cm.key }&childCategory=${child.key }&keyword=${keyword }&nowPage=1">
 												${child.key }(${child.value })<br>
 											</a>
 										</c:if>
 									</c:forEach>
-								</div> <%-- 									</c:if> --%>
-
+								</div> 
 							</li>
 						</c:if>
 					</c:forEach>
@@ -69,16 +78,16 @@
 	<input type="hidden" value="${m.memberId }" id="memberId">
 	<div class="searchList-wrap">
 		<div id="seacrhResult">
-			<span id="searchCount1">'${search.keyword}'에 대한 검색결과 </span><span
-				id="searchCount2">${search.searchCount}건</span>
+			<c:if test="${not empty keyword }">
+				<h3>'${childCategory }' 중  '${keyword }' 검색 결과</h3>
+			</c:if>
 		</div>
 		<hr>
 		<div class="searchRow">
 			<c:forEach items="${list }" var="fs" varStatus="i">
 				<div class="searchItem">
-					<a href="/serviceDetail.do?fsNo=${fs.fsNo}" style="text-decoration: none; z-index: 99; ">
+					<a href="/serviceDetail.do?fsNo=${fs.fsNo}">
 						<div class="box-shadow">
-
 							<div id="thumbnail">
 								<img class="img-thumbnail" src="${fs.fsPhoto }" alt="..." />
 							</div>
@@ -222,8 +231,22 @@
 		<div id="pagination">
 			<ul class="pagination">
 				<c:if test="${paging.startPage != 1 }">
-					<li class="page-item"><a class="page-link"
-						href="/searchList.do?nowPage=${paging.startPage - 1 }&keyword=${search.keyword }">&lt;</a></li>
+					<c:choose>
+						<c:when test="${not empty childCategory }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage - 1 }&category=${category}&childCategory=${childCategory}">&lt;</a></li>
+
+						</c:when>
+						<c:when test="${empty childCategory }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage - 1 }&category=${category}">&lt;</a></li>
+						</c:when>
+						<c:when test="${not empty childCategory && not empty keyword }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage - 1 }&category=${category}&childCategory=${childCategory}&keyword=${keyword}">&lt;</a></li>
+						</c:when>
+					</c:choose>
+
 				</c:if>
 				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 					var="p">
@@ -232,14 +255,40 @@
 							<li class="page-item active"><a class="page-link" href="#"><b>${p }</b></a></li>
 						</c:when>
 						<c:when test="${p != paging.nowPage }">
-							<li class="page-item"><a class="page-link"
-								href="/searchList.do?nowPage=${p }&keyword=${search.keyword }">${p }</a></li>
+							<c:choose>
+								<c:when test="${not empty childCategory }">
+									<li class="page-item"><a class="page-link"
+										href="/categorySearch.do?nowPage=${p }&category=${category}&childCategory=${childCategory}">${p }</a></li>
+
+								</c:when>
+								<c:when test="${empty childCategory }">
+									<li class="page-item"><a class="page-link"
+										href="/categorySearch.do?nowPage=${p }&category=${category}">${p }</a></li>
+								</c:when>
+								<c:when test="${not empty childCategory && not empty keyword }">
+									<li class="page-item"><a class="page-link"
+										href="/categorySearch.do?nowPage=${p }&category=${category}&childCategory=${childCategory}&keyword=${keyword}">${p }</a></li>
+								</c:when>
+							</c:choose>
 						</c:when>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${paging.endPage != paging.lastPage}">
-					<li class="page-item"><a class="page-link"
-						href="/searchList.do?nowPage=${paging.endPage+1 }&keyword=${search.keyword }">&gt;</a></li>
+					<c:choose>
+						<c:when test="${not empty childCategory }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage + 1 }&category=${category}&childCategory=${childCategory}">&gt;</a></li>
+
+						</c:when>
+						<c:when test="${empty childCategory }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage + 1 }&category=${category}">&gt;</a></li>
+						</c:when>
+						<c:when test="${not empty childCategory && not empty keyword }">
+							<li class="page-item"><a class="page-link"
+								href="/categorySearch.do?nowPage=${paging.startPage + 1 }&category=${category}&childCategory=${childCategory}&keyword=${keyword}">&gt;</a></li>
+						</c:when>
+					</c:choose>
 				</c:if>
 			</ul>
 		</div>

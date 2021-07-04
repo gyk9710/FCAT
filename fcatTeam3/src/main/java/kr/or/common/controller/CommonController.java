@@ -21,6 +21,7 @@ import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.CountCategory;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Paging;
+import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -215,6 +216,8 @@ public class CommonController {
 	public String serviceDetail(int fsNo, Model model, HttpSession session) {
 		FService fservice = service.selectOneFSerivce(fsNo);
 		ArrayList<Review> reviewList = service.selectReview(fsNo);
+		ArrayList<QuestionService> questionList = service.selectQuestion(fsNo);
+		ArrayList<QuestionService> answerList = service.selectAnswer(fsNo);
 		int like = 0;
 		Review review = new Review();
 		double score = 0;
@@ -237,10 +240,15 @@ public class CommonController {
 			score = (score + rev.getReviewScore());
 			count++;
 		}
+		for(QuestionService item : questionList) {
+			System.out.println(item.getqContent());
+		}
 		score = Math.round(score / count * 100) / 100.0;
 		starScore = ((review.xxx(score)));
 		fservice.setFsPriceAsString(NumberFormat.getInstance().format((fservice.getFsPrice())));
 		model.addAttribute("fs", fservice);
+		model.addAttribute("questionList", questionList);
+		model.addAttribute("answerList", answerList);
 		model.addAttribute("score", score);
 		model.addAttribute("starScore", starScore);
 		model.addAttribute("reviewList", reviewList);
@@ -342,5 +350,34 @@ public class CommonController {
 		model.addAttribute("cc", cc);
 		model.addAttribute("listForCategory", listForCategory);
 		return "search/categorySearch";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/insertQuestion.do")
+	public String insertQuestion(String memberId, String fsNo, String getToday, String comment) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("fsNo", fsNo);
+		map.put("getToday", getToday);
+		map.put("comment", comment);
+		service.insertQuestion(map);
+		return "/";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/insertAnswer.do")
+	public String insertAnswer(String memberId, String fsNo, String getToday, String comment, String qNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("fsNo", fsNo);
+		map.put("getToday", getToday);
+		map.put("comment", comment);
+		map.put("qNo", qNo);
+		service.insertAnswer(map);
+		return "/";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/deleteComment.do")
+	public String deleteComment(int qNo) {
+		service.deleteComment(qNo);
+		return "/";
 	}
 }

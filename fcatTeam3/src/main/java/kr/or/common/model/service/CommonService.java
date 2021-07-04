@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.common.model.dao.CommonDao;
 import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -100,6 +101,27 @@ public class CommonService {
 
 	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
 		return dao.selectAllSearchAndChildCategory(search);
+	}
+
+	public void insertQuestion(HashMap<String, String> map) {
+		dao.insertQuestion(map);
+	}
+
+	public ArrayList<QuestionService> selectQuestion(int fsNo) {
+		return dao.selectQuestion(fsNo);
+	}
+
+	public void insertAnswer(HashMap<String, String> map) {
+		dao.insertAnswer(map);
+	}
+
+	public ArrayList<QuestionService> selectAnswer(int fsNo) {
+		return dao.selectAnswer(fsNo);
+	}
+
+	public void deleteComment(int qNo) {
+		dao.deleteComment(qNo);
+		
 	}
 
 

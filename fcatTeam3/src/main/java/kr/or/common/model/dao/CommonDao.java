@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -109,6 +110,29 @@ public class CommonDao {
 	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
 		List<FService> list = sqlSession.selectList("common.selectAllSearchAndChildCategory", search);
 		return (ArrayList<FService>) list;
+	}
+
+	public void  insertQuestion(HashMap<String, String> map) {
+		sqlSession.insert("common.insertQuestion",map);
+	}
+
+	public ArrayList<QuestionService> selectQuestion(int fsNo) {
+		List<QuestionService> list = sqlSession.selectList("common.selectQuestion", fsNo);
+		return (ArrayList<QuestionService>) list;
+	}
+
+	public void insertAnswer(HashMap<String, String> map) {
+		sqlSession.insert("common.insertAnswer",map);
+	}
+
+	public ArrayList<QuestionService> selectAnswer(int fsNo) {
+		List<QuestionService> list = sqlSession.selectList("common.selectAnswer", fsNo);
+		return (ArrayList<QuestionService>) list;
+	}
+
+	public void deleteComment(int qNo) {
+		sqlSession.delete("common.deleteComment", qNo);
+		
 	}
 
 	
