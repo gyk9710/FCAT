@@ -41,7 +41,8 @@
 
 			<div class="productView-wrap">
 				<div class="productTitle">
-					<h3>${fs.fsTitle }</h3>
+					<h3 id="fsTitle">${fs.fsTitle }</h3>
+					<span id="fsWriterFont">${fs.fsWriter }</span>
 					<span id="starSpan"><c:if test="${starScore ne '0.0' }">
 							<c:choose>
 								<c:when test="${starScore eq '0.5' }">
@@ -149,7 +150,7 @@
 				</div>
 				<div class="productDiscription">${fs.fsContent }</div>
 				<div class="price">${fs.fsPriceAsString }</div>
-				<button type="button" class="btn btn-success">서비스 요청</button>
+				<button type="button" class="btn btn-success" onclick="sendRequest('${sessionScope.m.memberId}')">서비스 요청</button>
 			</div>
 
 		</div>
@@ -440,6 +441,25 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 <script>
+	function sendRequest(msgSender){
+		var msgReceiver = $("#fsWriterFont").html();
+		var msgTitle = "서비스 요청!";
+		var msgContent = msgSender+"님이"+$("#fsTitle").html()+"에 대해 서비스를 요청하였습니다";
+		$.ajax({
+			url : "/sendRequest.do",
+			type : "post",
+			data : {msgSender:msgSender,msgReceiver:msgReceiver,msgTitle:msgTitle,msgContent:msgContent},
+			success : function(data){
+				if(data == '1'){
+					alert("요청 성공");
+					location.reload();
+				}else{
+					alert("요청 실패");
+				}
+			}
+		});
+	}
+
 	(function(global, $) {
 		var $menu = $(".floating-menu li.m"), $contents = $(".scroll"), $doc = $("html, body");
 		$(function() {

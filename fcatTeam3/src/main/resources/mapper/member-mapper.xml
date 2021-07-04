@@ -71,6 +71,15 @@
   select * from coupon where member_id=#{memberId}
   </select>
   
+  
+  
+  
+  <insert id="insertMs" parameterType="msg">
+  	insert into message values (msg_seq.nextval, #{msgSender},#{msgReceiver},#{msgTitle}, #{msgContent}, 0, to_char(sysdate, 'yyyy-mm-dd'))
+  </insert>
+  
+  
+  
 </mapper>
 
 
