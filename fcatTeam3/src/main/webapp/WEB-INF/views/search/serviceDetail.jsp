@@ -13,7 +13,7 @@
 <style type="text/css">
 #breadcrumb {
 	background-color: #fcfcfc;
-	width: 1080px;
+	width: 1280px;
 	margin: 0 auto;
 }
 #noright-btn{

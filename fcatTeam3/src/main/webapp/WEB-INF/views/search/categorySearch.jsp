@@ -57,7 +57,7 @@
 							<li class="item">
 								<h2 class="accordionTitle">
 									${cm.key }(${cm.value}) <span class="accIcon"></span>
-								</h2> 
+								</h2>
 								<div class="text">
 									<c:forEach items="${cc.childCategory[i.count-1] }" var="child">
 										<c:if test="${child.value ne 0 }">
@@ -67,7 +67,7 @@
 											</a>
 										</c:if>
 									</c:forEach>
-								</div> 
+								</div>
 							</li>
 						</c:if>
 					</c:forEach>
@@ -77,162 +77,159 @@
 	</div>
 	<input type="hidden" value="${m.memberId }" id="memberId">
 	<div class="searchList-wrap">
-		<div id="seacrhResult">
-			<c:if test="${not empty keyword }">
-				<h3>'${childCategory }' 중  '${keyword }' 검색 결과</h3>
-			</c:if>
-		</div>
-		<hr>
+		<c:if test="${not empty keyword }">
+			<div id="seacrhResult">
+				<span id="searchCount1">'${childCategory }'중 '${keyword }'
+					검색결과 </span><span id="searchCount2">${search.searchCount}건</span>
+			</div>
+			<hr />
+		</c:if>
 		<div class="searchRow">
 			<c:forEach items="${list }" var="fs" varStatus="i">
 				<div class="searchItem">
-					<a href="/serviceDetail.do?fsNo=${fs.fsNo}">
-						<div class="box-shadow">
-							<div id="thumbnail">
-								<img class="img-thumbnail" src="${fs.fsPhoto }" alt="..." />
-							</div>
-							<span id="fsWriterFont">${fs.fsWriter }</span>
-							<div class="icon-wrap">
-
-								<!--하트  -->
-								<c:choose>
-									<c:when test="${empty sessionScope.m  }">
-										<span id="heartSpan" class="noright"><i
-											class="far fa-heart"></i> </span>
-									</c:when>
-									<c:when test="${not empty sessionScope.m  }">
-										<c:set var="like" value="0" />
-										<c:forEach items="${likeList }" var="num">
-											<c:if test="${num eq fs.fsNo }">
-												<span id="heartSpan" class="hearts"
-													onclick="heartsClick(this)"><i class="fas fa-heart"></i>
-												</span>
-												<!-- like 찾은 경우 구분값 설정 -->
-												<c:set var="like" value="1" />
-											</c:if>
-										</c:forEach>
-
-										<c:if test="${like eq '0'}">
-											<span id="heartSpan" class="hearts"
-												onclick="heartsClick(this)"><i class="far fa-heart"
-												id="nofilling"></i> </span>
-										</c:if>
-									</c:when>
-								</c:choose>
-								<!--찜하기 정보 -->
-								<input type="hidden" id="fsNo" value="${fs.fsNo }">
-							</div>
-							<div class="serviceTitle">
-								<span id="fsTitleFont">${fs.fsTitle }</span>
-							</div>
-							<div class="serviceComment">
-								<span id="fsContentFont">${fs.fsContent}</span>
-							</div>
-							<c:forEach items="${listForCategory}" var="star">
-								<span class="starSpan"> <c:if
-										test="${star.fsNo eq fs.fsNo }">
-										<c:if test="${star.reviewScore ne '0.0' }">
-											<c:choose>
-												<c:when test="${star.reviewScoreAsStar eq '0.5' }">
-													<i class="fas fa-star-half-alt"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '1.0' }">
-													<i class="fas fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '1.5' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star-half-alt"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '2.0' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '2.5' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star-half-alt"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '3.0' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="far fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '3.5' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star-half-alt"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '4.0' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="far fa-star"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '4.5' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star-half-alt"></i>
-												</c:when>
-												<c:when test="${star.reviewScoreAsStar eq '5.0' }">
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-													<i class="fas fa-star"></i>
-												</c:when>
-											</c:choose>
-										</c:if>
-										<c:if test="${star.reviewScore eq '0.0' }">
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-											<i class="far fa-star"></i>
-										</c:if>
-										<span class="starCount"> (${star.reviewCount }) </span>
-									</c:if>
-								</span>
-							</c:forEach>
-
-							<div class="price">
-								<span id="fsPriceFont">${fs.fsPriceAsString }</span>
-							</div>
-
+					<div class="box-shadow">
+						<div id="thumbnail">
+							<img class="img-thumbnail" src="${fs.fsPhoto }" alt="..." />
 						</div>
-					</a>
+						<span id="fsWriterFont">${fs.fsWriter }</span>
+						<div class="icon-wrap">
+							<!--하트  -->
+							<c:choose>
+								<c:when test="${empty sessionScope.m  }">
+									<span id="heartSpan" class="noright"><i
+										class="far fa-heart"></i> </span>
+								</c:when>
+								<c:when test="${not empty sessionScope.m  }">
+									<c:set var="like" value="0" />
+									<c:forEach items="${likeList }" var="num">
+										<c:if test="${num eq fs.fsNo }">
+											<span id="heartSpan" class="hearts"
+												onclick="heartsClick(this)"><i class="fas fa-heart"></i>
+											</span>
+											<!-- like 찾은 경우 구분값 설정 -->
+											<c:set var="like" value="1" />
+										</c:if>
+									</c:forEach>
+
+									<c:if test="${like eq '0'}">
+										<span id="heartSpan" class="hearts"
+											onclick="heartsClick(this)"><i class="far fa-heart"
+											id="nofilling"></i> </span>
+									</c:if>
+								</c:when>
+							</c:choose>
+							<!--찜하기 정보 -->
+							<input type="hidden" class="fsNo" value="${fs.fsNo }">
+						</div>
+						<div class="serviceTitle">
+							<span id="fsTitleFont">${fs.fsTitle }</span>
+						</div>
+						<div class="serviceComment">
+							<span id="fsContentFont">${fs.fsContent}</span>
+						</div>
+						<span class="starSpan"> <c:forEach
+								items="${listForCategory}" var="star">
+								<c:if test="${star.fsNo eq fs.fsNo }">
+									<c:if test="${star.reviewScore ne '0.0' }">
+										<c:choose>
+											<c:when test="${star.reviewScoreAsStar eq '0.5' }">
+												<i class="fas fa-star-half-alt"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '1.0' }">
+												<i class="fas fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '1.5' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star-half-alt"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '2.0' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '2.5' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star-half-alt"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '3.0' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="far fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '3.5' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star-half-alt"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '4.0' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="far fa-star"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '4.5' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star-half-alt"></i>
+											</c:when>
+											<c:when test="${star.reviewScoreAsStar eq '5.0' }">
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i>
+											</c:when>
+										</c:choose>
+									</c:if>
+									<c:if test="${star.reviewScore eq '0.0' }">
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+										<i class="far fa-star"></i>
+									</c:if>
+									<span class="starCount"> (${star.reviewCount }) </span>
+								</c:if>
+							</c:forEach>
+						</span>
+						<div class="price">
+							<span id="fsPriceFont">${fs.fsPriceAsString }</span>
+						</div>
+
+					</div>
+					<!-- 					</a> -->
 				</div>
 			</c:forEach>
 		</div>
-		<hr />
 		<!-- 페이지 -->
 		<div id="pagination">
 			<ul class="pagination">
 				<c:if test="${paging.startPage != 1 }">
 					<c:choose>
-						<c:when test="${not empty childCategory }">
+						<c:when test="${not empty childCategory && empty keyword }">
 							<li class="page-item"><a class="page-link"
 								href="/categorySearch.do?nowPage=${paging.startPage - 1 }&category=${category}&childCategory=${childCategory}">&lt;</a></li>
 
@@ -256,10 +253,9 @@
 						</c:when>
 						<c:when test="${p != paging.nowPage }">
 							<c:choose>
-								<c:when test="${not empty childCategory }">
+								<c:when test="${not empty childCategory && empty keyword }">
 									<li class="page-item"><a class="page-link"
 										href="/categorySearch.do?nowPage=${p }&category=${category}&childCategory=${childCategory}">${p }</a></li>
-
 								</c:when>
 								<c:when test="${empty childCategory }">
 									<li class="page-item"><a class="page-link"
@@ -275,7 +271,7 @@
 				</c:forEach>
 				<c:if test="${paging.endPage != paging.lastPage}">
 					<c:choose>
-						<c:when test="${not empty childCategory }">
+						<c:when test="${not empty childCategory && empty keyword }">
 							<li class="page-item"><a class="page-link"
 								href="/categorySearch.do?nowPage=${paging.startPage + 1 }&category=${category}&childCategory=${childCategory}">&gt;</a></li>
 
@@ -292,6 +288,7 @@
 				</c:if>
 			</ul>
 		</div>
+		<hr>
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
@@ -363,6 +360,16 @@
 			targetAccIcon.classList.add("anime");
 		}
 	}
+	$(".box-shadow").click(function() {
+		var idx = $(".box-shadow").index(this);
+		var fsNo = $(".fsNo").eq(idx).val();
+		console.log(idx);
+		console.log(fsNo);
+		var pageFront = "/serviceDetail.do?fsNo=";
+		var page = pageFront + fsNo;
+		location.href = page;
+
+	});
 </script>
 
 </html>
