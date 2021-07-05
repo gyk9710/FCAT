@@ -31,8 +31,8 @@ public class MemberController {
 		if(member!=null) {
 			session.setAttribute("m", member);
 			model.addAttribute("msg", "로그인 성공");
-			//List<Coupon> list=service.selectAllCoupon(member.getMemberId());
-			//session.setAttribute("coupon", list);
+			List<Coupon> list=service.selectAllCoupon(member.getMemberId());
+			session.setAttribute("coupon", list);
 			
 		}else {
 			model.addAttribute("msg", "아이디 또는 비밀번호를 입력해주세요");			
@@ -71,7 +71,7 @@ public class MemberController {
 		int result = service.insertMember(m);
 		if(result>0) {
 			model.addAttribute("msg","회원가입 성공");
-			//service.insertCoupon(m.getMemberId());
+			service.insertCoupon(m.getMemberId());
 		}else {
 			model.addAttribute("msg","회원가입 실패");
 		}

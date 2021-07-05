@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.common.model.dao.CommonDao;
 import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -63,6 +64,64 @@ public class CommonService {
 
 	public int selectOneLike(HashMap<String, String> map) {
 		return dao.selectOneLike(map);
+	}
+
+	public ArrayList<FService> selectCategory(Search search) {
+		return dao.selectCategory(search);
+	}
+
+	public int selectCategoryTotalCount(String category) {
+		return dao.selectCategoryTotalCount(category);
+	}
+
+	public int selectChildCategoryTotalCount(String childCategory) {
+		return dao.selectChildCategoryTotalCount(childCategory);
+	}
+
+	public ArrayList<FService> selectAllCategory(Search search) {
+		return dao.selectAllCategory(search);
+	}
+
+	public ArrayList<FService> selectAllChildCategory(Search search) {
+		return dao.selectAllChildCategory(search);
+	}
+
+	public ArrayList<FService> selectChildCategory(Search search) {
+		return dao.selectChildCategory(search);
+	}
+
+	public int selectKeyWordAndChildCategoryTotalCount(HashMap<String, String> categoryAndKeywordMap) {
+		return dao.selectKeyWordAndChildCategoryTotalCount(categoryAndKeywordMap);
+	}
+
+	public ArrayList<FService> selectSearchAndChildCategory(Search search) {
+		
+		return dao.selectSearchAndChildCategory(search);
+	}
+
+	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
+		return dao.selectAllSearchAndChildCategory(search);
+	}
+
+	public void insertQuestion(HashMap<String, String> map) {
+		dao.insertQuestion(map);
+	}
+
+	public ArrayList<QuestionService> selectQuestion(int fsNo) {
+		return dao.selectQuestion(fsNo);
+	}
+
+	public void insertAnswer(HashMap<String, String> map) {
+		dao.insertAnswer(map);
+	}
+
+	public ArrayList<QuestionService> selectAnswer(int fsNo) {
+		return dao.selectAnswer(fsNo);
+	}
+
+	public void deleteComment(int qNo) {
+		dao.deleteComment(qNo);
+		
 	}
 
 

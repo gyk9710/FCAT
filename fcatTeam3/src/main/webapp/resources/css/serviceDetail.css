@@ -1,0 +1,319 @@
+@charset "UTF-8";
+
+#content-wrap {
+	width: 1080px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+#product-wrap {
+	width: 100%;
+	height: 380px;
+}
+
+.photo-wrap {
+	overflow: hidden;
+	border-radius: 15px;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.productView-wrap {
+	float: left;
+	padding: 30px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+	width: 540px;
+	height: 360px;
+}
+
+.productTitle {
+	float: left;
+	width: 510px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.heartWrap {
+	float: right;
+}
+
+h2 {
+	margin: 0;
+}
+
+.price {
+	float: right;
+}
+
+.nav-tabs {
+	width: 1080px;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+/*플로팅 메뉴*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: 0;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+/* contents */
+.section-01 {
+	
+}
+
+.section-02 {
+	
+}
+
+.section-03 {
+	
+}
+
+/* floating menu */
+.floating-menu {
+	width: 1080px;
+	/*background: url("") 0 0 no-repeat;*/
+	z-index: 100;
+}
+
+.floating-menu li {
+	margin: 0;
+	float: left;
+	background-color: #fafafa;
+	height: 40px;
+}
+
+.floating-menu a {
+	display: block;
+	width: 270px;
+	padding: 10px 0; color : black;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+.floating-menu a:hover {
+	background-color: #ddd;
+}
+
+.floating-menu a.menu-04 {
+	height: 20px;
+	background: none;
+}
+
+.floating-menu li.on a {
+	background-color: #333;
+	color: #fff; /*background: url("") 0 0 no-repeat;*/
+}
+
+.menu-fixed {
+	position: fixed;
+	top: 60px;
+}
+
+#thumbnail>img {
+	object-fit: contain;
+	background-color: #fcfcfc;
+	float: left;
+	width: 540px;
+	height: 360px;
+}
+
+.fa-star {
+	color: #ffbf00;
+}
+
+.fa-star-half-alt {
+	color: #ffbf00;
+}
+
+h3 {
+	margin-top: 0;
+	padding-bottom: 10px;
+}
+
+#starSpan {
+	color: #aaa;
+}
+
+.fa-heart:hover {
+	color: #FF4033;
+}
+
+.fa-heart {
+	color: #FE8E86;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.price {
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.btn-success {
+	width: 510px;
+}
+
+.productDiscription {
+	height: 296px;
+}
+
+.scroll {
+	
+}
+
+#scroll1 {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.reviewOne {
+	margin: 10px;
+	padding: 10px;
+	background-color: #fcfcfc;
+}
+
+.review-title {
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.review-text {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.reviewer {
+	color: #aaa;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.score {
+	margin: 10px;
+	margin-left: 0px;
+}
+
+#questionBtn {
+	width: 1080px;
+}
+
+.question {
+	background-color: #fcfcfc;
+	border-radius: 7px;
+}
+
+.questionMark {
+	float: left;
+	width: 100px;
+	height: 100px;
+	padding: 10px;
+	text-align: center;
+	line-height: 100px;
+}
+
+.fa-question {
+	font-size: 50px;
+}
+
+.questionContent {
+	height: 100px;
+}
+
+.questionAnswer {
+	background-color: #f0f0f0;
+}
+
+.answerMark {
+	float: left;
+	width: 100px;
+	height: 100px;
+	padding: 10px;
+	margin-left: 50px;
+	text-align: center;
+	line-height: 100px;
+}
+
+.fa-check {
+	font-size: 50px;
+}
+
+.answerContent {
+	height: 100px;
+	position: relative;
+}
+
+#questionInput {
+	width: 100%;
+	height: 90px;
+	padding: 10px;
+}
+
+.update-wrap {
+	float: right;
+	padding: 10px;
+}
+
+.answerInput {
+	display: none;
+	height: 100px;
+}
+
+.answerInput>* {
+	float: left;
+}
+
+.answerInput>button {
+	width: 82px;
+	height: 100px;
+}
+
+.answerText, .btn-danger {
+	height: 100px;
+	float: left;
+}
+
+.reComment {
+	cursor: pointer;
+	margin: 5px;
+}
+
+.reComment:hover {
+	text-decoration: underline;
+}
+
+.deleteComment {
+	cursor: pointer;
+	margin: 5px;
+}
+
+.deleteComment:hover {
+	text-decoration: underline;
+}
+
+.deleteComment {
+	cursor: pointer;
+	margin: 5px;
+}
+
+.deleteComment:hover {
+	text-decoration: underline;
+}

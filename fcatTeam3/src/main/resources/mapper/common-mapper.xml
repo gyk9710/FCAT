@@ -85,7 +85,11 @@
 			fs_no as fsNo,
 			fs_working as fsWorking,
 			fs_child_category as fsChildCategory,
-			review_score as reviewScore
+			review_score as reviewScore,
+			review_date as reviewDate,
+			review_title as reviewTitle,
+			review_content as reviewContent,
+			review_photo as reviewPhoto
 		from review_service
 		where fs_no = #{fsNo} 
 	</select>
@@ -122,4 +126,198 @@
 			from service_like
 			where member_id = #{memberId} and fs_no = #{fsNo}
 	</select>
+	<select id="selectCategory" parameterType="kr.or.common.model.vo.Search" resultType="fs" >
+					SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+							fs_category = #{keyword}
+						ORDER BY fs_no DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		<select id="selectCategoryTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM fservice where
+		fs_category = #{category}
+	</select>
+		<select id="selectChildCategoryTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM fservice where
+		fs_child_category = #{childCategory}
+	</select>
+	<select id="selectAllCategory"  parameterType="kr.or.common.model.vo.Search" resultType="fs">
+		SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+							fs_category = #{keyword}
+						ORDER BY fs_no DESC 
+	</select>
+		<select id="selectAllChildCategory"  parameterType="kr.or.common.model.vo.Search" resultType="fs">
+		SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+							fs_child_category = #{keyword}
+						ORDER BY fs_no DESC 
+	</select>
+	<select id="selectChildCategory" parameterType="kr.or.common.model.vo.Search" resultType="fs" >
+					SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+							fs_child_category = #{keyword}
+						ORDER BY fs_no DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="selectKeyWordAndChildCategoryTotalCount" parameterType="java.util.HashMap" resultType="int">
+	SELECT COUNT(*) FROM fservice where
+		(fs_title like '%'||#{keyword}||'%'
+		or fs_child_category like '%'||#{keyword}||'%'
+		or fs_writer like '%'||#{keyword}||'%'
+		or fs_category like '%'||#{keyword}||'%')
+		and fs_child_category = #{childCategory}
+	</select>
+	
+	<select id="selectSearchAndChildCategory" parameterType="kr.or.common.model.vo.Search" resultType="fs">
+				SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+                          	(fs_title like '%'||#{keyword}||'%'
+							or fs_child_category like '%'||#{keyword}||'%'
+							or fs_category like '%'||#{keyword}||'%'
+							or fs_writer like '%'||#{keyword}||'%')
+							and fs_child_category = #{childCategory}
+						ORDER BY fs_no DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+		<select id="selectAllSearchAndChildCategory" parameterType="kr.or.common.model.vo.Search" resultType="fs">
+	
+						SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+                         where
+                          	(fs_title like '%'||#{keyword}||'%'
+							or fs_child_category like '%'||#{keyword}||'%'
+							or fs_category like '%'||#{keyword}||'%'
+							or fs_writer like '%'||#{keyword}||'%')
+							and fs_child_category = #{childCategory}
+						ORDER BY fs_no DESC 
+			
+	</select>
+	<insert id="insertQuestion"  parameterType="java.util.HashMap" >
+		insert into fservice_question values(
+			question_no_seq.nextval,
+			#{comment},
+			#{fsNo},
+			0,
+			0,
+			question_no_seq.currval,
+			#{getToday},
+			#{memberId}
+		)
+	</insert>
+	<select id="selectQuestion" parameterType="int" resultType="kr.or.common.model.vo.QuestionService" >
+		select 
+			question_no as qNo,
+			question_content as qContent,
+			fs_no as fsNo,
+			question_class as qClass,
+			question_order as qOrder,
+			question_index as qIndex,
+			question_date as qDate,
+			member_id as memberId
+		from fservice_question
+		where fs_no = #{fsNo}
+		ORDER BY question_no DESC 
+	</select>
+	<insert id="insertAnswer"  parameterType="java.util.HashMap" >
+		insert into fservice_question values(
+			question_no_seq.nextval,
+			#{comment},
+			#{fsNo},
+			1,
+			0,
+			#{qNo},
+			#{getToday},
+			#{memberId}
+		)
+	</insert>
+	<select id="selectAnswer" parameterType="int" resultType="kr.or.common.model.vo.QuestionService" >
+		select 
+			question_no as qNo,
+			question_content as qContent,
+			fs_no as fsNo,
+			question_class as qClass,
+			question_order as qOrder,
+			question_index as qIndex,
+			question_date as qDate,
+			member_id as memberId
+		from fservice_question
+		where fs_no = #{fsNo} and question_class = 1
+		ORDER BY question_no DESC 
+	</select>
+	<delete id="deleteComment" parameterType="int">
+		delete from fservice_question 
+		where question_no = #{qNo} or question_index = #{qNo}
+	</delete>
 </mapper>

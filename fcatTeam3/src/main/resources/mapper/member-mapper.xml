@@ -56,6 +56,28 @@
   	update member set member_pw=#{memberPw}
   	where member_id=#{memerId}
   </update>
+  <insert id="insertCoupon" parameterType="o">
+  	insert into coupon values(coupon_seq.nextval,
+  	#{couponName},
+  	#{couponContent},
+  	#{memberId},
+  	#{couponDiscount},
+  	to_char(sysdate,'yyyy-mm-dd'),
+  	to_char((sysdate+6),'yyyy-mm-dd'),
+  	#{couponStatus})
+  </insert>
+  
+  <select id="selectAllCoupon" parameterType="string" resultType="c">
+  select * from coupon where member_id=#{memberId}
+  </select>
+  
+  
+  
+  
+  <insert id="insertMs" parameterType="msg">
+  	insert into message values (msg_seq.nextval, #{msgSender},#{msgReceiver},#{msgTitle}, #{msgContent}, 0, to_char(sysdate, 'yyyy-mm-dd'))
+  </insert>
+  
   
   
 </mapper>

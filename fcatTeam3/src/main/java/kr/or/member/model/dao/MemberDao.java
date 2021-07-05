@@ -30,7 +30,7 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("member.deleteMember",memberId);
 	}
-	/*
+	
 	public List<Coupon> selectAllCoupon(String memberId)
 	{
 		return sqlSession.selectList("member.selectAllCoupon",memberId);
@@ -39,5 +39,5 @@ public class MemberDao {
 	{
 		return sqlSession.insert("member.insertCoupon",coupon);
 	}
-*/
+
 }

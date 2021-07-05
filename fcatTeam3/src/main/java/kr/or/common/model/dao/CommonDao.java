@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
@@ -67,6 +68,71 @@ public class CommonDao {
 
 	public int selectOneLike(HashMap<String, String> map) {
 		return sqlSession.selectOne("common.selectOneLike",map);
+	}
+
+	public ArrayList<FService> selectCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public int selectCategoryTotalCount(String category) {
+		return sqlSession.selectOne("common.selectCategoryTotalCount", category);
+	}
+
+	public int selectChildCategoryTotalCount(String childCategory) {
+		return sqlSession.selectOne("common.selectChildCategoryTotalCount", childCategory);
+	}
+
+	public ArrayList<FService> selectAllCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectAllChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public int selectKeyWordAndChildCategoryTotalCount(HashMap<String, String> categoryAndKeywordMap) {
+		return sqlSession.selectOne("common.selectKeyWordAndChildCategoryTotalCount", categoryAndKeywordMap);
+	}
+
+	public ArrayList<FService> selectSearchAndChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectSearchAndChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public ArrayList<FService> selectAllSearchAndChildCategory(Search search) {
+		List<FService> list = sqlSession.selectList("common.selectAllSearchAndChildCategory", search);
+		return (ArrayList<FService>) list;
+	}
+
+	public void  insertQuestion(HashMap<String, String> map) {
+		sqlSession.insert("common.insertQuestion",map);
+	}
+
+	public ArrayList<QuestionService> selectQuestion(int fsNo) {
+		List<QuestionService> list = sqlSession.selectList("common.selectQuestion", fsNo);
+		return (ArrayList<QuestionService>) list;
+	}
+
+	public void insertAnswer(HashMap<String, String> map) {
+		sqlSession.insert("common.insertAnswer",map);
+	}
+
+	public ArrayList<QuestionService> selectAnswer(int fsNo) {
+		List<QuestionService> list = sqlSession.selectList("common.selectAnswer", fsNo);
+		return (ArrayList<QuestionService>) list;
+	}
+
+	public void deleteComment(int qNo) {
+		sqlSession.delete("common.deleteComment", qNo);
+		
 	}
 
 	

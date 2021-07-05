@@ -1,3 +1,7 @@
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 .route-wrap {
 	background-color: #f0f0f0;
 }
@@ -15,6 +19,7 @@
 .categori-wrap {
 	width: 200px;
 	float: left;
+	padding: 10px;
 }
 
 .categori-title>h4 {
@@ -68,7 +73,11 @@
 .searchList-wrap {
 	float: left;
 }
-
+.searchItem a{
+	text-decoration: none;
+	z-index: 99;
+	opacity: .99;
+}
 .searchRow {
 	display: flex;
 	flex-direction: row;
@@ -128,6 +137,8 @@
 	height: 340px;
 	border: 1px solid white;
 	padding: 10px;
+	opacity: .99;
+	cursor: pointer;
 }
 
 .box-shadow:hover {
@@ -210,6 +221,7 @@
 	color: #FE8E86;
 	font-size: 20px;
 	cursor: pointer;
+	z-index: 100;
 }
 
 /* Accordion */
@@ -254,18 +266,21 @@ ul {
 	padding: 5px;
 	position: relative;
 	margin: 0;
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 500;
 	letter-spacing: 0.8px;
-	color: #bacbd6;
+	color: #3c5c56;
 	transition: ease-in-out 0.2s all;
 	cursor: pointer;
+}
+
+#categoryReccomendTitle {
+	font-size: 17px;
 }
 
 .accordionTitle:hover {
 	
 }
-
 /* Accordion Item line */
 .accordionTitle:before, .accordionTitle:after {
 	content: "";
@@ -333,7 +348,7 @@ ul {
 }
 
 .accIcon:before {
-	width: 2px;
+	width: 1.5px;
 	height: 12px;
 }
 
