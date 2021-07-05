@@ -49,11 +49,11 @@
             <!-- 분류목록 끝-->
                 <!-- 회원검색창 -->
                <div class="col-md-3 float-right">
-                  <form action="">
+                  <form action="/searchMember.do">
                     <div class="input-group">
-                      <input type="text" class="form-control search-input" placeholder="회원검색">
-                      <button type="button" class="btn btn-light search-button">
-                        <i class="fas fa-search text-danger"></i>
+                      <input type="text" class="form-control search-input" name="keyword" placeholder="회원검색" value="${keyword }">
+                      <button type="submit" class="btn btn-light search-button">
+                        <i class="fas fa-search text-danger "></i>
                       </button>
                     </div>
                   </form>

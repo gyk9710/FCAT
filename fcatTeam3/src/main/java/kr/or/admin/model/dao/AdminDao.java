@@ -126,4 +126,10 @@ public class AdminDao {
 		return (ArrayList<Board>)list;
 	}
 
+	public ArrayList<Member> searchMember(String keyword) {
+		// TODO Auto-generated method stub
+		List<Member> list = sqlSession.selectList("admin.searchMember",keyword);
+		return (ArrayList<Member>)list;
+	}
+
 }

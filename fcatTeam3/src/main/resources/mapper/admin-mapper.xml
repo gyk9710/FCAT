@@ -94,4 +94,11 @@
 		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board where board_class= 0
 	</select>	
 	
+	<select id="searchMember" resultType="m">
+			select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member 
+			where  
+                      member_id like '%'||#{keyword}||'%'
+                      or member_name like '%' || #{keyword}||'%'  
+	</select>
+	
 </mapper>

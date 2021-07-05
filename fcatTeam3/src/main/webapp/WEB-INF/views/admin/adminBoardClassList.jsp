@@ -46,7 +46,7 @@
               <table class="table bg-light text-center" style="width:100%;">
                 <thead>
                 <tr class="text-muted">
-                  <th><input type="checkbox" class="allchk"></th><th>번호</th><th>분류</th><th>제목</th><th>작성일</th><th>조회수</th><th>수정</th>
+                  <th><input type="checkbox" class="allchk"></th><th>번호</th><th>분류</th><th>제목</th><th>작성일</th><th>수정</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,7 +65,6 @@
               		</c:choose>
               		<th data-toggle="collapse" data-target="#A${board.boardNo }" role="button">${board.boardTitle }</th>
               		<th>${board.boardDate }</th>
-              		<th>${board.boardCount }</th>
               		<th><a href="adminBoardUpdateFrm.do?boardNo=${board.boardNo }" class="btn btn-info">수정</a>
               	</tr>	
               	<tr>

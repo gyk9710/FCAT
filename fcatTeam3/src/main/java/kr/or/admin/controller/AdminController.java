@@ -110,7 +110,7 @@ public class AdminController {
 		}else {
 			model.addAttribute("msg","수정실패");
 		}
-		model.addAttribute("loc","/adminBoardList.do");
+		model.addAttribute("loc","/adminBoardList.do?reqPage=1");
 		return "common/msg";
 	}
 	
@@ -133,7 +133,7 @@ public class AdminController {
 		}else {
 			model.addAttribute("msg","작성실패");
 		}
-		model.addAttribute("loc","/adminBoardList.do");
+		model.addAttribute("loc","/adminBoardList.do?reqPage=1");
 		return "common/msg";
 	}
 
@@ -146,7 +146,7 @@ public class AdminController {
 		}else {
 			model.addAttribute("msg","삭제실패");
 		}
-		model.addAttribute("loc","/adminBoardList.do");
+		model.addAttribute("loc","/adminBoardList.do?reqPage=1");
 		return "common/msg";
 	}
 	@RequestMapping(value="noticeList.do")
@@ -161,5 +161,18 @@ public class AdminController {
 		ArrayList<Board> list = service.faqList();
 		model.addAttribute("list",list);
 		return "board/faqList";
+	}
+	
+	@RequestMapping(value="searchMember.do")
+	public String searchMember(Model model , String keyword ) {
+		ArrayList<Member> list = service.searchMember(keyword);
+		int adminCount = service.adminCount();
+		int memberCount = service.memberCount();
+		int sellerCount = service.sellerCount();
+		model.addAttribute("list" , list);
+		model.addAttribute("adminCount", adminCount);
+		model.addAttribute("memberCount", memberCount);
+		model.addAttribute("sellerCount", sellerCount);
+		return "admin/adminMember";
 	}
 }

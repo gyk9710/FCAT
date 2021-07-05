@@ -31,9 +31,16 @@
 	<input type="hidden" name="boardNo" value="${board.boardNo }">
 		<div class="form-group">
 				<select class="selectform" name="boardClass">
-					<option selected disabled>-분류-</option>
-					<option value="0">FAQ</option>
+					<c:if test="${board.boardClass ==0  }">
+					<option  disabled>-분류-</option>
+					<option value="0" selected >FAQ</option>
 					<option value="1">공지사항</option>
+					</c:if>
+					<c:if test="${board.boardClass == 1  }">
+					<option  disabled>-분류-</option>
+					<option value="0"  >FAQ</option>
+					<option value="1" selected>공지사항</option>
+					</c:if>					
 				</select>
 			<input type="text" class="titleform" placeholder="제목" name="boardTitle" value="${board.boardTitle }"required>
 		</div>

@@ -340,6 +340,11 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return dao.faqList();
 	}
+
+	public ArrayList<Member> searchMember(String keyword ) {
+		// TODO Auto-generated method stub
+		return dao.searchMember(keyword);
+	}
 	
 
 }
