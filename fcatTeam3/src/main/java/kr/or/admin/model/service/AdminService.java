@@ -23,6 +23,7 @@ public class AdminService {
 		return dao.inserBoard(b);
 	}
 
+	//관리자페이지에서 고객센터 리스트 불러오기 + 페이지네비
 	public BoardpageData selectBoardList(int reqPage) {
 		//1. 한페이지에 게시물을 몇개 보여줄지 : 한 페이지당 10개씩 보여줌 
 		int numPerPage = 10;		//한 페이지당 게시물 10개를 변수 처리
@@ -83,6 +84,7 @@ public class AdminService {
 		return bpd;						
 	}
 	
+	//관리자페이지에서 고객센터 리스트 분류별 불러오기 + 페이지네비
 	public BoardpageData selectBoardClassList(int reqPage , int boardClass) {
 		//1. 한페이지에 게시물을 몇개 보여줄지 : 한 페이지당 10개씩 보여줌 
 		int numPerPage = 10;		//한 페이지당 게시물 10개를 변수 처리
@@ -144,7 +146,7 @@ public class AdminService {
 		return bpd;						
 	}
 
-
+	//고객센터 게시물 삭제
 	public boolean boardDelete(String num) {
 		StringTokenizer st1 = new StringTokenizer(num,"/");
 		boolean result = true;
@@ -159,7 +161,7 @@ public class AdminService {
 		return result;
 	}
 
-	
+	//관리자페이지에서 멤버리스트 불러오기 + 페이지네비
 	public MemberPageData selectMemberList(int reqPage) {
 		//1. 한페이지에 게시물을 몇개 보여줄지 : 한 페이지당 10개씩 보여줌 
 		int numPerPage = 10;		//한 페이지당 게시물 10개를 변수 처리
@@ -219,22 +221,20 @@ public class AdminService {
 		MemberPageData mpd = new MemberPageData(list,pageNavi);	//list도 리턴해줘야하고 pageNavi도 리턴해줘야 하는대 자바는 한개만 리턴가능 -> 객체만들어서 리턴
 		return mpd;						
 	}
-
+	
+	//관리자페이지 고객센터리스트에서 표시 될 공지사항 총 갯수 
 	public int noticeCount() {
 		// TODO Auto-generated method stub
 		return dao.noticeCount();
 	}
-
+	
+	///관리자페이지 고객센터리스트에서 표시 될 faq총 갯수
 	public int faqCount() {
 		// TODO Auto-generated method stub
 		return dao.faqCount();
 	}
-
-//	public ArrayList<Member> selectMemberGradeList(int grade) {
-//		// TODO Auto-generated method stub
-//		return dao.selectMemberGradeList(grade);
-//	}
 	
+	//관리자페이지에서 멤버 등급별 리스트 + 페이지네비
 	public MemberPageData selectMemberGradeList(int reqPage , int grade) {
 		//1. 한페이지에 게시물을 몇개 보여줄지 : 한 페이지당 10개씩 보여줌 
 		int numPerPage = 10;		//한 페이지당 게시물 10개를 변수 처리
@@ -296,29 +296,49 @@ public class AdminService {
 		return mpd;						
 	}
 
+	//관리자페이지 멤버리스트에서 표시 될 관리자 회원 수
 	public int adminCount() {
 		// TODO Auto-generated method stub
 		return dao.adminCount();
 	}
 
+	//관리자페이지 멤버리스트에서 표시 될 일반회원 회원 수
 	public int memberCount() {
 		// TODO Auto-generated method stub
 		return dao.memberCount();
 	}
 
+	//관리자페이지 멤버리스트에서 표시 될 판매자 회원 수	
 	public int sellerCount() {
 		// TODO Auto-generated method stub
 		return dao.sellerCount();
 	}
 
+	//고객센터 게시물 수정
 	public int updateBoard(Board b) {
 		// TODO Auto-generated method stub
 		return dao.updateBoard(b);
 	}
 
+	//고객센터 게시물 수정을 위한 게시물 한개 선택
 	public Board selectOneBoard(int boardNo) {
 		// TODO Auto-generated method stub
 		return dao.selectOneBoard(boardNo);
+	}
+
+	
+	public ArrayList<Board> selectBoardListPage() {
+		return dao.selectBoardListPage();
+	}
+
+	public ArrayList<Board> noticeList() {
+		// TODO Auto-generated method stub
+		return dao.noticeList();
+	}
+
+	public ArrayList<Board> faqList() {
+		// TODO Auto-generated method stub
+		return dao.faqList();
 	}
 	
 

@@ -56,11 +56,6 @@ public class AdminDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.faqCount");
 	}
-
-//	public ArrayList<Member> selectMemberGradeList(int grade) {
-//		List<Member> list = sqlSession.selectList("admin.memberGradeList",grade);
-//		return (ArrayList<Member>)list;
-//	}
 	
 	public ArrayList<Member> selectMemberGradeList(HashMap<String, Object> map) {
 		List<Member> list = sqlSession.selectList("admin.memberGradeList",map);
@@ -110,6 +105,25 @@ public class AdminDao {
 	public int totalBoardClassCount(int boardClass) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.totalBoardClassCount",boardClass);
+	}
+
+	public ArrayList<Board> selectBoardListPage() {
+		// TODO Auto-generated method stub
+		List<Board> list = sqlSession.selectList("admin.selectBoardListPage");
+		return (ArrayList<Board>)list;
+		
+	}
+
+	public ArrayList<Board> noticeList() {
+		// TODO Auto-generated method stub
+		List<Board> list = sqlSession.selectList("admin.noticeList");
+		return (ArrayList<Board>)list;
+	}
+
+	public ArrayList<Board> faqList() {
+		// TODO Auto-generated method stub
+		List<Board> list = sqlSession.selectList("admin.faqList");
+		return (ArrayList<Board>)list;
 	}
 
 }
