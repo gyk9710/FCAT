@@ -12,6 +12,7 @@
   float: left;
   border-right: 1px solid black;
   overflow-y: auto; /*스크롤 필요 시 생성*/
+  margin-right: 5%;
 }
 
 /* 채팅방 리스트 한칸씩 차지 */
@@ -21,7 +22,52 @@
 
 /* 채팅 내용 */
 .chat-room {
-  width: 80%;
+  width: 70%;
   height: 100%;
   float: left;
+  margin-right: 5%;
+}
+
+/* 채팅 CSS */
+.chatting {
+  width: 100%;
+  height: 100%;
+}
+.messageArea {
+  overflow-y: auto;
+  border: 1px solid black;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  background-color: #b2c7d9;
+}
+/* 입/퇴장 멘트 */
+.messageArea > p {
+  text-align: center;
+  width: 100%;
+}
+
+.sendBox {
+  width: 100%;
+  height: 20%;
+  vertical-align: middle;
+}
+#sendMsg {
+  width: 75%;
+}
+#sendBtn {
+  width: 24%;
+}
+.chat {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 3px;
+}
+.right {
+  background-color: #ffeb33;
+  align-self: flex-end;
+}
+.left {
+  background-color: #ffffff;
+  align-self: flex-start;
 }

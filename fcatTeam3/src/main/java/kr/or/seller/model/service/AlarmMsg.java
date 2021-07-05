@@ -21,12 +21,9 @@ public class AlarmMsg extends TextWebSocketHandler {
 	// 알림용 세션 리스트
 	private HashMap<String, WebSocketSession> memberList;
 
-	// 채팅방 리스트
-	// private HashMap<String, ArrayList<Integer>> chatList;
-
 	public AlarmMsg() {
 		memberList = new HashMap<String, WebSocketSession>();
-		System.out.println("웹소켓 생성 됨");
+		//System.out.println("웹소켓 생성 됨");
 	}
 
 	// 클라이언트 접속

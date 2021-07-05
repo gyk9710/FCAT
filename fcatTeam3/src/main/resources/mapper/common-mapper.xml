@@ -103,7 +103,7 @@
 		FROM
 			CHAT
 		WHERE
-			receiver = #{memberId} or sender = #{memberId}
+			sender = #{memberId} or receiver = #{memberId}
 	</select>
 	<select id="selectOneFSevice" parameterType="int" resultType="fs">
 						SELECT fs_no as fsNo,

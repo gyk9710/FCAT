@@ -145,11 +145,11 @@
 
 				// 알람
 				var ws; // 웹소켓용 변수
-				var sender = "${sessionScope.m.memberId}"; // 추 후 세션 member로 변경 해야 함
+				var sender = "${sessionScope.m.memberId}";
 
 				// 웹 소켓 생성
 				ws = new WebSocket("ws://127.0.0.1/alarmMsg.do"); // 웹 소켓 연결
-				// ws://khdsa1.iptime.org:18080/ - 추 후 강사님 주소
+				// ws://khdsa1.iptime.org:18080/ - 추 후 시연 주소
 				ws.onopen = alarmStart;
 				ws.onmessage = alarmMsg;
 				ws.onclose = alarmEnd;
