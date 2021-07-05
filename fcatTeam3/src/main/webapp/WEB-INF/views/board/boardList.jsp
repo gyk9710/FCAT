@@ -27,8 +27,7 @@
 	rel="stylesheet">
 <!-- style css-->
 <link rel="stylesheet" href="/resources/css/adminstyle.css">
-<!-- 차트 링크 -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <title>게시판관리</title>
 
 </head>
@@ -41,10 +40,10 @@
 			<div class="home-list-title">
 				공지사항
 				<h5 style="display: inline">
-					<a href="#" class="board-more">더보기</a>
+					<a href="noticeList.do" class="board-more">더보기</a>
 				</h5>
 			</div>
-			<c:forEach items="${list }" var="board" varStatus="i">
+			<c:forEach items="${list }" var="board" varStatus="i" begin="0" end="4">
 				<c:if test="${board.boardClass == 1 }">
 					<li class="home-list"><a href="#">${board.boardTitle}</a></li>
 				</c:if>
@@ -57,10 +56,10 @@
 			<div class="home-list-title">
 				FAQ
 				<h5 style="display: inline">
-					<a href="#" class="board-more">더보기</a>
+					<a href="faqList.do" class="board-more">더보기</a>
 				</h5>
 			</div>
-			<c:forEach items="${list }" var="board" varStatus="i">
+			<c:forEach items="${list }" var="board" varStatus="i" >
 				<c:if test="${board.boardClass == 0 }">
 					<li class="home-list"><a href="#">${board.boardTitle}</a></li>
 				</c:if>

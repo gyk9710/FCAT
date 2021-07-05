@@ -22,6 +22,7 @@ public class AdminController {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	//관리자페이지 이동
 	@RequestMapping(value="/adminPage.do")
 	public String adminPage() {
@@ -43,7 +44,7 @@ public class AdminController {
 		return "admin/adminMember";
 	}
 
-
+	//회원 등급별 리스트 조회 
 	@RequestMapping(value="/memberGradeList.do")
 	public String memberGradeList(Model model,  int reqPage , int grade) {
 		MemberPageData mpd= service.selectMemberGradeList(reqPage,grade);
@@ -57,6 +58,8 @@ public class AdminController {
 		model.addAttribute("sellerCount", sellerCount);
 		return "admin/adminMember";
 	}	
+
+	
 	//고객센터 리스트 페이지
 	@RequestMapping(value="/adminBoardList.do")
 	public String adminBoardList(Model model , int reqPage) {
@@ -70,8 +73,7 @@ public class AdminController {
 		return "admin/adminBoardList";
 	}
 	
-
-	
+	//고객센터 분류별 리스트 페이지
 	@RequestMapping(value="/adminBoardClassList")
 	public String adminBoardClassList(Model model , int boardClass , int reqPage) {
 		BoardpageData bpd = service.selectBoardClassList(reqPage,boardClass);
@@ -91,13 +93,15 @@ public class AdminController {
 		return "admin/adminBoardWriteFrm";
 	}
 	
+	//고객센터 게시물 수정 페이지 이동
 	@RequestMapping(value="/adminBoardUpdateFrm.do")
-	public String adminBoardWrite(Model model , int boardNo) {
+	public String adminBoardUpdateFrm(Model model , int boardNo) {
 		Board board = service.selectOneBoard(boardNo);
 		model.addAttribute("board",board);
 		return "admin/adminBoardUpdateFrm";
 	}
 	
+	//고객센터 게시물 수정 
 	@RequestMapping(value="/adminBoardUpdate.do")
 	public String adminBoardUpdate(Board b , Model model) {
 		int result = service.updateBoard(b);
@@ -111,13 +115,13 @@ public class AdminController {
 	}
 	
 	
-	//홈페이지 고객센터
-//	@RequestMapping(value="/boardList.do")
-//	public String boardList(Model model) {
-//		ArrayList<Board> list = service.selectBoardList();
-//		model.addAttribute("list",list);
-//		return "board/boardList";
-//	}
+	//홈페이지 고객센터 이동
+	@RequestMapping(value="/boardList.do")
+	public String boardList(Model model) {
+		ArrayList<Board> list = service.selectBoardListPage();
+		model.addAttribute("list",list);
+		return "board/boardList";
+	}
 	
 	
 	//고객센터 글쓰기
@@ -133,7 +137,7 @@ public class AdminController {
 		return "common/msg";
 	}
 
-	
+	//고객센터 게시물 삭제
 	@RequestMapping(value="adminBoardDelete.do")
 	public String adminBoardDelete(String num , Model model) {
 		boolean result = service.boardDelete(num);
@@ -144,5 +148,18 @@ public class AdminController {
 		}
 		model.addAttribute("loc","/adminBoardList.do");
 		return "common/msg";
+	}
+	@RequestMapping(value="noticeList.do")
+	public String noticeList(Model model) {
+		ArrayList<Board> list = service.noticeList();
+		model.addAttribute("list",list);
+		return "board/noticeList";
+	}
+	
+	@RequestMapping(value="faqList.do")
+	public String faqList(Model model) {
+		ArrayList<Board> list = service.faqList();
+		model.addAttribute("list",list);
+		return "board/faqList";
 	}
 }

@@ -54,7 +54,6 @@
                   </a>
                   <ul class="nav child_menu collapse" id="contentsmenu">
                     <li><a href="/adminBoardList.do?reqPage=1">게시판관리</a></li>
-                    <li><a href="#">메뉴2</a></li>
                   </ul>
                 </li>                                
               </ul>

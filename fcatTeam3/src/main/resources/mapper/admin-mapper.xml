@@ -33,11 +33,11 @@
   	 </update>
   	 
   	<select id="memberList" resultType="m">
-		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member order by 1 desc)m) where rnum between #{start} and #{end}
+		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member order by enroll_date desc)m) where rnum between #{start} and #{end}
   	</select>
   	
   	 <select id="memberGradeList" resultType="m">
-		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member where grade = #{grade})m) where rnum between #{start} and #{end}
+		select * from(select rownum as rnum, m.*from(select member_id as memberId , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade from member where grade = #{grade} order by enroll_date desc)m) where rnum between #{start} and #{end}
   	</select>
   	
 
@@ -78,10 +78,20 @@
 		select count(*) from member where grade = #{grade}
 	</select>
 	
-
-	
 	<select id="selectOneBoard" parameterType="int" resultType="board">
 		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass  from board where board_no = #{boardNo}
 	</select>
+	
+	<select id="selectBoardListPage" resultType="board">
+		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board order by 1 desc
+	</select>
+	
+	<select id="noticeList" resultType="board">
+		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board where board_class= 1	
+	</select>
+	
+	<select id="faqList" resultType="board">
+		select board_no as boardNo , board_title as boardTitle, board_content as boardContent , board_date as boardDate , board_count as boardCount , board_class as boardClass from board where board_class= 0
+	</select>	
 	
 </mapper>
