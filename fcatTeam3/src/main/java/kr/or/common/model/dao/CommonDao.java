@@ -12,6 +12,7 @@ import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
+import kr.or.common.model.vo.SaveChat;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
@@ -20,6 +21,16 @@ public class CommonDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+	// 1:1 채팅 리스트 조회
+	public List<Chat> selectChatList(String memberId) {
+		return sqlSession.selectList("common.selectChatList", memberId);
+	}
+
+	// 채팅 저장 내역 불러오기
+	public List<SaveChat> selectSaveChatList(int chatNo) {
+		return sqlSession.selectList("common.selectSaveChatList", chatNo);
+	}
 
 	public int insertTattle(Tattle t) {
 		return sqlSession.insert("common.insertTattle", t);
@@ -57,17 +68,12 @@ public class CommonDao {
 		return (ArrayList<Review>) list;
 	}
 
-	// 1:1 채팅 리스트 조회
-	public List<Chat> selectChatList(String memberId) {
-		return sqlSession.selectList("common.selectChatList", memberId);
-	}
-
 	public FService selectOneFService(int fsNo) {
 		return sqlSession.selectOne("common.selectOneFSevice", fsNo);
 	}
 
 	public int selectOneLike(HashMap<String, String> map) {
-		return sqlSession.selectOne("common.selectOneLike",map);
+		return sqlSession.selectOne("common.selectOneLike", map);
 	}
 
 	public ArrayList<FService> selectCategory(Search search) {
@@ -112,8 +118,8 @@ public class CommonDao {
 		return (ArrayList<FService>) list;
 	}
 
-	public void  insertQuestion(HashMap<String, String> map) {
-		sqlSession.insert("common.insertQuestion",map);
+	public void insertQuestion(HashMap<String, String> map) {
+		sqlSession.insert("common.insertQuestion", map);
 	}
 
 	public ArrayList<QuestionService> selectQuestion(int fsNo) {
@@ -122,7 +128,7 @@ public class CommonDao {
 	}
 
 	public void insertAnswer(HashMap<String, String> map) {
-		sqlSession.insert("common.insertAnswer",map);
+		sqlSession.insert("common.insertAnswer", map);
 	}
 
 	public ArrayList<QuestionService> selectAnswer(int fsNo) {
@@ -132,8 +138,7 @@ public class CommonDao {
 
 	public void deleteComment(int qNo) {
 		sqlSession.delete("common.deleteComment", qNo);
-		
+
 	}
 
-	
 }

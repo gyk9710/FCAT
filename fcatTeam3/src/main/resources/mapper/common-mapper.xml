@@ -2,16 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="common">
 
+	<!-- 채팅 리스트 불러오기 - 판매자/구매자 -->
+	<select id="selectChatList" parameterType="string"
+		resultType="c">
+		SELECT
+			chat_no as chatNo,
+			buyer,
+			seller
+		FROM
+			CHAT
+		WHERE
+			buyer = #{memberId} or seller = #{memberId}
+	</select>
+
+	<!-- 채팅 저장 내용 불러오기 -->
+	<select id="selectSaveChatList" resultType="sc"
+		parameterType="int">
+		select
+			sc_content as scContent,
+			sc_flag as scFlag,
+			to_char(sc_time, 'yyyy-mm-dd hh:mm:dd') as scTime
+		from
+			save_chat
+		where
+			sc_no = #{chatNo}
+	</select>
+
 	<!-- 신고 접수 -->
 	<insert id="insertTattle" parameterType="tt">
-		insert into tattle values(
-			tt_seq.nextval,				
-			#{victimId},
-			#{attackerId},
-			#{ttCategory},
-			#{ttContent},		
-			to_char(sysdate, 'yyyy-mm-dd'))
+		insert into tattle
+		values(
+		tt_seq.nextval,
+		#{victimId},
+		#{attackerId},
+		#{ttCategory},
+		#{ttContent},
+		to_char(sysdate, 'yyyy-mm-dd'))
 	</insert>
+	
 	<select id="selectSearchedCountFservice" parameterType="String" resultType="int">
 	SELECT COUNT(*) FROM fservice where
 		fs_title like '%'||#{keyword}||'%'
@@ -94,17 +122,6 @@
 		where fs_no = #{fsNo} 
 	</select>
 	
-	<!-- 채팅 리스트 불러오기 - 판매자/구매자 -->
-	<select id="selectChatList" parameterType="string" resultType="c">
-		SELECT
-			chat_no as chatNo,
-			receiver,
-			sender
-		FROM
-			CHAT
-		WHERE
-			sender = #{memberId} or receiver = #{memberId}
-	</select>
 	<select id="selectOneFSevice" parameterType="int" resultType="fs">
 						SELECT fs_no as fsNo,
                             fs_writer as fsWriter,
