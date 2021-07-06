@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="/resources/css/adminstyle.css">
   <!-- 차트 링크 -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!-- 
+   -->
+
     <!-- navbar-->
     <nav class="navbar navbar-expand-md navbar-light ">
       <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#sidebar">

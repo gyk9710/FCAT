@@ -132,4 +132,9 @@ public class AdminDao {
 		return (ArrayList<Member>)list;
 	}
 
+	public int allMemberCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.totalMemberCount");
+	}
+
 }

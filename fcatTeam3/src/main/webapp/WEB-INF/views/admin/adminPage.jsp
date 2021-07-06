@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <title>index</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                       <i class="fas fa-user fa-3x"></i>
                       <div class="text-right text-secondary">
                         <h5>금일 방문자 수</h5>
-                        <h3>10명</h3>
+                        <h3></h3>
                       </div>
                     </div>
                   </div>
@@ -44,7 +45,7 @@
                       <i class="fas fa-users fa-3x text-success"></i>
                       <div class="text-right text-secondary">
                         <h5>총 회원수</h5>
-                        <h3>100명</h3>
+                        <h3  id="allMemberCount"></h3>
                       </div>
                     </div>
                   </div>
@@ -107,12 +108,29 @@
       </div>
     </section>
     <!-- 카드 섹션 끝-->
-
+	<script>
+	  $(document).ready(function(){
+       $.ajax({
+	            type : "GET",
+	            url : "allMemberCount.do",
+	            success : function(data){
+	                $("#allMemberCount").html(data+"명") ;
+	            }  
+	        });
+       
+	    });	
+	
+	</script>
     
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- 
+
+ 	   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+ -->
+	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="/resources/js/adminscript.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->

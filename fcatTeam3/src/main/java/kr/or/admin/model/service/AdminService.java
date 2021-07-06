@@ -345,6 +345,11 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchMember(keyword);
 	}
+
+	public int allMemberCount() {
+		// TODO Auto-generated method stub
+		return dao.allMemberCount();
+	}
 	
 
 }
