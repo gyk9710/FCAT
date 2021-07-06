@@ -115,12 +115,31 @@
   </insert>
   
   
+
   <insert id="insertMs" parameterType="msg">
   	insert into message values (msg_seq.nextval, #{msgSender},#{msgReceiver},#{msgTitle}, #{msgContent}, 0, to_char(sysdate, 'yyyy-mm-dd'))
   </insert>
   
   
-  
+    <select id="selectCoupon" parameterType="string" resultType="o">
+	  select 
+	  	 coupon_no as couponNo,
+	  	 coupon_name as couponName,
+	  	 coupon_content as couponContent,
+	  	 member_id as memberId,
+	  	 coupon_discount as couponDiscount,
+	  	 start_date as startDate,
+	  	 end_date as endDate,
+	  	 coupon_status as couponStatus
+	  from coupon where member_id=#{memberId}
+  </select>
+  	<select id="selectMemberLike" parameterType="String" resultType="int">
+		select
+			fs_no as fsNo
+		from
+			service_like
+		where member_id = #{memberId}
+	</select>
 </mapper>
 
 

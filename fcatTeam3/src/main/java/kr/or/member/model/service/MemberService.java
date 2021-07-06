@@ -1,5 +1,6 @@
 package kr.or.member.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,13 @@ public class MemberService {
 	public int insertPaymentInfo(PaymentInfo paymentInfo) {
 		// TODO Auto-generated method stub
 		return dao.insertPaymentInfo(paymentInfo);
+	}
+	public ArrayList<Coupon> selectCoupon(String memberId) {
+		return dao.selectCoupon(memberId);
+	}
+
+	public ArrayList<Integer> selectMemberLike(String memberId) {
+		return dao.selectMemberLike(memberId);
 	}
 	
 }

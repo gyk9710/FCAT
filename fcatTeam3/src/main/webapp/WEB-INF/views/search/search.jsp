@@ -72,6 +72,13 @@
 				id="searchCount2">${search.searchCount}건</span>
 		</div>
 		<hr>
+		<c:if test="${empty list }">
+			<div class="emptySearch">
+				<i class="fas fa-exclamation-circle"></i>
+				<br>
+				<span>해당 검색 내역이 없습니다</span>
+			</div>
+		</c:if>
 		<div class="searchRow">
 			<c:forEach items="${list }" var="fs" varStatus="i">
 				<div class="searchItem">
@@ -279,6 +286,7 @@
 				}
 			})
 		}
+
 	}
 	$(".noright").click(function() {
 		alert("로그인 후 사용해주세요.");
