@@ -1,11 +1,17 @@
 package kr.or.common.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.common.model.service.CommonService;
 import kr.or.common.model.vo.Chat;
@@ -24,6 +31,7 @@ import kr.or.common.model.vo.Paging;
 import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.Search;
+import kr.or.common.model.vo.SellerAsk;
 import kr.or.common.model.vo.Tattle;
 import kr.or.member.model.vo.Member;
 
@@ -43,6 +51,71 @@ public class CommonController {
 		return "common/chatList";
 	}
 
+	//판매자 전환신청 페이지 이동
+	@RequestMapping (value = "/sellerAskFrm.do")
+	public String sellerAskFrm() {
+		return "seller/sellerAskFrm";
+	}
+	//판매자 전환 신청
+	@RequestMapping (value = "/sellerAsk.do")
+	public String insertSeller(SellerAsk sa,MultipartFile file, HttpServletRequest request, Model model) {
+		if(file.isEmpty()) {
+			//첨부파일이 없는경우
+		}else {
+			//첨부파일이 있는경우 파일처리
+			
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/seller/");
+			String filename = file.getOriginalFilename();
+			// 유저가 올린 파일명을 마지막 . 기준으로 분리 test.txt ->test_1.txt img01.jpg -> img01_1.jpg
+			String onlyFilename = filename.substring(0, filename.indexOf("."));
+			String extention = filename.substring(filename.indexOf("."));
+			
+			String filepath= null;
+			
+			int count = 0;
+			while (true) {
+				if (count == 0) {
+					filepath = onlyFilename + extention; // test.txt1
+				} else {
+					filepath = onlyFilename + "_" + count + extention; // test_1.txt
+				}
+				File checkFile = new File(savePath + filepath);
+				if (!checkFile.exists()) {
+					break;
+				}
+				count++;
+
+			}
+			sa.setSaProfile(filepath);
+			System.out.println("filepath  :" + filepath) ;
+			System.out.println(savePath);
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				byte[] bytes = file.getBytes();
+				bos.write(bytes);
+				bos.close();
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		int result = service.insertSeller(sa);
+		if(result>0) {
+			model.addAttribute("msg","판매자 전환 신청이 완료되었습니다");
+		}
+		else {
+			model.addAttribute("msg","판매자 전환 신청이 실패했습니다.");
+		}
+		model.addAttribute("loc","/");
+		return "common/msg";
+	}
+	
 	// 신고 접수
 	@Transactional
 	@RequestMapping(value = "/insertTattle.do")

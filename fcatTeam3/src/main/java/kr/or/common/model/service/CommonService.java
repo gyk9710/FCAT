@@ -14,6 +14,7 @@ import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
 import kr.or.common.model.vo.SaveChat;
 import kr.or.common.model.vo.Search;
+import kr.or.common.model.vo.SellerAsk;
 import kr.or.common.model.vo.Tattle;
 
 @Service
@@ -128,6 +129,10 @@ public class CommonService {
 	public void deleteComment(int qNo) {
 		dao.deleteComment(qNo);
 
+	}
+
+	public int insertSeller(SellerAsk sa) {
+		return dao.insertSeller(sa);
 	}
 
 }
