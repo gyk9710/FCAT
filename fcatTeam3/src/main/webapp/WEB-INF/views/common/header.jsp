@@ -67,11 +67,36 @@
 /* Modal Content/Box */
 .search-modal-content {
 	background-color: #fefefe;
-	margin: 15% auto; /* 15% from the top and centered */
+	margin: 10% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
-	width: 30%; /* Could be more or less, depending on screen size */
+	border-radius :15px; 
+	width: 400px; /* Could be more or less, depending on screen size */
+	height: 500px;
 }
+
+
+.colorfulBtn {
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+ border-radius :7px;
+  height:40px;
+  background: linear-gradient(125deg,#000000,#7dffff,#005a5a,#000000,#7dffff,#005a5a);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+.colorfulBtn:hover{
+background-position: right;
+}
+
 </style>
 <script>
 	$(function() {
@@ -161,7 +186,7 @@
 	<div id="login" class="searchModal">
 		<div class="search-modal-content">
 			<div class="page-header">
-				<h1>로그인 페이지</h1>
+				<span style="text-align:center;"><h1>로그인 페이지</h1></span>
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
@@ -172,25 +197,20 @@
 								아이디 : <input type="text" name="memberId"> <br> 비밀번호
 								: <input type="password" name="memberPw"> <br>
 								<div style="cursor: pointer; background-color: #DDDDDD; text-align: center; height: 44px;">
-								<input type="submit" value="로그인" style="width : 100%; height:100%;">
+								<input class="colorfulBtn"type="submit" value="Login" style="width : 100%; height:100%;">
 									</div>
-							</form>
-
+							</form><br><br>
+				<div style="cursor: pointer; background-color: #DDDDDD; text-align: center; height: 44px;">
+				<button class="colorfulBtn" onClick="closeModal();" style="width : 100%; height:100%;">닫기</button>
+				<!-- <span class="pop_bt modalCloseBtn" style="font-size: 13pt;">닫기	</span>-->
+			</div>
 
 						</div>
 					</div>
 				</div>
-			</div>
-			<hr>
-			<div			
-				style="cursor: pointer; background-color: #DDDDDD; text-align: center; height: 44px;">
-				<button onClick="closeModal();" style="width : 100%; height:100%;">닫기</button>
-				<!-- <span class="pop_bt modalCloseBtn" style="font-size: 13pt;">닫기	</span>-->
-			</div>
+			</div>			
 		</div>
 	</div>
-
-
 	<input type="text" placeholder="원하는 서비스를 검색해주세요" class="h_search">
 	<input type="submit" value="search" class="b_search">
 
