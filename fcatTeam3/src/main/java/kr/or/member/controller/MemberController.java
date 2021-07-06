@@ -1,5 +1,6 @@
 package kr.or.member.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
@@ -106,6 +106,15 @@ public class MemberController {
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
+	}
+	
+	@RequestMapping(value = "/userMyPage.do")
+	public String userMyPage(HttpSession session,Model model) {
+		Member m=(Member)session.getAttribute("m");
+		ArrayList<Coupon> couponList = service.selectCoupon(m.getMemberId());
+		ArrayList<Integer> likeList = service.selectMemberLike(m.getMemberId());
+		model.addAttribute("couponList",couponList);
+		return "member/myPage";
 	}
 	
 }

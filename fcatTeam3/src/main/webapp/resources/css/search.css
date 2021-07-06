@@ -395,3 +395,12 @@ ul {
 	line-height: 14px;
 	font-size: 10px;
 }
+.fa-exclamation-circle{
+	font-size: 200px;
+	
+}
+.emptySearch{
+	width: 1080px;
+	text-align: center;
+	font-size: 25px;
+}

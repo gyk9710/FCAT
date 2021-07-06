@@ -1,11 +1,13 @@
 package kr.or.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.common.model.vo.Review;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 
@@ -38,6 +40,16 @@ public class MemberDao {
 	public int insertCoupon(Coupon coupon)
 	{
 		return sqlSession.insert("member.insertCoupon",coupon);
+	}
+
+	public ArrayList<Coupon> selectCoupon(String memberId) {
+		List<Coupon> list = sqlSession.selectList("member.selectCoupon",memberId);
+		return (ArrayList<Coupon>) list;
+	}
+
+	public ArrayList<Integer> selectMemberLike(String memberId) {
+		List<Integer> list = sqlSession.selectList("member.selectMemberLike",memberId);
+		return (ArrayList<Integer>) list;
 	}
 
 }
