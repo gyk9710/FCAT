@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.PaymentInfo;
 
 @Service
 public class MemberService {
@@ -23,12 +24,7 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return dao.insertMember(m);
 	}
-	
-	public int deleteMember(String memberId) {
-		// TODO Auto-generated method stub
-		return dao.deleteMember(memberId);
-	}
-	
+
 	public int insertCoupon(String memberId)
 	{
 		Coupon coupon = new Coupon();
@@ -42,10 +38,28 @@ public class MemberService {
 		return dao.insertCoupon(coupon);
 	}
 
-	
-	public List<Coupon> selectAllCoupon(String memberId)
+	public int deleteMember(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.deleteMember(memberId);
+	}
+	public List selectAllCoupon(String memberId)
 	{
 		return dao.selectAllCoupon(memberId);
+	}
+
+	public Coupon selectAllCoupon(String memberId, String couponName) {
+		return dao.selectAllCoupon(memberId, couponName);
+		
+	}
+
+	public int deleteCoupon(Coupon coupon) {
+
+		return dao.deleteCoupon(coupon);
+	}
+
+	public int insertPaymentInfo(PaymentInfo paymentInfo) {
+		// TODO Auto-generated method stub
+		return dao.insertPaymentInfo(paymentInfo);
 	}
 	
 }

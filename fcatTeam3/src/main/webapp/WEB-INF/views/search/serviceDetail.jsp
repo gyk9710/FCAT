@@ -454,8 +454,10 @@
 		var msgReceiver = $("#fsWriterFont").html();
 		var msgTitle = "서비스 요청!";
 		var msgContent = msgSender+"님이"+$("#fsTitle").html()+"에 대해 서비스를 요청하였습니다";
-		$.ajax({
-			url : "/sendRequest.do",
+		location.href="/payment.do";
+		
+			/*$.ajax({
+			url : "/payment.do",
 			type : "post",
 			data : {msgSender:msgSender,msgReceiver:msgReceiver,msgTitle:msgTitle,msgContent:msgContent},
 			success : function(data){
@@ -466,7 +468,7 @@
 					alert("요청 실패");
 				}
 			}
-		});
+		});*/
 	
 		
 	}

@@ -67,11 +67,52 @@
   	#{couponStatus})
   </insert>
   
-  <select id="selectAllCoupon" parameterType="string" resultType="c">
-  select * from coupon where member_id=#{memberId}
+  <select id="selectAllCoupon" parameterType="string" resultType="o">
+  select 
+	coupon_No as couponNo,
+	coupon_Name as couponName,
+	coupon_Content as couponContent,
+	member_Id memberId,
+	coupon_Discount ascoupnDiscount,
+	start_Date as startDateo,
+	end_Date as endDate,
+	coupon_Status as couponStatus 
+ from coupon where member_id=#{memberId}
   </select>
   
   
+  <select id="selectOneCoupon" parameterType="o" resultType="o">
+ 	 select
+ 	coupon_No as couponNo,
+	coupon_Name as couponName,
+	coupon_Content as couponContent,
+	member_Id as memberId,
+	coupon_Discount as couponDiscount,
+	start_Date as startDate,
+	end_Date as endDate,
+	coupon_Status as couponStatus 
+ 	  from coupon where member_Id=#{memberId} and coupon_Name=#{couponName}
+  </select>
+  
+  <delete id="deleteCoupon" parameterType="o">
+  	delete from coupon where coupon_name=#{couponName} and member_id=#{memberId}
+  </delete>
+  
+  <!-- 결제 내역 부분 -->
+	<insert id="insertPaymentInfo" parameterType="p">
+  	insert into payment_Info values(
+  	#{impCode},
+  	#{merchantUid},
+  	#{paymentName},
+  	#{amount},
+  	#{buyerEmail},
+  	#{buyerName},
+  	#{buyerPhone},
+  	#{buyerAddr},
+  	#{buyerPostcode},
+  	#{buyerId},
+  	#{sellerId}) 
+  </insert>
   
   
   <insert id="insertMs" parameterType="msg">

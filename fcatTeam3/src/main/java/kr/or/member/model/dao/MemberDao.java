@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.PaymentInfo;
 
 @Repository
 public class MemberDao {
@@ -24,20 +25,47 @@ public class MemberDao {
 		return sqlSession.insert("member.insertMember",m);
 	}
 	
-	
+	public int insertCoupon(Coupon coupon)
+	{
+		return sqlSession.insert("member.insertCoupon",coupon);
+	}
 
 	public int deleteMember(String memberId) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("member.deleteMember",memberId);
 	}
-	
-	public List<Coupon> selectAllCoupon(String memberId)
+	public List selectAllCoupon(String memberId)
 	{
 		return sqlSession.selectList("member.selectAllCoupon",memberId);
 	}
-	public int insertCoupon(Coupon coupon)
-	{
-		return sqlSession.insert("member.insertCoupon",coupon);
+
+	public Coupon selectAllCoupon(String memberId, String couponName) {
+		// TODO Auto-generated method stub
+		Coupon c=new Coupon();
+		c.setCouponName(couponName);
+		c.setMemberId(memberId);
+		
+		System.out.println("1111"+couponName);
+		System.out.println(memberId);
+		Coupon coupon=sqlSession.selectOne("member.selectOneCoupon",c);
+		System.out.println(coupon);
+		
+		return coupon;
+	}
+
+	public int deleteCoupon(Coupon coupon) {
+		Coupon c = new Coupon();
+		c.setCouponName(coupon.getCouponName());
+		c.setMemberId(coupon.getMemberId());
+		
+		int result = sqlSession.delete("member.deleteCoupon",c);
+				
+		return result;
+	}
+
+	public int insertPaymentInfo(PaymentInfo paymentInfo) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("member.insertPaymentInfo",paymentInfo);
 	}
 
 }

@@ -2,6 +2,8 @@ package kr.or.seller.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +43,11 @@ public class SellerController {
 		model.addAttribute("loc","/");
 		return "common/msg";
 		
+	}
+	//결제 페이지 이동
+	@RequestMapping(value="/payment.do")
+	public String payment(HttpSession session) {
+		return "search/payment";
 	}
 	
 

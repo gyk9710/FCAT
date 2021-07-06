@@ -11,10 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
+import kr.or.member.model.vo.PaymentInfo;
 @Controller
 public class MemberController {
 	@Autowired
@@ -88,10 +91,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping(value="/payment.do")
-	public String payment(HttpSession session) {
-		return "member/payment";
-	}
+	
 	
 			
 	@RequestMapping(value="/deleteMember.do")
@@ -107,7 +107,79 @@ public class MemberController {
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
-	
+	@RequestMapping(value="/getCouponList.do",produces = "application/json;charset=utf-8")
+	@ResponseBody //
+	public String getCouponList(String memberId)
+	{
+		List<Coupon> list=service.selectAllCoupon(memberId);
+		System.out.println(memberId);
+		for(int i=0;i<list.size();++i)
+		System.out.println(list.get(0).getCouponName());
+		return new Gson().toJson(list);
+	}
+	@RequestMapping(value="/couponChange.do")
+	@ResponseBody
+	public String couponChange(String couponName, Member m) {		
+		Coupon coupon =service.selectAllCoupon(m.getMemberId(), couponName);
+		return new Gson().toJson(coupon);
+	}
+	@RequestMapping(value="/payment1.do")
+	public String payment1(HttpSession session) {
+		return "member/payment1";
+	}
+	@RequestMapping(value="/afterpayment.do")
+	public String afterpayment(HttpServletRequest request) {
+		Coupon coupon=new Coupon();
+		coupon.setCouponName(request.getParameter("couponName"));
+		coupon.setMemberId(request.getParameter("memberId"));
+		
+		System.out.println(request.getParameter("impCode")+" "+
+		 request.getParameter("merchantUid")+" "+
+		 request.getParameter("paymentName")+" "+
+		 request.getParameter("amount")+" "+
+		 request.getParameter("buyerEmail")+" "+
+		 request.getParameter("buyerName")+" "+
+		 request.getParameter("buyerPhone")+" "+
+		 request.getParameter("buyerAddr")+" "+
+		 request.getParameter("buyerPostcode")+" "+
+		 request.getParameter("buyerId")+" "+
+		 request.getParameter("sellerId"));
+		
+		PaymentInfo paymentInfo=new PaymentInfo();
+		paymentInfo.setImpCode(request.getParameter("impCode"));
+		paymentInfo.setMerchantUid(request.getParameter("merchantUid"));
+		paymentInfo.setPaymentName(request.getParameter("paymentName"));
+		paymentInfo.setAmount(request.getParameter("amount"));
+		paymentInfo.setBuyerEmail(request.getParameter("buyerEmail"));
+		paymentInfo.setBuyerName(request.getParameter("buyerName"));
+		paymentInfo.setBuyerPhone(request.getParameter("buyerPhone"));
+		paymentInfo.setBuyerAddr(request.getParameter("buyerAddr"));
+		paymentInfo.setBuyerPostcode(request.getParameter("buyerPostcode"));
+		paymentInfo.setBuyerId(request.getParameter("buyerId"));
+		paymentInfo.setSellerId(request.getParameter("sellerId"));
+
+		
+
+		
+		int result1=service.insertPaymentInfo(paymentInfo);
+		if(result1>0) {
+			System.out.println("거래내역 삽입 완료");
+		}else {
+			 System.out.println("거래내역 삽입 실패");			
+		}
+		
+		int result = service.deleteCoupon(coupon);
+		if(result>0) {
+			System.out.println("쿠폰삭제 완료");
+		}else {
+			 System.out.println("쿠폰삭제 못했어요");			
+		}
+		return "redirect:/";
+	}
+	@RequestMapping(value="/main.do")
+	public String main() {
+		return "redirect:/";
+	}
 }
 
 

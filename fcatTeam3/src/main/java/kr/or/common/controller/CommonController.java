@@ -247,6 +247,7 @@ public class CommonController {
 		starScore = ((review.xxx(score)));
 		fservice.setFsPriceAsString(NumberFormat.getInstance().format((fservice.getFsPrice())));
 		model.addAttribute("fs", fservice);
+		session.setAttribute("fs", fservice);
 		model.addAttribute("questionList", questionList);
 		model.addAttribute("answerList", answerList);
 		model.addAttribute("score", score);

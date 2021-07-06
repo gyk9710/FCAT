@@ -30,6 +30,7 @@
 		<typeAlias type="kr.or.common.model.vo.SaveChat" alias="sc" />
 		<!-- 쿠폰 테이블 -->
 		<typeAlias type="kr.or.member.model.vo.Coupon" alias="o"/>
-
+		<!-- 결제 내역 테이블 -->
+		<typeAlias type="kr.or.member.model.vo.PaymentInfo" alias="p"/>
 	</typeAliases>
 </configuration>
