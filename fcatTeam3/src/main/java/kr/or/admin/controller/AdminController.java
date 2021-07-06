@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.Board;
@@ -156,6 +157,7 @@ public class AdminController {
 		return "board/noticeList";
 	}
 	
+	
 	@RequestMapping(value="faqList.do")
 	public String faqList(Model model) {
 		ArrayList<Board> list = service.faqList();
@@ -163,6 +165,7 @@ public class AdminController {
 		return "board/faqList";
 	}
 	
+	//관리자페이지 회원 검색
 	@RequestMapping(value="searchMember.do")
 	public String searchMember(Model model , String keyword ) {
 		ArrayList<Member> list = service.searchMember(keyword);
@@ -175,4 +178,14 @@ public class AdminController {
 		model.addAttribute("sellerCount", sellerCount);
 		return "admin/adminMember";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="allMemberCount.do")
+	public int allMemberCount() {
+		return service.allMemberCount();
+		
+	}
+	
+	
+	
 }
