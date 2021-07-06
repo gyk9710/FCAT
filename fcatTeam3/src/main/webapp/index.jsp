@@ -429,6 +429,7 @@
 			<h3>
 				<a href="/sellerPage.do">판매자 마이 페이지</a>
 				<a href="/serviceFrm.do">서비스등록페이지</a>
+				<a href="/userMyPage.do">유저 마이페이지</a>
 			</h3>
 
 			<div class="wrapper">
