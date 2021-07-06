@@ -381,4 +381,28 @@ public class CommonController {
 		service.deleteComment(qNo);
 		return "/";
 	}
+	
+	@RequestMapping(value="/headerTemporarily.do")
+	public String headerTemporarily() {
+		return "common/headerTemporarily";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
