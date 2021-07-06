@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.or.common.model.vo.Message;
 import kr.or.fservice.model.vo.TestService;
 import kr.or.seller.model.dao.SellerDao;
+import kr.or.seller.model.vo.ServiceRequest;
 
 @Service
 public class SellerService {
@@ -15,13 +16,12 @@ public class SellerService {
 	@Autowired
 	private SellerDao dao;
 
-
 	public int insertService(TestService ts) {
 		return dao.insertService(ts);
 	}
-	
+
 	// 서비스 요청 리스트 조회
-	public List requestServiceList(int serviceNo) {
+	public List<ServiceRequest> requestServiceList(int serviceNo) {
 		return dao.requestServiceList(serviceNo);
 
 	}

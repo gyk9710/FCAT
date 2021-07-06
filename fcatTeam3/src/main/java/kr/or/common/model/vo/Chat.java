@@ -2,18 +2,18 @@ package kr.or.common.model.vo;
 
 public class Chat {
 	private int chatNo;
-	private String receiver;
-	private String sender;
+	private String buyer;
+	private String seller;
 
 	public Chat() {
 		super();
 	}
 
-	public Chat(int chatNo, String receiver, String sender) {
+	public Chat(int chatNo, String buyer, String seller) {
 		super();
 		this.chatNo = chatNo;
-		this.receiver = receiver;
-		this.sender = sender;
+		this.buyer = buyer;
+		this.seller = seller;
 	}
 
 	public int getChatNo() {
@@ -24,20 +24,19 @@ public class Chat {
 		this.chatNo = chatNo;
 	}
 
-	public String getReceiver() {
-		return receiver;
+	public String getBuyer() {
+		return buyer;
 	}
 
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
 	}
 
-	public String getSender() {
-		return sender;
+	public String getSeller() {
+		return seller;
 	}
 
-	public void setSender(String sender) {
-		this.sender = sender;
+	public void setSeller(String seller) {
+		this.seller = seller;
 	}
-
 }

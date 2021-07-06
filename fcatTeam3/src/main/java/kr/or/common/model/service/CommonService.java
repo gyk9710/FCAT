@@ -12,6 +12,7 @@ import kr.or.common.model.vo.Chat;
 import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.QuestionService;
 import kr.or.common.model.vo.Review;
+import kr.or.common.model.vo.SaveChat;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.Tattle;
 
@@ -20,6 +21,16 @@ public class CommonService {
 
 	@Autowired
 	private CommonDao dao;
+
+	// 채팅 저장 내역 불러오기
+	public List<SaveChat> selectSaveChatList(int chatNo) {
+		return dao.selectSaveChatList(chatNo);
+	}
+
+	// 1:1 채팅 리스트 조회
+	public List<Chat> selectChatList(String memberId) {
+		return dao.selectChatList(memberId);
+	}
 
 	public int insertTattle(Tattle t) {
 		return dao.insertTattle(t);
@@ -51,11 +62,6 @@ public class CommonService {
 
 	public ArrayList<Review> selectReview(int fsNo) {
 		return dao.selectReview(fsNo);
-	}
-
-	// 1:1 채팅 리스트 조회
-	public List<Chat> selectChatList(String memberId) {
-		return dao.selectChatList(memberId);
 	}
 
 	public FService selectOneFSerivce(int fsNo) {
@@ -95,7 +101,7 @@ public class CommonService {
 	}
 
 	public ArrayList<FService> selectSearchAndChildCategory(Search search) {
-		
+
 		return dao.selectSearchAndChildCategory(search);
 	}
 
@@ -121,8 +127,7 @@ public class CommonService {
 
 	public void deleteComment(int qNo) {
 		dao.deleteComment(qNo);
-		
-	}
 
+	}
 
 }
