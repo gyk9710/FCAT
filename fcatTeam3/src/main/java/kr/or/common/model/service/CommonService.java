@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.common.model.dao.CommonDao;
 import kr.or.common.model.vo.Chat;
@@ -22,6 +23,13 @@ public class CommonService {
 	@Autowired
 	private CommonDao dao;
 
+	
+	// 채팅 내용 저장
+	@Transactional
+	public void insertChatMsg(SaveChat sc) {
+		dao.insertChatMsg(sc);
+	}
+	
 	// 채팅 저장 내역 불러오기
 	public List<SaveChat> selectSaveChatList(int chatNo) {
 		return dao.selectSaveChatList(chatNo);

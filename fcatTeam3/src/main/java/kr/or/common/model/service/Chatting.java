@@ -19,6 +19,7 @@ public class Chatting extends TextWebSocketHandler {
 	private CommonService service;
 
 	private HashMap<String, WebSocketSession> chatMemberList; // 현재 접속한 세션 목록
+	// private testId
 	// private HashMap<String, String> chatRoom;// 나랑 채팅중인 채팅방
 
 	// 로그인한 id, 받는 사람 id
@@ -54,10 +55,20 @@ public class Chatting extends TextWebSocketHandler {
 			String msg = element.getAsJsonObject().get("msg").getAsString();
 			String receiver = element.getAsJsonObject().get("receiver").getAsString();
 			String sender = element.getAsJsonObject().get("sender").getAsString();
+			int chatNo = element.getAsJsonObject().get("chatNo").getAsInt();
+			int scFlag = element.getAsJsonObject().get("scFlag").getAsInt();
 
+			System.out.println("채팅방 번호 : " + chatNo);
 			// System.out.println("메시지 보낸이 : " + sender);
 
 			String sendMsg = "<div class='chat left'><span class='chatId'>" + sender + " : </span>" + msg + "</div>";
+
+			// db에 msg 저장
+			SaveChat sc = new SaveChat();
+			sc.setScContent(msg);
+			sc.setScNo(chatNo);
+			sc.setScFlag(scFlag);
+			service.insertChatMsg(sc);
 
 			WebSocketSession s = chatMemberList.get(receiver);
 
@@ -83,9 +94,11 @@ public class Chatting extends TextWebSocketHandler {
 
 			// 화면 초기화
 			TextMessage tm = new TextMessage("초기화"); // 메시지 전송
+			
 			if (s != null) {
 				s.sendMessage(tm);
 			}
+
 			// 메세지 전송
 			for (SaveChat sc : list) {
 				// 구매자 인 경우
@@ -114,8 +127,8 @@ public class Chatting extends TextWebSocketHandler {
 					tm = new TextMessage(sendMsg); // 메시지 전송
 					s.sendMessage(tm);
 				}
-			}
-		}
+			} // for
+		} // loadChat
 	}
 
 	// 클라이언트 종료
