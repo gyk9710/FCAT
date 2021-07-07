@@ -23,6 +23,11 @@ public class CommonDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	// 채팅 내용 저장
+	public void insertChatMsg(SaveChat sc) {
+		sqlSession.insert("common.insertChatMsg", sc);
+	}
+
 	// 1:1 채팅 리스트 조회
 	public List<Chat> selectChatList(String memberId) {
 		return sqlSession.selectList("common.selectChatList", memberId);

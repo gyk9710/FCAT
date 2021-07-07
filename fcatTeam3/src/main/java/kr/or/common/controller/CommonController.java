@@ -285,6 +285,7 @@ public class CommonController {
 	public String mypage() {
 		return "/common/mypage";
 	}
+
 	@RequestMapping(value = "/serviceDetail.do")
 	public String serviceDetail(int fsNo, Model model, HttpSession session) {
 		FService fservice = service.selectOneFSerivce(fsNo);
@@ -313,7 +314,7 @@ public class CommonController {
 			score = (score + rev.getReviewScore());
 			count++;
 		}
-		for(QuestionService item : questionList) {
+		for (QuestionService item : questionList) {
 			System.out.println(item.getqContent());
 		}
 		score = Math.round(score / count * 100) / 100.0;
@@ -339,7 +340,7 @@ public class CommonController {
 		Search search = new Search();
 		Review review = new Review();
 		ArrayList<Integer> likeList = new ArrayList<Integer>();
-		HashMap<String,String> categoryAndKeywordMap = new HashMap<String, String>();
+		HashMap<String, String> categoryAndKeywordMap = new HashMap<String, String>();
 		if ((Member) session.getAttribute("m") != null) {
 			Member member = (Member) session.getAttribute("m");
 			likeList = service.selectLike(member.getMemberId());
@@ -359,27 +360,27 @@ public class CommonController {
 		search.setEnd(page.getEnd());
 		search.setSearchCount(NumberFormat.getInstance().format(total));
 		// 상위카테고리 값만 받아온 경우
-		if (category != null  && childCategory == null) {
+		if (category != null && childCategory == null) {
 			search.setKeyword(category);
 			list = service.selectCategory(search);
 			listForCategory = service.selectAllCategory(search);
-			model.addAttribute("category" ,category);
-			// 자식카테고리까지 받아 온  경우
-		}else if (childCategory != null && keyword == null) {
+			model.addAttribute("category", category);
+			// 자식카테고리까지 받아 온 경우
+		} else if (childCategory != null && keyword == null) {
 			search.setKeyword(childCategory);
 			list = service.selectChildCategory(search);
 			listForCategory = service.selectAllChildCategory(search);
-			model.addAttribute("category" , category);
-			model.addAttribute("childCategory" , childCategory);
-			//검색 시 추천 카테고리 클릭 한 경우
-		}else if (childCategory != null && keyword != null) {
+			model.addAttribute("category", category);
+			model.addAttribute("childCategory", childCategory);
+			// 검색 시 추천 카테고리 클릭 한 경우
+		} else if (childCategory != null && keyword != null) {
 			search.setKeyword(keyword);
 			search.setChildCategory(childCategory);
 			list = service.selectSearchAndChildCategory(search);
 			listForCategory = service.selectAllSearchAndChildCategory(search);
-			model.addAttribute("category",category);
-			model.addAttribute("childCategory",childCategory);
-			model.addAttribute("keyword",keyword);
+			model.addAttribute("category", category);
+			model.addAttribute("childCategory", childCategory);
+			model.addAttribute("keyword", keyword);
 		}
 		CountCategory cc = new CountCategory();
 
@@ -425,6 +426,7 @@ public class CommonController {
 		model.addAttribute("listForCategory", listForCategory);
 		return "search/categorySearch";
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/insertQuestion.do")
 	public String insertQuestion(String memberId, String fsNo, String getToday, String comment) {
@@ -436,6 +438,7 @@ public class CommonController {
 		service.insertQuestion(map);
 		return "/";
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/insertAnswer.do")
 	public String insertAnswer(String memberId, String fsNo, String getToday, String comment, String qNo) {
@@ -448,6 +451,7 @@ public class CommonController {
 		service.insertAnswer(map);
 		return "/";
 	}
+
 	@ResponseBody
 	@RequestMapping(value = "/deleteComment.do")
 	public String deleteComment(int qNo) {
