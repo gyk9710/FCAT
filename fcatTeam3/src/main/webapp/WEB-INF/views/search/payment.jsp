@@ -211,7 +211,6 @@
 			$("[name=buyerPostcode]").val(buyer_postcode);
 			$("[name=buyerId]").val("${sessionScope.m.memberId}");
 			$("[name=sellerId]").val("박지성");
-			alert("asd");
 			$("#sub").trigger("click");
 		}
 		

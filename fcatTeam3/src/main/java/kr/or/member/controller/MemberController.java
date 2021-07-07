@@ -98,10 +98,11 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/payment.do")
-	public String payment(HttpSession session) {
-		return "member/payment";
-	}
+	// 결제 페이지 이동
+		@RequestMapping(value = "/payment.do")
+		public String payment(HttpSession session) {
+			return "search/payment";
+		}
 
 	@RequestMapping(value = "/deleteMember.do")
 	public String deleteMember(HttpSession session, Model model) {

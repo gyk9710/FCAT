@@ -44,11 +44,7 @@ public class SellerController {
 		return "common/msg";
 	}
 
-	// 결제 페이지 이동
-	@RequestMapping(value = "/payment.do")
-	public String payment(HttpSession session) {
-		return "search/payment";
-	}
+	
 
 	// 서비스 요청 리스트 조회
 	@RequestMapping(value = "/requestServiceList.do")
