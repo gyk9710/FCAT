@@ -251,6 +251,8 @@
 </body>
 <script type="text/javascript">
 	function heartsClick(e) {
+		  var event=window.event;
+		    event.stopPropagation();
 		if ($(e).children().attr("id") == "nofilling") {
 			$(e).html("<i class='fas fa-heart'></i>");
 			var memberId = $("#memberId").val();
