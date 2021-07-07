@@ -95,7 +95,35 @@
 		from
 			service_like
 		where member_id = #{memberId}
+		ORDER BY fs_no DESC  
 	</select>
+	<select id="selectServiceLike" parameterType="int" resultType="fs" >
+					SELECT fs_no as fsNo,
+                            fs_writer as fsWriter,
+                            fs_title as fsTitle,
+                            fs_content as fsContent,
+                            fs_category as fsCategory,
+                            fs_price as fsPrice,
+                            fs_working as fsWorking,
+                            fs_child_category as fsChildCategory,
+                            fs_photo as fsPhoto 
+						FROM fservice 
+						where fs_no = #{item}
+	</select>
+	<select id="selectOneId" parameterType="m" resultType="m">
+		select
+  		member_id as memberId,
+  		member_pw as memberPw,
+  		member_name as memberName
+  	from member
+  	where member_id = #{memberId} and member_pw = #{memberPw}
+	</select>
+	<update id="updateOneMember" parameterType="m">
+		update member set
+			member_pw = #{memberPw},
+			member_phone = #{memberPhone}
+			where member_id = #{memberId}
+	</update>
 </mapper>
 
 

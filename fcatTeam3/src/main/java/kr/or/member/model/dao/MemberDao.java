@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Review;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
@@ -50,6 +51,18 @@ public class MemberDao {
 	public ArrayList<Integer> selectMemberLike(String memberId) {
 		List<Integer> list = sqlSession.selectList("member.selectMemberLike",memberId);
 		return (ArrayList<Integer>) list;
+	}
+
+	public FService selectServiceLike(Integer item) {
+		return sqlSession.selectOne("member.selectServiceLike",item);
+	}
+
+	public Member selectOneId(Member m) {
+		return sqlSession.selectOne("member.selectOneId",m);
+	}
+
+	public int updateMember(Member m) {
+		return sqlSession.update("member.updateOneMember",m);
 	}
 
 }
