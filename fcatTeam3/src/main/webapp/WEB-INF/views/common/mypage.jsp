@@ -62,7 +62,7 @@
                         <a href="#">커뮤니티</a>
                         <ul class="sub-menu">
                             <li><a href="#">쪽지함</a></li>
-                            <li><a href="#">채팅방</a></li>
+                            <li><a href="/chatList.do?memberId=${sessionScope.m.memberId}">채팅방</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -95,7 +95,7 @@
                         <a href="#">커뮤니티</a>
                         <ul class="sub-menu">
                             <li><a href="#">쪽지함</a></li>
-                            <li><a href="#">채팅방</a></li>
+                            <li><a href="/chatList.do?memberId=${sessionScope.m.memberId}">채팅방</a></li>
                         </ul>
                     </li>
                 </ul>
