@@ -9,7 +9,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import kr.or.common.model.vo.SaveChat;
@@ -58,8 +60,7 @@ public class Chatting extends TextWebSocketHandler {
 			int chatNo = element.getAsJsonObject().get("chatNo").getAsInt();
 			int scFlag = element.getAsJsonObject().get("scFlag").getAsInt();
 
-			System.out.println("채팅방 번호 : " + chatNo);
-			// System.out.println("메시지 보낸이 : " + sender);
+			//System.out.println("채팅방 번호 : " + chatNo);
 
 			String sendMsg = "<div class='chat left'><span class='chatId'>" + sender + " : </span>" + msg + "</div>";
 
@@ -72,9 +73,18 @@ public class Chatting extends TextWebSocketHandler {
 
 			WebSocketSession s = chatMemberList.get(receiver);
 
+			// json 테스트
+			JsonObject sendJson = new JsonObject();
+			sendJson.addProperty("chatNo", chatNo); // 채팅방번호
+			sendJson.addProperty("msg", sendMsg); // 메시지
+			sendJson.addProperty("sender", sender); // 보낸이 전송
+			
+			//System.out.println("jsonTest : " + sendJson);
+			//System.out.println("과연 이거는? : " + new Gson().toJson(sendJson));
+			
 			// 현재 접속한 클라이언트에 받는 사람이 있는 경우
 			if (s != null) {
-				TextMessage tm = new TextMessage(sendMsg);
+				TextMessage tm = new TextMessage(new Gson().toJson(sendJson));
 				s.sendMessage(tm);
 			}
 		} else if (type.equals("loadChat")) {
@@ -92,9 +102,12 @@ public class Chatting extends TextWebSocketHandler {
 			// 전송 - 자기 자신에게
 			WebSocketSession s = chatMemberList.get(receiver);
 
+			JsonObject sendJson = new JsonObject();
+			sendJson.addProperty("reset", "초기화"); // 채팅방번호
 			// 화면 초기화
-			TextMessage tm = new TextMessage("초기화"); // 메시지 전송
-			
+			TextMessage tm = new TextMessage(new Gson().toJson(sendJson));
+			//TextMessage tm = new TextMessage("초기화"); // 메시지 전송
+
 			if (s != null) {
 				s.sendMessage(tm);
 			}
@@ -124,7 +137,10 @@ public class Chatting extends TextWebSocketHandler {
 
 				// 현재 접속한 클라이언트에 받는 사람이 있는 경우
 				if (s != null) {
-					tm = new TextMessage(sendMsg); // 메시지 전송
+					sendJson = new JsonObject();
+					sendJson.addProperty("msg", sendMsg); // 채팅방번호
+					sendJson.addProperty("chatNo", chatNo);
+					tm = new TextMessage(new Gson().toJson(sendJson)); // 메시지 전송
 					s.sendMessage(tm);
 				}
 			} // for

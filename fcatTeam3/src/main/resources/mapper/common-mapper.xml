@@ -22,7 +22,6 @@
 	
 </insert>
 
-
 	<!-- 채팅 내용 db 저장 -->
 	<insert id="insertChatMsg" parameterType="sc">
 		insert into save_chat values(#{scNo}, #{scContent}, #{scFlag}, to_char(sysdate, 'yyyy-mm-dd'))

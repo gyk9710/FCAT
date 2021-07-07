@@ -14,6 +14,10 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <!-- Chat Css -->
       <link rel="stylesheet" href="/resources/css/chat.css" />
+      <!-- 폰트어썸 아이콘 -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
 
@@ -31,7 +35,10 @@
                 <!-- 구매자 / grade 0 / receiver / flag 0 -->
                 <a class="chatOne" href="javascript:void(0);"
                   onclick="loadChat('${chat.chatNo}', '${chat.seller}', '${chat.buyer}', 0, this);">
-                  <span>[ ${chat.seller} ]</span> 님과의 채팅방</a>
+                  <span name="chatName">[ ${chat.seller} ]</span> 님과의 채팅방
+                  <i name="${chat.seller}" class="fas fa-bell"></i>
+                  <span name="count">0</span>
+                </a>
                 <input type="hidden" name="scFlag" value="0">
               </c:when>
 
@@ -39,7 +46,10 @@
                 <!-- 판매자 / grade 1 / sender / flag 1 -->
                 <a class="chatOne" href="javascript:void(0);"
                   onclick="loadChat('${chat.chatNo}', '${chat.buyer}','${chat.seller}', 1, this);">
-                  <span>[ ${chat.buyer} ]</span> 님과의 채팅방</a>
+                  <span name="chatName">[ ${chat.buyer} ]</span> 님과의 채팅방
+                  <i name="${chat.buyer}" class="fas fa-bell"></i>
+                  <span name="count">0</span>
+                </a>
                 <input type="hidden" name="scFlag" value="1">
               </c:otherwise>
             </c:choose>
@@ -87,11 +97,28 @@
 
           // 채팅 수신
           function receiveChat(param) {
+            var testData = JSON.parse(param.data);
+            var currentChatNo = $("#chatNo").val(); // 현재 열린 채팅방 번호
+
+            //console.log(testData);
+            //console.log("채팅 초기화 : " + testData.reset);
+            //console.log("채팅 내용 : " + testData.msg);
+            console.log("현재 채팅 번호 : " + currentChatNo);
+            console.log("받은 채팅 번호 : " + testData.chatNo);
+            console.log("보낸 사람 : " + testData.sender);
+
             // 처음 채팅 방 로드 시 화면 초기화
-            if (param.data == "초기화") {
+            if (testData.reset == "초기화") {
               $(".messageArea").empty();
+              // 현재 선택한 채팅방이랑 수신한 채팅방이 같은 경우에만 보이기
+            } else if (testData.chatNo == currentChatNo) {
+              appendChat(testData.msg);
+              // 다른 채팅방에서 알림 시 빨강
             } else {
-              appendChat(param.data);
+              $("i[name=" + testData.sender + "]").addClass("bell-alarm"); // 다른 채팅방 알림 빨강 효과
+              var currentCount = Number($("i[name=" + testData.sender + "]").next().html()); // 현재의 알림 숫자 불러오기
+              $("i[name=" + testData.sender + "]").next().html(currentCount + 1); // 알림++
+              //$(".fa-bell").addClass("bell-alarm");
             }
           };
 
@@ -151,6 +178,8 @@
             // 채팅방 전체선택 초기화 및 선택 유지
             $(".chatOne").removeClass("pick-chat"); // 전체 선택 초기화
             $(chatRoom).addClass("pick-chat"); // 선택 효과
+            $(chatRoom).children("i").removeClass("bell-alarm"); // 선택된 방 알림 삭제
+            $(chatRoom).children("span[name=count]").html('0');
           }
         </script>
     </body>
