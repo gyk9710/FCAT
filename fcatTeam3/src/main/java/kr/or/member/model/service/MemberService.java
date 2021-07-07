@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.common.model.vo.FService;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
@@ -69,5 +70,18 @@ public class MemberService {
 	public ArrayList<Integer> selectMemberLike(String memberId) {
 		return dao.selectMemberLike(memberId);
 	}
+
+	public FService selectServiceLike(Integer item) {
+		return dao.selectServiceLike(item);
+	}
+
+	public Member selectOneId(Member m) {
+		return dao.selectOneId(m);
+	}
+
+	public int updateMember(Member m) {
+		return dao.updateMember(m);
+	}
+
 	
 }
