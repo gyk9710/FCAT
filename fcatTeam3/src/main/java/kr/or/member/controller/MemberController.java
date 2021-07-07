@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<<HEAD
 import com.google.gson.Gson;
 
 import kr.or.member.model.dao.MemberDao;
@@ -20,7 +19,7 @@ import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
-import kr.or.member.model.vo.PaymentInfo;=======
+import kr.or.member.model.vo.PaymentInfo;
 import kr.or.common.model.vo.FService;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
