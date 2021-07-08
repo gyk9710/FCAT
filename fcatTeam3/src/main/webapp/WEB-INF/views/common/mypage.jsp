@@ -26,6 +26,8 @@
     
     });
     
+    
+    
 </script>
 <link rel="stylesheet" href="/resources/css/mypage.css"> 
 <body>
@@ -33,10 +35,12 @@
     <div class="container">
         <div class="my_l">
             
-            <div class="menu">
-                <h3 style="text-align: center;">MY PAGE</h3>
-                <c:choose>
-                <c:when test="${sessionScope.m.grade==1}">
+           
+                
+                 <div class="menu">
+                	<h3 style="text-align: center;">MY PAGE</h3>
+                	<c:choose>
+                	<c:when test="${sessionScope.m.grade==1}">
                
                 <ul class="main-menu">
                     
@@ -66,9 +70,9 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
-            </c:when>
-            <c:otherwise>
+            
+            	</c:when>
+            	<c:otherwise>
             <ul class="main-menu">
                     
                     <li>
@@ -79,6 +83,7 @@
                             
                         </ul>
                        </li>
+                       </ul>
             <ul class="main-menu">
                     
                     <li>
@@ -99,15 +104,16 @@
                         </ul>
                     </li>
                 </ul>
-                </div>
-            </c:otherwise>
-
-		 </c:choose>
+                
+           		</c:otherwise>
+			</c:choose>
+			</div>
+		 	
 
         </div>
         <div class="my_r">
 
-        <h3>판매관리</h3>
+        <span style="font-size: 20px; display: inline-block; margin-bottom: 10px;">판매관리</span>&nbsp;&nbsp;&nbsp;   요청중
         <div class="my_list">
 
             <table class="table-sm table-bordered table-hover text-center center">
