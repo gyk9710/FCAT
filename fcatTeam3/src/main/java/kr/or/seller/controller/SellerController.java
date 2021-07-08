@@ -169,6 +169,78 @@ public class SellerController {
 		FService fs = service.selectMyservice(fsNo);
 		model.addAttribute("fs", fs);
 		System.out.println("가져온 번호 : " + fsNo);
+		model.addAttribute("fsNo",fsNo);
 		return "seller/myservice";
+	}
+	@RequestMapping (value = "/updateMyservice.do")
+	public String updateMyservice(FService fs , @SessionAttribute Member m,Model model,MultipartFile file, HttpServletRequest request) {
+		
+		
+		
+		if(file.isEmpty()) {
+			//첨부파일이 없는경우
+		}else {
+			//첨부파일이 있는경우 파일처리
+			
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/seller/");
+			String filename = file.getOriginalFilename();
+			// 유저가 올린 파일명을 마지막 . 기준으로 분리 test.txt ->test_1.txt img01.jpg -> img01_1.jpg
+			String onlyFilename = filename.substring(0, filename.indexOf("."));
+			String extention = filename.substring(filename.indexOf("."));
+			
+			String filepath= null;
+			
+			int count = 0;
+			while (true) {
+				if (count == 0) {
+					filepath = onlyFilename + extention; // test.txt1
+				} else {
+					filepath = onlyFilename + "_" + count + extention; // test_1.txt
+				}
+				File checkFile = new File(savePath + filepath);
+				if (!checkFile.exists()) {
+					break;
+				}
+				count++;
+
+			}
+			fs.setFsPhoto(filepath);
+			System.out.println("filepath  :" + filepath) ;
+			System.out.println(savePath);
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				byte[] bytes = file.getBytes();
+				bos.write(bytes);
+				bos.close();
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		
+	
+		System.out.println("가져온 번호 : " + fs.getFsNo());
+		System.out.println("수정할 제목 : " + fs.getFsTitle());
+		System.out.println("수정한 사진 : " + fs.getFsPhoto());
+		System.out.println("카테고리를 수정 안했음  : " +fs.getFsChildCategory());
+		
+		int result = service.updateMyservice(fs);
+		if(result>0) {
+			model.addAttribute("msg","서비스등록을 요청하였습니다");
+		}
+		else {
+			model.addAttribute("msg","서비스등록을 실패하였습니다");
+		}
+		model.addAttribute("msg","수정되었습니다");
+		
+		model.addAttribute("loc","updateService.do?memberId="+m.getMemberId());
+		return "common/msg";
+		//return "redirect:/updateService.do?memberId="+m.getMemberId();
 	}
 }

@@ -61,4 +61,9 @@ public class SellerDao {
 	public FService selectMyservice(int fsNo) {
 		return sqlSession.selectOne("seller.selectMyservice",fsNo);
 	}
+
+	public int updateMyservice(FService fs) {
+		return sqlSession.update("seller.updateMyservice",fs);
+		
+	}
 }

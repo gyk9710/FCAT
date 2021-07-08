@@ -91,5 +91,19 @@
 		)
 	</insert>
 	
+	<!-- 서비스 수정 하기 -->
+	<update id="updateMyservice" parameterType="fs">
+  	update fservice set 
+  			fs_Title=#{fsTitle}, 
+  			fs_content=#{fsContent},
+  			
+  			fs_price=#{fsPrice},
+  			fs_working=#{fsWorking},
+		
+		fs_photo=#{fsPhoto}
+  	where fs_no = #{fsNo}
+  </update>
+ 
+	
 	
 </mapper>

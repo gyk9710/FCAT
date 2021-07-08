@@ -155,7 +155,9 @@ width : 500px;
         			idx = i;
         		}
         	}
+        	
         	$('.ca_d>option').eq(idx).prop( "selected", true);
+        	
    		 	$(".ti1-2").eq(idx-1).show();
    		 	
    		 	var options1 =$(".ca_j1>option");
@@ -298,8 +300,8 @@ width : 500px;
     	
 <body>
 
-<div id="category">${fs.fsCategory}</div> 
-<div id="ccategory">${fs.fsChildCategory}</div>
+<div id="category" style="display: none;">${fs.fsCategory}</div> 
+<div id="ccategory"  style="display: none;">${fs.fsChildCategory}</div>
 
 
 
@@ -363,10 +365,10 @@ width : 500px;
             </section>
             <hr class="m-0" />
             <!-- Experience-->
-            <form action="/service.do" method="post" enctype="multipart/form-data">
+            <form action="/updateMyservice.do" method="post" enctype="multipart/form-data">
             <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    
+                    <input type="text" value="${fsNo }" name="fsNo" style="display: none;">
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <div class="s1">
@@ -382,7 +384,7 @@ width : 500px;
                                 <div class="tit">
                                     카테고리
                                 </div>
-                                <select class="ti1-1 ca_d" name="fsCategory">
+                                <select class="ti1-1 ca_d" name="fsCategory" disabled="disabled">
                                     <option selected>카테고리를 선택해주세요</option>
                                     <option value="레슨">레슨</option>
                                     <option value="홈/리빙">홈/리빙</option>
@@ -395,7 +397,7 @@ width : 500px;
                                     
                                   </select>
 
-                                  <select class="ti1-2 ca_j1" id="lesson" name="fsChildCategory">
+                                  <select class="ti1-2 ca_j1" id="lesson" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="보컬레슨">보컬레슨</option>
                                     <option value="기타레슨">기타레슨</option>
@@ -405,7 +407,7 @@ width : 500px;
                                     <option value="골프레슨">골프레슨</option>
                                   </select>
 
-                                  <select class="ti1-2 ca_j2" id="home" name="fsChildCategory">
+                                  <select class="ti1-2 ca_j2" id="home" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="집인테리어">집인테리어</option>
                                     <option value="조명인테리어">조명인테리어</option>
@@ -416,7 +418,7 @@ width : 500px;
                                     
                                   </select>
 
-                                  <select class="ti1-2 ca_j3" id="event" name="fsChildCategory">
+                                  <select class="ti1-2 ca_j3" id="event" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="결혼식사회">결혼식사회</option>
                                     <option value="댄스공연">댄스공연</option>
@@ -426,7 +428,7 @@ width : 500px;
                                     <option value="의상대여">의상대여</option>
                                   </select>
 
-                                <select class="ti1-2 ca_j4" id="business" name="fsChildCategory">
+                                <select class="ti1-2 ca_j4" id="business" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="회계/세무">회계/세무</option>
                                     <option value="영상광고">영상광고</option>
@@ -435,7 +437,7 @@ width : 500px;
                                     <option value="블로그마케팅">블로그마케팅</option>
                                     <option value="현수막제작">현수막제작</option>
                                 </select>
-                                <select class="ti1-2 ca_j5" id="design" name="fsChildCategory">
+                                <select class="ti1-2 ca_j5" id="design" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="제품디자인">제품디자인</option>
                                     <option value="프레젠테이션디자인">프레젠테이션디자인</option>
@@ -444,7 +446,7 @@ width : 500px;
                                     <option value="라벨디자인">라벨디자인</option>
                                     <option value="간판디자인">간판디자인</option>
                                 </select>
-                                <select class="ti1-2 ca_j6" id="health" name="fsChildCategory">
+                                <select class="ti1-2 ca_j6" id="health" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="심리검사">심리검사</option>
                                     <option value="언어치료">언어치료</option>
@@ -453,7 +455,7 @@ width : 500px;
                                     <option value="네일">네일</option>
                                     <option value="피부관리">피부관리</option>
                                 </select>
-                                <select class="ti1-2 ca_j7" id="parttime" name="fsChildCategory">
+                                <select class="ti1-2 ca_j7" id="parttime" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="편의점알바">편의점알바</option>
                                     <option value="배달알바">배달알바</option>
@@ -462,7 +464,7 @@ width : 500px;
                                     <option value="서빙알바">서빙알바</option>
                                     <option value="행사스텝">행사스텝</option>
                                 </select>
-                                <select class="ti1-2 ca_j8" id="etc" name="fsChildCategory">
+                                <select class="ti1-2 ca_j8" id="etc" name="fsChildCategory" disabled="disabled">
                                     <option selected>2차 카테고리를 선택해주세요</option>
                                     <option value="맞춤옷제작">맞춤옷제작</option>
                                     <option value="패키지여행">패키지여행</option>

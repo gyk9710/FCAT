@@ -61,4 +61,9 @@ public class SellerService {
 	public FService selectMyservice(int fsNo) {
 		return dao.selectMyservice(fsNo);
 	}
+
+	public int updateMyservice(FService fs) {
+		return dao.updateMyservice(fs);
+		
+	}
 }
