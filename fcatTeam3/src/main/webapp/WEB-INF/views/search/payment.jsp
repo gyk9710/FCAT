@@ -255,7 +255,6 @@
 					alert("결제 성공");
 					console.log("카드 승인번호 : "+rsp.apply_num);
 					trigger1();
-					2
 				}else{								//결제 실패시
 					alert("결제 실패");
 				}
