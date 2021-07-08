@@ -9,7 +9,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import kr.or.common.model.vo.SaveChat;
@@ -19,11 +21,6 @@ public class Chatting extends TextWebSocketHandler {
 	private CommonService service;
 
 	private HashMap<String, WebSocketSession> chatMemberList; // 현재 접속한 세션 목록
-	// private testId
-	// private HashMap<String, String> chatRoom;// 나랑 채팅중인 채팅방
-
-	// 로그인한 id, 받는 사람 id
-	// 현재 선택된 대화창이면 대화 ++ / 그외는 알림 ++
 
 	public Chatting() {
 		chatMemberList = new HashMap<String, WebSocketSession>();
@@ -57,11 +54,9 @@ public class Chatting extends TextWebSocketHandler {
 			String sender = element.getAsJsonObject().get("sender").getAsString();
 			int chatNo = element.getAsJsonObject().get("chatNo").getAsInt();
 			int scFlag = element.getAsJsonObject().get("scFlag").getAsInt();
+			String curTime = element.getAsJsonObject().get("curTime").getAsString();
 
-			System.out.println("채팅방 번호 : " + chatNo);
-			// System.out.println("메시지 보낸이 : " + sender);
-
-			String sendMsg = "<div class='chat left'><span class='chatId'>" + sender + " : </span>" + msg + "</div>";
+			// System.out.println("채팅방 번호 : " + chatNo);
 
 			// db에 msg 저장
 			SaveChat sc = new SaveChat();
@@ -70,11 +65,31 @@ public class Chatting extends TextWebSocketHandler {
 			sc.setScFlag(scFlag);
 			service.insertChatMsg(sc);
 
-			WebSocketSession s = chatMemberList.get(receiver);
+//			// 시간 출력용
+//			Date today = new Date();
+//			SimpleDateFormat sysDate = new SimpleDateFormat("a hh:mm");
+//			
+//			System.out.println(sysDate.format(today));
+
+			// 시간 처리 추가
+			String sendMsg = "<div class='left-time'>" + curTime + "</div>"
+					+ "<div class='chat left'><span class='chatId'>" + sender + " : </span>" + msg + "</div>";
+
+			// json 테스트
+			JsonObject sendJson = new JsonObject();
+			sendJson.addProperty("chatNo", chatNo); // 채팅방번호
+			sendJson.addProperty("msg", sendMsg); // 메시지
+			sendJson.addProperty("sender", sender); // 보낸이 전송
+			// sendJson.addProperty(property, value);
+
+			// System.out.println("jsonTest : " + sendJson);
+			// System.out.println("과연 이거는? : " + new Gson().toJson(sendJson));
 
 			// 현재 접속한 클라이언트에 받는 사람이 있는 경우
+			WebSocketSession s = chatMemberList.get(receiver);
+
 			if (s != null) {
-				TextMessage tm = new TextMessage(sendMsg);
+				TextMessage tm = new TextMessage(new Gson().toJson(sendJson));
 				s.sendMessage(tm);
 			}
 		} else if (type.equals("loadChat")) {
@@ -92,9 +107,12 @@ public class Chatting extends TextWebSocketHandler {
 			// 전송 - 자기 자신에게
 			WebSocketSession s = chatMemberList.get(receiver);
 
+			JsonObject sendJson = new JsonObject();
+			sendJson.addProperty("reset", "초기화"); // 채팅방번호
 			// 화면 초기화
-			TextMessage tm = new TextMessage("초기화"); // 메시지 전송
-			
+			TextMessage tm = new TextMessage(new Gson().toJson(sendJson));
+			// TextMessage tm = new TextMessage("초기화"); // 메시지 전송
+
 			if (s != null) {
 				s.sendMessage(tm);
 			}
@@ -105,26 +123,34 @@ public class Chatting extends TextWebSocketHandler {
 				if (flag == 0) {
 					// 송신
 					if (sc.getScFlag() == 0) {
-						sendMsg = "<div class='chat right'>" + sc.getScContent() + "</div>";
+						sendMsg = "<div class='right-time'>" + sc.getScTime() + "</div>" + "<div class='chat right'>"
+								+ sc.getScContent() + "</div>";
 						// 수신
 					} else if (sc.getScFlag() == 1) {
-						sendMsg = "<div class='chat left'><span class='chatId'>" + sender + " : </span>"
+						sendMsg = "<div class='left-time'>" + sc.getScTime() + "</div>"
+								+ "<div class='chat left'><span class='chatId'>" + sender + " : </span>"
 								+ sc.getScContent() + "</div>";
 					}
 					// 판매자인 경우
 				} else if (flag == 1) {
 					// 송신
 					if (sc.getScFlag() == 1) {
-						sendMsg = "<div class='chat right'>" + sc.getScContent() + "</div>";
+						sendMsg = "<div class='right-time'>" + sc.getScTime() + "</div>" + "<div class='chat right'>"
+								+ sc.getScContent() + "</div>";
+						// 수신
 					} else if (sc.getScFlag() == 0) {
-						sendMsg = "<div class='chat left'><span class='chatId'>" + sender + " : </span>"
+						sendMsg = "<div class='left-time'>" + sc.getScTime() + "</div>"
+								+ "<div class='chat left'><span class='chatId'>" + sender + " : </span>"
 								+ sc.getScContent() + "</div>";
 					}
 				}
 
 				// 현재 접속한 클라이언트에 받는 사람이 있는 경우
 				if (s != null) {
-					tm = new TextMessage(sendMsg); // 메시지 전송
+					sendJson = new JsonObject();
+					sendJson.addProperty("msg", sendMsg); // 메시지 전송
+					sendJson.addProperty("chatNo", chatNo); // 채팅방번호
+					tm = new TextMessage(new Gson().toJson(sendJson));
 					s.sendMessage(tm);
 				}
 			} // for
