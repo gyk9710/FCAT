@@ -1,414 +1,486 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<!DOCTYPE html>
 	<html>
-
+	<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<style>
-			input:-ms-input-placeholder {
-				color: #a8a8a8;
-			}
-
-			input::-webkit-input-placeholder {
-				color: #a8a8a8;
-			}
-
-			input::-moz-placeholder {
-				color: #a8a8a8;
-			}
-
-			.search {
-				height: 40px;
-				width: 450px;
-				border: 2px solid #37C3C3;
-				background: #ffffff;
-			}
-
-			.searchText {
-				font-size: 16px;
-				width: 325px;
-				padding: 6px;
-				border: 1px;
-				outline: none;
-				float: left;
-			}
-
-			.searchButton {
-				width: 50px;
-				height: 100%;
-				border: 0px;
-				background: #37C3C3;
-				outline: none;
-				float: right;
-				color: #ffffff;
-			}
-
-			.wrapper {
-				margin: 0 auto;
-				width: 970px;
-			}
-
-			.wrapperContent {
-				width: 970px;
-				height: 600px;
-			}
-
-			.wrapperLeft {
-				float: left;
-				width: 485px;
-			}
-
-			.wrapperRight {
-				float: left;
-				width: 485px;
-			}
-
-			.emptyLeftUp {
-				height: 80px;
-			}
-
-			.emptyLeftDown {
-				padding: 15px;
-			}
-
-			.emptyRightUp {
-				height: 200px;
-			}
-
-			.SearchDown {
-				list-style: none;
-				overflow: hidden;
-				padding: 0px;
-			}
-
-			.serviceSearch {
-				font-weight: bolder;
-				float: left;
-				width: 100px;
-			}
-
-			.userSearch {
-				font-weight: bolder;
-				float: left;
-			}
-
-			.btn-primary {
-				background-color: #6f42c1;
-				width: 100px;
-			}
-
-			.flex {
-				display: flex;
-			}
-
-			.row {
-				flex-direction: row;
-			}
-
-			.column {
-				flex-direction: column;
-			}
-
-			.category {
-				width: 24%;
-				display: inline-block;
-				text-align: center;
-				align-items: flex-start;
-			}
-
-			.main-search-containor {
-				width: 100%;
-			}
-
-			@media (min-width :700px) {
-				.main-search-containor {
-					width: 500px;
-				}
-			}
-
-			.textbolder {
-				font-weight: bolder;
-				font-size: 23px;
-			}
-
-			.serviceList {
-				width: 970px;
-			}
-
-			div.fixed {
-				width: 135px;
-				height: 45px;
-				position: fixed;
-				top: 1000;
-				right: 0;
-			}
-
-			.section input[id*="slide"] {
-				display: none;
-			}
-
-			.section .slidewrap {
-				max-width: 1200px;
-				margin: 0 auto;
-				overflow: hidden;
-			}
-
-			.section .slidelist {
-				white-space: nowrap;
-				font-size: 0;
-			}
-
-			.section .slidelist>li {
-				display: inline-block;
-				vertical-align: middle;
-				width: 100%;
-				transition: all .5s;
-			}
-
-			.section .slidelist>li>a {
-				display: block;
-				position: relative;
-			}
-
-			.section .slidelist>li>a img {
-				width: 100%;
-			}
-
-			.section .slidelist label {
-				position: absolute;
-				z-index: 10;
-				top: 50%;
-				transform: translateY(-50%);
-				padding: 50px;
-				cursor: pointer;
-			}
-
-			.left {
-				left: 30px;
-				background: url('/resources/img/left.png') center center / 100% no-repeat;
-			}
-
-			.left1 {
-				left: 30px;
-				background: url('/resources/img/left1.png') center center / 100% no-repeat;
-			}
-
-			.right {
-				right: 30px;
-				background: url('/resources/img/right.png') center center / 100% no-repeat;
-			}
-
-			.right1 {
-				right: 30px;
-				background: url('/resources/img/right1.png') center center / 100% no-repeat;
-			}
-
-			.fixed {
-				right: 0;
-				bottom: 1;
-				width: 50px;
-				height: 10px;
-				background-color: #A7F2DC;
-				position: fixed;
-			}
-
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-
-			ul,
-			li {
-				list-style: none;
-			}
-
-			.slidebox {
-				max-width: 900px;
-				margin: 0 auto;
-				position: relative;
-			}
-
-			.slidebox .slidelist {
-				position: relative;
-				white-space: nowrap;
-				font-size: 0;
-			}
-
-			.slidebox .slidelist .slideitem {
-				position: relative;
-				display: inline-block;
-				vertical-align: middle;
-				background-color: #fff;
-				width: 100%;
-				transition: all 1s;
-				overflow: hidden
-			}
-
-			.slidebox .slidelist .slideitem a {
-				display: block;
-				position: relative;
-			}
-
-			.slidebox .slidelist .slideitem>a img {
-				max-width: 100%;
-			}
-
-			.slidebox .slide-control [class*="control"] label {
-				position: absolute;
-				z-index: 10;
-				top: 50%;
-				transform: translateY(-50%);
-				padding: 20px;
-				border-radius: 50%;
-				cursor: pointer;
-			}
-
-			.slidebox .slide-control [class*="control"] label.prev {
-				left: -50px;
-				background: #333 url('./resources/img/left.png')
-			}
-
-			.slidebox .slide-control [class*="control"] label.next {
-				right: -50px;
-				background: #333 url('./resources/img/right.png')
-			}
-
-			.slidebox .slide-control [class*="control"] label.prev1 {
-				left: -50px;
-				background: #333 url('./resources/img/left1.png')
-			}
-
-			.slidebox .slide-control [class*="control"] label.next1 {
-				right: -50px;
-				background: #333 url('./resources/img/right1.png')
-			}
-
-			[name="slide"] {
-				display: none;
-			}
-
-			#slide01:checked~.slidelist .slideitem {
-				left: 0;
-			}
-
-			#slide02:checked~.slidelist .slideitem {
-				left: -100%;
-			}
-
-			#slide03:checked~.slidelist .slideitem {
-				left: -200%;
-			}
-
-			[name="slide1"] {
-				display: none;
-			}
-
-			#slide04:checked~.slidelist .slideitem {
-				left: 0;
-			}
-
-			#slide05:checked~.slidelist .slideitem {
-				left: -100%;
-			}
-
-			#slide06:checked~.slidelist .slideitem {
-				left: -200%;
-			}
-
-			.slide-control [class*="control"] {
-				display: none;
-			}
-
-			#slide01:checked~.slide-control label.prev {
-				display: none;
-			}
-
-			#slide01:checked~.slide-control .control01 {
-				display: block;
-			}
-
-			#slide02:checked~.slide-control .control02 {
-				display: block;
-			}
-
-			#slide03:checked~.slide-control .control03 {
-				display: block;
-			}
-
-			#slide03:checked~.slide-control label.next {
-				display: none;
-			}
-
-			#slide04:checked~.slide-control label.prev1 {
-				display: none;
-			}
-
-			#slide04:checked~.slide-control .control01 {
-				display: block;
-			}
-
-			#slide05:checked~.slide-control .control02 {
-				display: block;
-			}
-
-			#slide06:checked~.slide-control .control03 {
-				display: block;
-			}
-
-			#slide06:checked~.slide-control label.next1 {
-				display: none;
-			}
-
-			.categoryLogo {
-				width: 24%;
-				height: 263px;
-				float: left;
-				text-align: center;
-				align-items: flex-start;
-			}
-
-			.textRight {
-				text-align: right !important;
-			}
-
-			.contentPicture {
-				style: "width:217px; height: 162px;"
-			}
-
-			.categoryLogosNoPoint {
-				list-style: none;
-			}
-
-			.categoryLogos {
-				overflow: hidden;
-			}
-
-			.contentTitle {
-				style: font-weight: bolder;
-			}
-
-			.categoryitem {
-				width: 217px;
-				align-items: flex-start;
-			}
-
-			.slideitem {
-				overflow: hidden;
-				width: 25%;
-			}
-
-			.slideitem1 {
-				width: 25%;
-				white-space: normal;
-				float: left;
-			}
-
-			.slidelist {
-				overflow: hidden;
-			}
-		</style>
+input:-ms-input-placeholder {
+	color: #a8a8a8;
+}
+
+input::-webkit-input-placeholder {
+	color: #a8a8a8;
+}
+
+input::-moz-placeholder {
+	color: #a8a8a8;
+}
+
+.search {
+	height: 40px;
+	width: 450px;
+	border: 2px solid #37C3C3;
+	background: #ffffff;
+}
+
+.searchText {
+	font-size: 16px;
+	width: 325px;
+	padding: 6px;
+	border: 1px;
+	outline: none;
+	float: left;
+}
+
+.searchButton {
+	width: 50px;
+	height: 100%;
+	border: 0px;
+	background: #37C3C3;
+	outline: none;
+	float: right;
+	color: #ffffff;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 970px;
+}
+
+.wrapperContent {
+	width: 970px;
+	height: 600px;
+}
+
+.wrapperLeft {
+	float: left;
+	width: 485px;
+}
+
+.wrapperRight {
+	float: left;
+	width: 485px;
+}
+
+.emptyLeftUp {
+	height: 80px;
+}
+
+.emptyLeftDown {
+	padding: 15px;
+}
+
+.emptyRightUp {
+	height: 200px;
+}
+
+.SearchDown {
+	list-style: none;
+	overflow: hidden;
+	padding: 0px;
+}
+
+.serviceSearch {
+	font-weight: bolder;
+	float: left;
+	width: 100px;
+}
+
+.userSearch {
+	font-weight: bolder;
+	float: left;
+}
+
+.btn-primary {
+	background-color: #6f42c1;
+	width: 100px;
+}
+
+.flex {
+	display: flex;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.category {
+	width: 24%;
+	display: inline-block;
+	text-align: center;
+	align-items: flex-start;
+}
+
+.main-search-containor {
+	width: 100%;
+}
+
+@media ( min-width :700px) {
+	.main-search-containor {
+		width: 500px;
+	}
+}
+
+.textbolder {
+	font-weight: bolder;
+	font-size: 23px;
+}
+
+.serviceList {
+	width: 970px;
+}
+
+div.fixed {
+	width: 135px;
+	height: 45px;
+	position: fixed;
+	top: 1000;
+	right: 0;
+}
+
+.section input[id*="slide"] {
+	display: none;
+}
+
+.section .slidewrap {
+	max-width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.section .slidelist {
+	white-space: nowrap;
+	font-size: 0;
+}
+
+.section .slidelist>li {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	transition: all .5s;
+}
+
+.section .slidelist>li>a {
+	display: block;
+	position: relative;
+}
+
+.section .slidelist>li>a img {
+	width: 100%;
+}
+
+.section .slidelist label {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 50px;
+	cursor: pointer;
+}
+
+.left {
+	left: 30px;
+	background: url('/resources/img/left.png') center center/100% no-repeat;
+}
+
+.left1 {
+	left: 30px;
+	background: url('/resources/img/left1.png') center center/100% no-repeat;
+}
+
+.right {
+	right: 30px;
+	background: url('/resources/img/right.png') center center/100% no-repeat;
+}
+
+.right1 {
+	right: 30px;
+	background: url('/resources/img/right1.png') center center/100%
+		no-repeat;
+}
+
+.fixed {
+	right: 0;
+	bottom: 1;
+	width: 50px;
+	height: 10px;
+	background-color: #A7F2DC;
+	position: fixed;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+}
+
+.slidebox {
+	max-width: 900px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.slidebox .slidelist {
+	position: relative;
+	white-space: nowrap;
+	font-size: 0;
+}
+
+.slidebox .slidelist .slideitem {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #fff;
+	width: 100%;
+	transition: all 1s;
+	overflow: hidden
+}
+
+.slidebox .slidelist .slideitem a {
+	display: block;
+	position: relative;
+}
+
+.slidebox .slidelist .slideitem>a img {
+	max-width: 100%;
+}
+
+.slidebox .slide-control [class*="control"] label {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 20px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.slidebox .slide-control [class*="control"] label.prev {
+	left: -50px;
+	background: #333 url('./resources/img/left.png')
+}
+
+.slidebox .slide-control [class*="control"] label.next {
+	right: -50px;
+	background: #333 url('./resources/img/right.png')
+}
+
+.slidebox .slide-control [class*="control"] label.prev1 {
+	left: -50px;
+	background: #333 url('./resources/img/left1.png')
+}
+
+.slidebox .slide-control [class*="control"] label.next1 {
+	right: -50px;
+	background: #333 url('./resources/img/right1.png')
+}
+
+[name="slide"] {
+	display: none;
+}
+
+#slide01:checked ~.slidelist .slideitem {
+	left: 0;
+}
+
+#slide02:checked ~.slidelist .slideitem {
+	left: -100%;
+}
+
+#slide03:checked ~.slidelist .slideitem {
+	left: -200%;
+}
+
+[name="slide1"] {
+	display: none;
+}
+
+#slide04:checked ~.slidelist .slideitem {
+	left: 0;
+}
+
+#slide05:checked ~.slidelist .slideitem {
+	left: -100%;
+}
+
+#slide06:checked ~.slidelist .slideitem {
+	left: -200%;
+}
+
+.slide-control [class*="control"] {
+	display: none;
+}
+
+#slide01:checked ~.slide-control label.prev {
+	display: none;
+}
+
+#slide01:checked ~.slide-control .control01 {
+	display: block;
+}
+
+#slide02:checked ~.slide-control .control02 {
+	display: block;
+}
+
+#slide03:checked ~.slide-control .control03 {
+	display: block;
+}
+
+#slide03:checked ~.slide-control label.next {
+	display: none;
+}
+
+#slide04:checked ~.slide-control label.prev1 {
+	display: none;
+}
+
+#slide04:checked ~.slide-control .control01 {
+	display: block;
+}
+
+#slide05:checked ~.slide-control .control02 {
+	display: block;
+}
+
+#slide06:checked ~.slide-control .control03 {
+	display: block;
+}
+
+#slide06:checked ~.slide-control label.next1 {
+	display: none;
+}
+
+.categoryLogo {
+	width: 24%;
+	height: 263px;
+	float: left;
+	text-align: center;
+	align-items: flex-start;
+}
+
+.textRight {
+	text-align: right !important;
+}
+
+.contentPicture {
+	style: "width:217px; height: 162px;"
+}
+
+.categoryLogosNoPoint {
+	list-style: none;
+}
+
+.categoryLogos {
+	overflow: hidden;
+}
+
+.contentTitle {
+	style: font-weight: bolder;
+}
+
+.categoryitem {
+	width: 217px;
+	align-items: flex-start;
+}
+
+.slideitem {
+	overflow: hidden;
+	width: 25%;
+}
+
+.slideitem1 {
+	width: 25%;
+	white-space: normal;
+	float: left;
+}
+
+.slidelist {
+	overflow: hidden;
+}
+
+.chatBtn {
+	width: 128px;
+	height: 39px;
+	padding: 8px;
+	border-radius: 40px;
+	background-color: #A6F2DB;
+	line-height: 26px;
+	text-align: center;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.chatPaper {
+	width: 360px;
+	height: 520px;
+	border-radius: 15px;
+	background-color: white;
+	border: 1px solid;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
+.chatPaperhead {
+	margin: 0px;
+	padding: 0px;
+	background-color: #A6F2DB;
+	height: 60px;
+	width: 358px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.chatting {
+	width: 500px;
+	display: none;
+}
+
+
+.chatPaper>p {
+	text-align: center;
+	width: 100%;
+}
+
+.sendMsg {
+	width: 80%;
+}
+
+.sendBtn {
+	width: 20%;
+}
+
+.chat {
+	word-break: break-word;
+	margin-bottom: 10px;
+	padding: 8px;
+	border-radius: 10px;
+}
+
+.chat.right {
+	background-color: #ffeb33;
+	align-self: flex-end;
+}
+
+.chat.left {
+	background-color: #ffffff;
+	align-self: flex-start;
+}
+</style>
 	</head>
 
 	<body>
@@ -755,13 +827,152 @@
 							</div>
 						</div>
 					</div>
-
+					<div class="chatPaper"id="chatPaper">
+       	 				<div class="chatPaperhead">
+       	 					<div class="chatPaperheadleft"></div>
+       	 					<div class="chatPaperheadCenter"></div>
+       	 					<div class="chatPaperheadRight"></div>
+       	 				</div>
+       	 				<div style="margin-top: 160px;text-align: center; ">잠시만 기다려주세요</div>
+   				 </div>
+				<a class="chatBtn"id="chatBtn" onclick="chatBtnclick();">고객센터</a>
 				</div>
 				<br>
 				<hr>
 				<br>
 			</div>
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+			<script>
+			jQuery(document).ready(function () {
+				$("#chatPaper").hide();
+				});		
+			function chatBtnclick(){
+				$("#chatPaper").show();
+				$("#chatBtn").hide();
+			}
+			
+			
+			var ws;
+			var id;
+			var name;
+
+
+			function initChat(cs)
+			{
+				console.log(cs);
+				id='${sessionScope.m.id}';
+				name='${sessionScope.m.name}';
+				ws=new WebSocket("ws://127.0.0.1/chat.do");
+				if(cs===1)
+					ws.onopen=startCsChat;
+				else
+					ws.onopen=startChat;
+				
+				ws.onmessage=receiveMsg;
+				ws.onclose=endChat;
+				$(".chatting").slideDown();
+			}
+			function startCsChat()
+			{
+				var data={type:"csEnter",msg:"상담사("+name+")"};
+				ws.send(JSON.stringify(data));
+				appendChat("<p>채팅방에 입장했습니다</p>");
+			}
+
+			function startChat()
+			{
+				var data={type:"enter",msg:id+"("+name+")"};
+				ws.send(JSON.stringify(data));
+				appendChat("<p>채팅방에 입장했습니다</p>");
+			}
+
+			function receiveMsg(pram)
+			{
+				appendChat(pram.data);
+			}
+			function endChat()
+			{
+				appendChat("<p>채팅이 종료되었습니다</p>");
+			}
+			function appendChat(msg)
+			{
+				console.log($(".chatPaper")[0]);
+				console.log($(".chatPaper")[0].scrollHeight);
+				$(".chatPaper").append(msg);
+				$(".chatPaper").scrollTop($(".chatPaper")[0].scrollHeight);
+			}
+			function sendMessage()
+			{
+				var message=$("#sendMsg").val();
+				if(message!=="")
+				{	
+					var data={type:"chat",msg:message};
+					ws.send(JSON.stringify(data));
+					appendChat("<div class='chat right'><span>"+message+"</span></div>");
+					$("#sendMsg").val("");
+				}
+
+			}
+			
+			</script>
 	</body>
 
 	</html>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
