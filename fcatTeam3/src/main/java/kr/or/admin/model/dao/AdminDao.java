@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.admin.model.vo.Board;
+import kr.or.admin.model.vo.MemberVisitor;
+import kr.or.common.model.vo.SellerAsk;
 import kr.or.member.model.vo.Member;
 
 @Repository
@@ -135,6 +137,36 @@ public class AdminDao {
 	public int allMemberCount() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.totalMemberCount");
+	}
+
+	public int todayVisitor() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.todayVisitor");
+	}
+
+	public MemberVisitor memberVisitor() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.memberVisitor");
+	}
+
+	public ArrayList<SellerAsk> adminSeller() {
+		List<SellerAsk> list = sqlSession.selectList("admin.adminSeller");
+		return (ArrayList<SellerAsk>)list;
+	}
+
+	public Member selectOneMember(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.selectOneMember",memberId);
+	}
+
+	public int updateMember(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("admin.updateMember" , memberId);
+	}
+
+	public int deleteSeller(int saNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("admin.deleteSeller" , saNo);
 	}
 
 }

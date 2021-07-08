@@ -1,18 +1,23 @@
 package kr.or.admin.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.Board;
 import kr.or.admin.model.vo.BoardpageData;
 import kr.or.admin.model.vo.MemberPageData;
+import kr.or.admin.model.vo.MemberVisitor;
+import kr.or.common.model.vo.SellerAsk;
 import kr.or.member.model.vo.Member;
 
 @Controller
@@ -179,13 +184,51 @@ public class AdminController {
 		return "admin/adminMember";
 	}
 	
+	@RequestMapping(value="/adminSeller.do")
+	public String adminSeller(Model model) {
+		ArrayList<SellerAsk> list = service.adminSeller();
+		model.addAttribute("list",list);
+		return "admin/adminSeller";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/updateGrade.do")
+	public String updateGrade(Model model, String memberId , int saNo) {
+		//Member member = service.selectOneMember(memberId);
+		
+		int result = service.updateGrade(memberId);
+		int result1 = service.deleteSeller(saNo);
+		if(result>0 && result1 >0) {
+			model.addAttribute("msg","승인 완료 되었습니다.");
+		}else {
+			model.addAttribute("msg","승인 실패");
+		}
+		
+		model.addAttribute("loc","/adminSeller.do");
+		return "common/msg";
+		
+	}
+	
+	//대시보드 전체 회원수
 	@ResponseBody
 	@RequestMapping(value="allMemberCount.do")
 	public int allMemberCount() {
 		return service.allMemberCount();
-		
 	}
 	
+	//대시보드 오늘 방문자수
+	@ResponseBody
+	@RequestMapping(value="todayVisitor.do")
+	public int todayVisitor() {
+		return service.todayVisitor();
+	}	
 	
+	//대시보드 방문자 차트
+	@ResponseBody
+	@RequestMapping(value="memberVisitor.do",produces = "application/json; charset:utf-8")
+	public String memberVisitor() {
+		MemberVisitor visitor = service.memberVisitor();
+		return new Gson().toJson(visitor);
+	}		
 	
 }

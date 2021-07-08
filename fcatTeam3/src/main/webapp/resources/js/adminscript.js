@@ -1,21 +1,4 @@
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-  // 챠트 종류를 선택
-  type: 'line',
-
-  // 챠트를 그릴 데이타
-  data: {
-    labels: ['06-17', '06-18', '06-19', '오늘'],
-    datasets: [{
-      label: '방문자수',
-      backgroundColor: 'transparent',
-      borderColor: 'red',
-      data: [4, 10, 7, 15]
-    }]
-  },
-  // 옵션
-  options: {}
-});
+            
 
  // chart colors
  var colors = ['red','skyblue','yellowgreen','#c3e6cb','#dc3545','#6c757d'];

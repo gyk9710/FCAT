@@ -42,6 +42,8 @@ public class MemberController {
 			session.setAttribute("m", member);
 			model.addAttribute("msg", "로그인 성공");
 			List<Coupon> list = service.selectAllCoupon(member.getMemberId());
+			int visitor = service.addvisit();
+			session.setAttribute("visitor", visitor);
 			session.setAttribute("coupon", list);
 
 		} else {

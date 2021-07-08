@@ -27,8 +27,8 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-user fa-3x"></i>
                       <div class="text-right text-secondary">
-                        <h5>금일 방문자 수</h5>
-                        <h3></h3>
+                        <h5>금일 방문 회원 수</h5>
+                        <h3 id="todayVisitor"></h3>
                       </div>
                     </div>
                   </div>
@@ -117,8 +117,53 @@
 	                $("#allMemberCount").html(data+"명") ;
 	            }  
 	        });
+      $.ajax({
+          type : "GET",
+          url : "todayVisitor.do",
+          success : function(data){
+              $("#todayVisitor").html(data+"명") ;
+          }  
+      });
+      
+      $.ajax({
+          type : "GET",
+          url : "memberVisitor.do",
+          success : function(returnData){
+              var d = new Date();
+              var date = (d.getMonth()+1)+"월"+d.getDate()+"일";
+              var arr = new Array();
+              for(var key in returnData){
+            	  arr.push(returnData[key]);
+              }
+              console.log(arr);
+              var ctx = document.getElementById('myChart');
+              var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: [(d.getMonth()+1)+"월"+(d.getDate()-6)+"일",(d.getMonth()+1)+"월"+(d.getDate()-5)+"일",(d.getMonth()+1)+"월"+(d.getDate()-4)+"일",(d.getMonth()+1)+"월"+(d.getDate()-3)+"일",(d.getMonth()+1)+"월"+(d.getDate()-2)+"일", (d.getMonth()+1)+"월"+(d.getDate()-1)+"일", "오늘"],
+                  datasets: [{
+                    label: '방문자수',
+                    data: arr,
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }]
+                  }
+                }
+              });
+          }  
+      });
        
+      
 	    });	
+	  
+      	  
 	
 	</script>
     

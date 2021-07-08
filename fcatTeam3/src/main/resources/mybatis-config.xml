@@ -34,5 +34,7 @@
 		<typeAlias type="kr.or.member.model.vo.Coupon" alias="o"/>
 		<!-- 결제 내역 테이블 -->
 		<typeAlias type="kr.or.member.model.vo.PaymentInfo" alias="p"/>
+		<!-- 방문자 -->
+		<typeAlias type="kr.or.admin.model.vo.MemberVisitor" alias="visitor"/>
 	</typeAliases>
 </configuration>

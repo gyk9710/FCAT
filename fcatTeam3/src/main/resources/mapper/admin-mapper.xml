@@ -101,4 +101,54 @@
                       or member_name like '%' || #{keyword}||'%'  
 	</select>
 	
+	<insert id="addVisit" >
+		INSERT INTO VISIT (V_DATE) VALUES (to_char(sysdate,'yyyy-mm-dd'))
+	</insert>
+	
+	<select id="todayVisitor" resultType="int">
+		select count(*) from visit where v_Date = to_char(sysdate, 'yyyy-mm-dd')
+	</select>
+	
+	<select id="memberVisitor" resultType="visitor">
+select 
+    (select count(*) from visit where v_Date = to_char(sysdate-6,'yyyy-mm-dd')) as be6yes,
+    (select count(*) from visit where v_Date = to_char(sysdate-5,'yyyy-mm-dd')) as be5yes,
+    (select count(*) from visit where v_Date = to_char(sysdate-4,'yyyy-mm-dd')) as be4yes,
+    (select count(*) from visit where v_Date = to_char(sysdate-3,'yyyy-mm-dd')) as be3yes,
+    (select count(*) from visit where v_Date = to_char(sysdate-2,'yyyy-mm-dd')) as beyes,
+    (select count(*) from visit where v_Date = to_char(sysdate-1,'yyyy-mm-dd')) as yes,
+    (select count(*) from visit where v_Date = to_char(sysdate,'yyyy-mm-dd')) as today
+from dual
+	</select>
+	
+	<select id="adminSeller" resultType="sa">
+select 
+sa_no as saNo , 
+sa_id as saId , 
+sa_profile as saProfile , 
+sa_category as saCategory , 
+sa_child_category as saChildCategory , 
+sa_introd as saIntrod , 
+NVL(sa_college,'미등록') as saCollege , 
+NVL(sa_major,'미등록') as saMajor  , 
+NVL(sa_state,'미등록') as saState , 
+NVL(sa_license,'없음') as saLicense , 
+NVL(sa_lc_date,'없음') as saLcDate , 
+NVL(sa_lc_org,'없음') as saLcOrg 
+from seller_ask 
+</select>
+
+	<select id="selectOneMember" parameterType="int" resultType="m">
+select member_id as memberId , member_pw as memberPw , member_name as memberName , member_phone as memberPhone , member_addr as memberAddr , enroll_date as enrollDate , grade , pf_no as pfNo	where member_id=#{memberId}</select>
+
+<update id="updateMember" parameterType="string">
+  	 update member set
+  	 	grade = 1
+  	 	where member_id = #{memberId}
+  	 </update>
+  	 
+  	 <delete id="deleteSeller">
+  	 
+  	 delete from seller_ask where sa_no = #{saNo}
+  	 </delete>
 </mapper>

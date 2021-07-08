@@ -83,5 +83,10 @@ public class MemberService {
 		return dao.updateMember(m);
 	}
 
+	public int addvisit() {
+		// TODO Auto-generated method stub
+		return dao.addVisit();
+	}
+
 	
 }

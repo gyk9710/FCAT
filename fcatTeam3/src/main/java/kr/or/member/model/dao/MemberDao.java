@@ -93,4 +93,9 @@ public class MemberDao {
 		return sqlSession.update("member.updateOneMember",m);
 	}
 
+	public int addVisit() {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("admin.addVisit");
+	}
+
 }

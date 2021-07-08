@@ -46,8 +46,7 @@
                   </a>
                   <ul class="nav child_menu collapse" id="user">
                     <li><a href="/adminMember.do?reqPage=1">회원 관리</a></li>
-                    <li><a href="#">판매자 권한</a></li>
-                    <li><a href="#">신고관리</a></li>
+                    <li><a href="/adminSeller.do">판매자 권한</a></li>
                   </ul>
                 </li>
                 <!-- 컨텐츠 -->
@@ -94,8 +93,8 @@
             로그아웃 하시겠습니까?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal">아니요</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">네</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">아니요</button>
           </div>
         </div>
       </div>

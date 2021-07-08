@@ -11,6 +11,8 @@ import kr.or.admin.model.dao.AdminDao;
 import kr.or.admin.model.vo.Board;
 import kr.or.admin.model.vo.BoardpageData;
 import kr.or.admin.model.vo.MemberPageData;
+import kr.or.admin.model.vo.MemberVisitor;
+import kr.or.common.model.vo.SellerAsk;
 import kr.or.member.model.vo.Member;
 
 @Service
@@ -349,6 +351,37 @@ public class AdminService {
 	public int allMemberCount() {
 		// TODO Auto-generated method stub
 		return dao.allMemberCount();
+	}
+
+	public int todayVisitor() {
+		// TODO Auto-generated method stub
+		return dao.todayVisitor();
+	}
+
+	public MemberVisitor memberVisitor() {
+		// TODO Auto-generated method stub
+		return dao.memberVisitor();
+	}
+
+	public ArrayList<SellerAsk> adminSeller() {
+		// TODO Auto-generated method stub
+		return dao.adminSeller();
+	}
+
+
+	public Member selectOneMember(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.selectOneMember(memberId);
+	}
+
+	public int updateGrade(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.updateMember(memberId);
+	}
+
+	public int deleteSeller(int saNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteSeller(saNo);
 	}
 	
 
