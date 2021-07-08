@@ -146,6 +146,9 @@
             var month = today.getMonth() + 1; // 월
             var day = today.getDate();  // 일
 
+            console.log("이번달 : " + month);
+            console.log("오늘 : " + day);
+
             // console.log("현재 몇 시 : " + hour);
             // console.log("현재 몇 분 : " + minute);
 
@@ -179,7 +182,17 @@
               minute = "0" + minute;
             }
 
-            var curTime = hour + ":" + minute;
+            // 월 처리
+            if (month < 10) {
+              month = "0" + month;
+            }
+
+            // 날짜 처리
+            if (day < 10) { //  0 ~ 9 날짜 처리
+              day = "0" + day;
+            }
+
+            var curTime = month + "월 " + day + "일 " + hour + ":" + minute;
             //console.log("현재 시간 : " + curTime);
 
             //var curTime = today.toLocaleTimeString().substring(0, 7); // ex) 오후 6:04
