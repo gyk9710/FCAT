@@ -858,11 +858,13 @@ ul, li {
 
 
 			function initChat(cs)
+			//웹소켓을 초기화
 			{
 				console.log(cs);
 				id='${sessionScope.m.id}';
 				name='${sessionScope.m.name}';
 				ws=new WebSocket("ws://127.0.0.1/chat.do");
+						// 웹소켓 생성시 ip랑 chat.do를 매개변수로 넣어준다 
 				if(cs===1)
 					ws.onopen=startCsChat;
 				else

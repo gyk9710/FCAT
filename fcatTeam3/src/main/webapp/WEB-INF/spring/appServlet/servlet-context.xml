@@ -72,8 +72,10 @@
 	
 	<!-- 상담사와 1:1채팅 -->
 	<beans:bean id="oneToOneChat" class="kr.or.member.model.service.OneToOneChat"/>
+	<!-- kr.or.member.model.service.OneToOneChat클래스의 자료형 변수 oneToOneChat을 생성 -->
 	<websocket:handlers>
 		<websocket:mapping handler="oneToOneChat" path="/chat.do"/>
+		<!-- /chat.do와  oneToOneChat변수를 매핑(1대1로 매칭)시켜준다. -->
 	</websocket:handlers>
 	
 	
