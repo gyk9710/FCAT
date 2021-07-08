@@ -164,4 +164,11 @@ public class SellerController {
 		model.addAttribute("list",list);
 		return "seller/deleteList";
 	}
+	@RequestMapping (value = "/updateService.do")
+	public String updateService(int fsNo,Model model) {
+		FService fs = service.selectMyservice(fsNo);
+		model.addAttribute("fs", fs);
+		System.out.println("가져온 번호 : " + fsNo);
+		return "seller/myservice";
+	}
 }

@@ -61,6 +61,18 @@
 		delete from fservice where fs_no=#{fsNo}
 	</delete>
 
+	<!-- 마이 서비스 수정 Frm -->
+	<select id="selectMyservice" parameterType="int" resultType="fs">
+  	select
+  		fs_title as fsTitle,
+  		fs_category as fsCategory,
+  		fs_child_category as fsChildCategory,
+  		fs_working as fsWorking,
+  		fs_price as fsPrice,
+  		fs_photo as fsPhoto,
+  		fs_content as fsContent
+  		from fservice where fs_no=#{fsNo}
+  </select>
 	
 	<!-- 알람 수 조회 -->
 	<select id="selectAlarmCount" parameterType="string" resultType="int">

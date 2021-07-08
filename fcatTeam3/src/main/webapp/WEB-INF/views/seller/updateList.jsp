@@ -19,6 +19,9 @@
     float: left;
     position: relative;
     left: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 30px;
 }
 </style>
 </head><script>
@@ -153,7 +156,8 @@
                             <td>${fs.fsPrice }</td>
                             
                             <td>
-                                <button class="utbtn">수정</button>
+                            <a href="/updateService.do?fsNo=${fs.fsNo}" class="utbtn">수정</a>
+                                
                               
                             </td>
                         </tr>

@@ -57,4 +57,8 @@ public class SellerDao {
 	public int myserviceDelete(int fsNo) {
 		return sqlSession.delete("seller.myserviceDelete",fsNo);
 	}
+
+	public FService selectMyservice(int fsNo) {
+		return sqlSession.selectOne("seller.selectMyservice",fsNo);
+	}
 }

@@ -57,4 +57,8 @@ public class SellerService {
 	public int myserviceDelete(int fsNo) {
 		return dao.myserviceDelete(fsNo);
 	}
+
+	public FService selectMyservice(int fsNo) {
+		return dao.selectMyservice(fsNo);
+	}
 }
