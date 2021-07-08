@@ -162,7 +162,7 @@ input:focus {outline:none;}
 		<div class="headermenu">		
 			<div class="a">
 			<div class="headermenu1">
-			<img src="/resources/img/main.png" style="width:260px; height:70px;">
+			<a href="/main.do"><img src="/resources/img/main.png" style="width:260px; height:70px;"></a>
 			</div>
 			</div>
 		<div class="headermenu2" style="width:100px;">
