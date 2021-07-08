@@ -187,7 +187,7 @@ input:focus {outline:none;}
 						<c:otherwise>
 							<li style="float:left; width:200px;"><span style="font-weight:bold;">[${sessionScope.m.memberName}]님 환영합니다.</span></li>
 							<li style="float:left; width:100px;"><a href="/mypage.do"style="color:black;text-decoration:none;">마이페이지</a></li>
-							<li style="float:left; width:100px;"><a href="/logout.do"style="color:black;text-decoration:none;">로그아웃</li>
+							<li style="float:left; width:100px;"><a href="/logout.do"style="color:black;text-decoration:none;">로그아웃</a></li>
 						</c:otherwise>
 						</c:choose>
 					</ul>
