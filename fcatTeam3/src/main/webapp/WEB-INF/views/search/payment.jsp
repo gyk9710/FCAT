@@ -99,7 +99,7 @@
 			<div style="overflow: hidden">
 				<div style="float: left;">총 결제 금액</div>
 				<div style="float: right;">
-					<span id="totalPrice">0</span>원
+					<span id="totalPrice">${sessionScope.fs.fsPrice}</span>원
 				</div>
 			</div>
 			<br>
@@ -164,6 +164,7 @@
 						str+="<option value='"+data[i].couponName+"'>"+data[i].couponName+"</option>";
 					}
 					$("#selectCoupon").html(str);
+					
 				}
 		})
 		
@@ -231,11 +232,11 @@
 			
 			
 			IMP.init(im_code);
+			
 			IMP.request_pay({
 				merchant_uid : merchant_uid,			//거래ID
 				name : paymentName,					//결제 이름
 				amount : amount,						//결제 금액
-				
 				buyer_email : buyer_email,	//구매자 email주소
 				buyer_name : buyer_name,					//구매자 이름
 				buyer_phone : buyer_phone,		//구매자 전화번호
@@ -250,6 +251,9 @@
 					alert("결제 실패");
 				}
 			});
+			
+			
+			
 		});
 	</script>
 	
