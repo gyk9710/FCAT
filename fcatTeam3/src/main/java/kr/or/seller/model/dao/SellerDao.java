@@ -42,4 +42,10 @@ public class SellerDao {
 	public int insertService(FService fs) {
 		return sqlSession.insert("seller.insertService",fs);
 	}
+
+	public List myserviceList(FService fs) {
+		
+		String writer = fs.getFsWriter();
+		return sqlSession.selectList("seller.myserviceList",writer);
+	}
 }

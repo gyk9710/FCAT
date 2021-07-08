@@ -43,4 +43,9 @@ public class SellerService {
 	public int insertService(FService fs) {
 		return dao.insertService(fs);
 	}
+
+	public List myserviceList(FService fs) {
+		System.out.println(fs.getFsWriter());
+		return dao.myserviceList(fs);
+	}
 }

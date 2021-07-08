@@ -129,5 +129,17 @@ public class SellerController {
 	public int confirmRequestService(int srNo) {
 		return service.confirmRequestService(srNo);
 	}
+	
+	@RequestMapping (value = "/myserviceUpdateList.do")
+	public String updateList(FService fs, Model model) {
+		
+		List list = service.myserviceList(fs);
+		
+		model.addAttribute("list", list);
+		
+	//	return "seller/myserviceList";
+		
+		return "seller/updateList";
+	}
 
 }
