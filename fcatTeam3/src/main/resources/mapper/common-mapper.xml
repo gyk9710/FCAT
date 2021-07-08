@@ -24,7 +24,7 @@
 
 	<!-- 채팅 내용 db 저장 -->
 	<insert id="insertChatMsg" parameterType="sc">
-		insert into save_chat values(#{scNo}, #{scContent}, #{scFlag}, to_char(sysdate, 'yyyy-mm-dd'))
+		insert into save_chat values(#{scNo}, #{scContent}, #{scFlag}, sysdate)
 	</insert>
 
 	<!-- 채팅 리스트 불러오기 - 판매자/구매자 -->
@@ -43,14 +43,20 @@
 	<!-- 채팅 저장 내용 불러오기 -->
 	<select id="selectSaveChatList" resultType="sc"
 		parameterType="int">
-		select
-			sc_content as scContent,
-			sc_flag as scFlag,
-			to_char(sc_time, 'yyyy-mm-dd hh:mm:dd') as scTime
-		from
-			save_chat
-		where
-			sc_no = #{chatNo}
+		SELECT
+		    TO_CHAR(SC_TIME,'mm"월" dd"일" PM HH:MI') AS scTime,
+		    SC_CONTENT AS scContent,
+		    SC_FLAG AS scFlag
+		FROM
+	    	(
+	        SELECT
+	            *
+	        FROM
+	            SAVE_CHAT
+	        WHERE
+	            SC_NO = #{chatNo}
+	    	) SC
+	    ORDER BY SC.SC_TIME
 	</select>
 
 	<!-- 신고 접수 -->

@@ -103,9 +103,9 @@
             //console.log(testData);
             //console.log("채팅 초기화 : " + testData.reset);
             //console.log("채팅 내용 : " + testData.msg);
-            console.log("현재 채팅 번호 : " + currentChatNo);
-            console.log("받은 채팅 번호 : " + testData.chatNo);
-            console.log("보낸 사람 : " + testData.sender);
+            // console.log("현재 채팅 번호 : " + currentChatNo);
+            // console.log("받은 채팅 번호 : " + testData.chatNo);
+            // console.log("보낸 사람 : " + testData.sender);
 
             // 처음 채팅 방 로드 시 화면 초기화
             if (testData.reset == "초기화") {
@@ -140,14 +140,59 @@
             var scFlag = $("input[name=scFlag]").val(); // 판매자 / 구매자 구별
             var chatNo = $("#chatNo").val(); // 채팅 방 번호
 
+            var today = new Date(); // 현재 시간
+            var hour = today.getHours(); // 시간
+            var minute = today.getMinutes(); // 분
+            var month = today.getMonth() + 1; // 월
+            var day = today.getDate();  // 일
+
+            // console.log("현재 몇 시 : " + hour);
+            // console.log("현재 몇 분 : " + minute);
+
+            // 시간 처리
+            if (hour > 11) { // 오후 처리
+              if (hour == 12) { // 오후 12 처리
+                hour = "오후 " + hour;
+              } else { // 오후 01 ~ 11
+                hour = hour - 12; // 24시간 처리
+
+                if (hour >= 10) {
+                  hour = "오후 " + hour; // 나머지 오후 10 ~ 11
+                } else {
+                  hour = "오후 0" + hour; // 오후 01 ~ 09 처리
+                }
+              }
+            } else { // 오전 0 ~ 11
+              if (hour == 0) {  // 오전 12 처리
+                hour = "오전 12";
+              } else { // 
+                if (hour >= 10) {
+                  hour = "오전 " + hour;
+                } else { // 오전 01 ~ 09 처리
+                  hour = "오전 0" + hour;
+                }
+              }
+            }
+
+            // 분 처리
+            if (minute < 10) {
+              minute = "0" + minute;
+            }
+
+            var curTime = hour + ":" + minute;
+            //console.log("현재 시간 : " + curTime);
+
+            //var curTime = today.toLocaleTimeString().substring(0, 7); // ex) 오후 6:04
+            //console.log("현재 시간 : " + curTime);
+
             if (msg != '') {
               var data = {
-                type: "chat", msg: msg, receiver: receiver, sender: sessionId, scFlag: scFlag, chatNo: chatNo
+                type: "chat", msg: msg, receiver: receiver, sender: sessionId, scFlag: scFlag, chatNo: chatNo, curTime: curTime
               };
               //소켓서버로 문자열 전송
               ws.send(JSON.stringify(data));
               //내화면에 출력
-              appendChat("<div class='chat right'>" + msg + "</div>");
+              appendChat("<div class='right-time'>" + curTime + "</div>" + "<div class='chat right'>" + msg + "</div>");
               $("#sendMsg").val(""); // 현재 메시지 입력 초기화
             }
           };

@@ -1,4 +1,8 @@
 /* 본문 */
+body {
+  font-size: 14px;
+}
+
 .container {
   /* margin-top: 56px; */
   height: 500px;
@@ -9,13 +13,21 @@
 
 /* 채팅방 리스트 */
 .chat-list {
-  width: 38%;
+  width: 32%;
   height: 100%;
   float: left;
   border-right: 1px solid rgb(202, 202, 202);
   overflow-y: auto;
   padding-right: 2%;
   margin-right: 2%;
+}
+
+/* 채팅 내용 */
+.chat-room {
+  width: 55%;
+  height: 100%;
+  float: left;
+  margin-right: 5%;
 }
 
 /* 채팅방 리스트 한칸씩 차지 */
@@ -25,7 +37,8 @@
   height: 50px;
   line-height: 50px;
   text-align: center;
-  /*border-bottom: 1px solid rgb(202, 202, 202);*/
+  /* border-top: 1px solid rgb(202, 202, 202);
+  border-bottom: 1px solid rgb(202, 202, 202); */
   color: black;
   font-size: large;
 }
@@ -47,14 +60,6 @@
   color: black;
 }
 
-/* 채팅 내용 */
-.chat-room {
-  width: 55%;
-  height: 100%;
-  float: left;
-  margin-right: 5%;
-}
-
 /* 채팅 CSS */
 .chatting {
   width: 100%;
@@ -68,15 +73,12 @@
   display: flex;
   flex-direction: column;
   background-color: #b2c7d9;
-  padding: 5px;
+  padding: 10px;
 }
 
 /* 스크롤 크기 */
 .messageArea::-webkit-scrollbar {
   width: 10px;
-}
-/* 스크롤 배경 */
-.messageArea::-webkit-scrollbar-track {
 }
 /* 스크롤 버튼 */
 .messageArea::-webkit-scrollbar-thumb {
@@ -111,7 +113,7 @@
   height: 40px;
 }
 .chat {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 8px;
   border-radius: 3px;
 }
@@ -122,6 +124,20 @@
 .left {
   background-color: #ffffff;
   align-self: flex-start;
+}
+
+.left-time {
+  align-self: flex-start;
+  font-size: small;
+  color: rgb(64, 64, 64);
+  margin-bottom: 5px;
+}
+
+.right-time {
+  align-self: flex-end;
+  font-size: small;
+  color: rgb(64, 64, 64);
+  margin-bottom: 5px;
 }
 
 .bell-alarm {
