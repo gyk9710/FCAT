@@ -56,7 +56,7 @@
                     <li>
                         <a href="#">나의서비스</a>
                         <ul class="sub-menu">
-                            <li><a href="#">서비스 등록</a></li>
+                            <li><a href="/fserviceFrm.do">서비스 등록</a></li>
                             <li><a href="#">서비스 수정</a></li>
                             <li><a href="#">서비스 삭제</a></li>
                         </ul>

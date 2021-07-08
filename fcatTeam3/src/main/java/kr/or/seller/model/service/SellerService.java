@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.common.model.vo.FService;
 import kr.or.common.model.vo.Message;
 import kr.or.fservice.model.vo.TestService;
 import kr.or.seller.model.dao.SellerDao;
@@ -16,9 +17,7 @@ public class SellerService {
 	@Autowired
 	private SellerDao dao;
 
-	public int insertService(TestService ts) {
-		return dao.insertService(ts);
-	}
+	
 
 	// 서비스 요청 리스트 조회
 	public List<ServiceRequest> requestServiceList(int serviceNo) {
@@ -39,5 +38,9 @@ public class SellerService {
 	// 서비스 수락 / 거절 MSG 보내기
 	public int sendConfirmMsg(Message msg) {
 		return dao.sendConfirmMsg(msg);
+	}
+
+	public int insertService(FService fs) {
+		return dao.insertService(fs);
 	}
 }
