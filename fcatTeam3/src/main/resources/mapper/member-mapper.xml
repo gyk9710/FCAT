@@ -111,8 +111,18 @@
   	#{buyerAddr},
   	#{buyerPostcode},
   	#{buyerId},
-  	#{sellerId}) 
+  	#{sellerId},
+  	#{fsNo})
   </insert>
+  
+  	<insert id="insertServiceRequest" parameterType="sr">
+  	insert into service_request values(
+  	sr_seq.nextval,
+  	#{srServiceNo},
+  	#{srRequestId},
+  	0)
+  </insert>
+
   
   
 

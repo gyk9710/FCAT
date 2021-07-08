@@ -11,6 +11,7 @@ import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.ServiceRequest;
 
 @Service
 public class MemberService {
@@ -86,6 +87,10 @@ public class MemberService {
 	public int addvisit() {
 		// TODO Auto-generated method stub
 		return dao.addVisit();
+	}
+
+	public int insertServiceRequest(ServiceRequest sr) {
+		return dao.insertServiceRequest(sr);
 	}
 
 	

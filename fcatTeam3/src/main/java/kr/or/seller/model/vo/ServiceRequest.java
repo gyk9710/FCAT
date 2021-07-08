@@ -1,11 +1,12 @@
 package kr.or.seller.model.vo;
 
 public class ServiceRequest {
+	/*
 	private int srNo;
 	private int serviceNo;
 	private String requestId;
 	private String fsCategory;
-	private String fsChildCategory;
+	private String fsChildCategory;	
 
 	public ServiceRequest() {
 		super();
@@ -59,5 +60,5 @@ public class ServiceRequest {
 	public void setFsChildCategory(String fsChildCategory) {
 		this.fsChildCategory = fsChildCategory;
 	}
-
+*/
 }

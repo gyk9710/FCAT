@@ -13,6 +13,15 @@ public class PaymentInfo {
 	private String buyerPostcode;
 	private String buyerId;
 	private String sellerId;
+	private int fsNo;
+
+	public int getFsNo() {
+		return fsNo;
+	}
+
+	public void setFsNo(int fsNo) {
+		this.fsNo = fsNo;
+	}
 
 	public PaymentInfo() {
 		super();

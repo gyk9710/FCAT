@@ -42,6 +42,7 @@
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<form action="/afterpayment.do" style="display:none; width:0px; height:0px;">
+	
 		<input type="text" name="couponName">
 		<input type="text" name="memberId">
 		<input type="text" name="impCode">
@@ -54,9 +55,13 @@
 		<input type="text" name="buyerAddr"  >
 		<input type="text" name="buyerPostcode"  >
 		<input type="text" name="buyerId"  >
-		<input type="text" name="sellerId"  >
+		<input type="text" name="sellerId" >
+		<input type="text" name="srServiceNo" >
+		<input type="text" name="fsWriter" >
 		<input id="sub"	type="submit" value="결제완료">
 	</form>
+	
+	
 
 	<div class="center">
 		<div style="height: 130px"></div>
@@ -211,7 +216,10 @@
 			$("[name=buyerAddr]").val(buyer_addr);
 			$("[name=buyerPostcode]").val(buyer_postcode);
 			$("[name=buyerId]").val("${sessionScope.m.memberId}");
-			$("[name=sellerId]").val("박지성");
+			$("[name=sellerId]").val("${sessionScope.fs.fsWriter}");
+			$("[name=srServiceNo]").val("${sessionScope.fs.fsNo}");
+
+			
 			$("#sub").trigger("click");
 		}
 		
@@ -247,6 +255,7 @@
 					alert("결제 성공");
 					console.log("카드 승인번호 : "+rsp.apply_num);
 					trigger1();
+					2
 				}else{								//결제 실패시
 					alert("결제 실패");
 				}

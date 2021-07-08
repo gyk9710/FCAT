@@ -20,6 +20,7 @@ import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.ServiceRequest;
 import kr.or.common.model.vo.FService;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
@@ -167,6 +168,18 @@ public class MemberController {
 		paymentInfo.setBuyerPostcode(request.getParameter("buyerPostcode"));
 		paymentInfo.setBuyerId(request.getParameter("buyerId"));
 		paymentInfo.setSellerId(request.getParameter("sellerId"));
+		paymentInfo.setFsNo(Integer.parseInt(request.getParameter("srServiceNo")));
+		
+		ServiceRequest sr= new ServiceRequest();
+		sr.setSrRequestId(request.getParameter("buyerId"));
+		sr.setSrServiceNo(Integer.parseInt(request.getParameter("srServiceNo")));
+
+		int result2=service.insertServiceRequest(sr);
+		if (result2 > 0) {
+			System.out.println("서비스리퀘스트 삽입 완료");
+		} else {
+			System.out.println("서비스리퀘스트 삽입 실패");
+		}
 
 		int result1 = service.insertPaymentInfo(paymentInfo);
 		if (result1 > 0) {

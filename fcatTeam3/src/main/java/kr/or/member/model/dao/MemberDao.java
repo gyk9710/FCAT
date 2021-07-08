@@ -12,6 +12,7 @@ import kr.or.common.model.vo.Review;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.ServiceRequest;
 
 @Repository
 public class MemberDao {
@@ -96,6 +97,11 @@ public class MemberDao {
 	public int addVisit() {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("admin.addVisit");
+	}
+
+	public int insertServiceRequest(ServiceRequest sr) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("member.insertServiceRequest",sr);
 	}
 
 }
