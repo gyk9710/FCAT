@@ -48,4 +48,13 @@ public class SellerDao {
 		String writer = fs.getFsWriter();
 		return sqlSession.selectList("seller.myserviceList",writer);
 	}
+
+	public List mydeleteList(FService fs) {
+		String writer = fs.getFsWriter();
+		return sqlSession.selectList("seller.mydeleteList",writer);
+	}
+
+	public int myserviceDelete(int fsNo) {
+		return sqlSession.delete("seller.myserviceDelete",fsNo);
+	}
 }

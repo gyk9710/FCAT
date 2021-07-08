@@ -48,4 +48,13 @@ public class SellerService {
 		System.out.println(fs.getFsWriter());
 		return dao.myserviceList(fs);
 	}
+
+	public List mydeleteList(FService fs) {
+		
+		return dao.mydeleteList(fs);
+	}
+
+	public int myserviceDelete(int fsNo) {
+		return dao.myserviceDelete(fsNo);
+	}
 }

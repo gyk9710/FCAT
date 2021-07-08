@@ -47,7 +47,7 @@
                     <li>
                         <a href="#">판매관리</a>
                         <ul class="sub-menu">
-                                    <li><a href="#">요청중</a></li>
+                                    <li><a href="/mypage.do">요청중</a></li>
                                     <li><a href="#">진행중</a></li>
                                     <li><a href="#">완료</a></li>
                             
@@ -58,7 +58,7 @@
                         <ul class="sub-menu">
                             <li><a href="/fserviceFrm.do">서비스 등록</a></li>
                             <li><a href="/myserviceUpdateList.do?fsWriter=${sessionScope.m.memberId}">서비스 수정</a></li>
-                            <li><a href="#">서비스 삭제</a></li>
+                            <li><a href="/myserviceDeleteList.do?fsWriter=${sessionScope.m.memberId}">서비스 삭제</a></li>
                         </ul>
                     
                     </li>

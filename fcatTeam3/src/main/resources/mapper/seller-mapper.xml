@@ -31,6 +31,17 @@
 		where fs_writer = #{writer}
 	
 	</select>
+	<select id="mydeleteList" resultType="fs" parameterType="String">
+		select 
+  		fs_no as fsNo,
+  		fs_title as fsTitle,
+  		
+  		fs_category as fsCategory, 
+  		fs_child_category as fsChildCategory,
+  		fs_price as fsPrice
+		from fservice 
+		where fs_writer = #{writer}
+	</select>
 	
 	<!-- 요청 리스트 조회 -->
 	<select id="requestServiceList" resultType="sr" parameterType="int">
@@ -45,6 +56,10 @@
 		ON SR.SERVICE_NO = FS.FS_NO
 		WHERE SR.SERVICE_NO = #{serviceNo}
 	</select>
+	
+	<delete id="myserviceDelete" parameterType="int">
+		delete from fservice where fs_no=#{fsNo}
+	</delete>
 
 	
 	<!-- 알람 수 조회 -->

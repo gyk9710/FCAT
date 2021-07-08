@@ -19,6 +19,9 @@
     float: left;
     position: relative;
     left: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 30px;
 }
 </style>
 </head><script>
@@ -61,7 +64,7 @@
                     <li>
                         <a href="#">판매관리</a>
                         <ul class="sub-menu">
-                                    <li><a href="#">요청중</a></li>
+                                    <li><a href="/mypage.do">요청중</a></li>
                                     <li><a href="#">진행중</a></li>
                                     <li><a href="#">완료</a></li>
                             
@@ -127,7 +130,7 @@
         </div>
         <div class="my_r">
 
-        <span style="font-size: 20px; display: inline-block; margin-bottom: 10px;">나의 서비스</span>&nbsp;&nbsp;&nbsp;   서비스 수정
+        <span style="font-size: 20px; display: inline-block; margin-bottom: 10px;">나의 서비스</span>&nbsp;&nbsp;&nbsp;   서비스 삭제
         <div class="my_list">
 
             <table class="table-sm table-bordered table-hover text-center center">
@@ -140,6 +143,7 @@
                         <th>중분류</th>
                       	<th>가격</th>
                         <th>확인</th>
+                        <th style="display: none;">no</th>
                     </tr>
                 </thead>
 
@@ -152,10 +156,12 @@
                             <td>${fs.fsChildCategory}</td>
                             <td>${fs.fsPrice }</td>
                             
+                            
                             <td>
-                                <button class="utbtn">수정</button>
+                                <a href="/deleteService.do?fsNo=${fs.fsNo}" class="utbtn"> 삭제</a>
                               
                             </td>
+                            <td style="display: none;">${fs.fsNo }</td>
                         </tr>
                     </c:forEach>
                     

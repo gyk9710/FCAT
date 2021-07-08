@@ -16,10 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.common.model.vo.FService;
 import kr.or.fservice.model.vo.TestService;
+import kr.or.member.model.vo.Member;
 import kr.or.seller.model.service.SellerService;
 import kr.or.seller.model.vo.ServiceRequest;
 
@@ -46,7 +48,7 @@ public class SellerController {
 		return "seller/fserviceFrm";
 	}
 	@RequestMapping (value = "/fservice.do")
-	public String service(Model model, FService fs,MultipartFile file, HttpServletRequest request  ) {
+	public String service(Model model, FService fs,MultipartFile file, HttpServletRequest request,@SessionAttribute Member m  ) {
 		
 		System.out.println("title : "+fs.getFsTitle());
 		
@@ -105,7 +107,8 @@ public class SellerController {
 		else {
 			model.addAttribute("msg","서비스등록을 실패하였습니다");
 		}
-		model.addAttribute("loc","/");
+		model.addAttribute("loc","myserviceUpdateList.do?fsWriter="+m.getMemberId());
+		
 		return "common/msg";
 		
 	}
@@ -141,5 +144,24 @@ public class SellerController {
 		
 		return "seller/updateList";
 	}
-
+	
+	@RequestMapping (value = "/deleteService.do")
+	public String deleteService(int fsNo,Model model,@SessionAttribute Member m) {
+		
+		int result = service.myserviceDelete(fsNo);
+		
+		
+		System.out.println("게시물 번호  : " + fsNo);
+		
+		model.addAttribute("msg","삭제되었습니다.");
+		model.addAttribute("loc","myserviceDeleteList.do?fsWriter="+m.getMemberId());
+		//return "redirect:/myserviceDeleteList.do?fsWriter=${sessionScope.m.memberId }";
+		return "common/msg";
+	}
+	@RequestMapping (value = "/myserviceDeleteList.do")
+	public String deleteList(FService fs, Model model) {
+		List list = service.mydeleteList(fs);
+		model.addAttribute("list",list);
+		return "seller/deleteList";
+	}
 }
