@@ -7,6 +7,23 @@
 <meta charset="UTF-8">
 <title>my page</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<style>
+.utbtn{
+	width: 43px;
+    border: 1px solid;
+    color: white;
+    background-color: #00c7ae;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 3px;
+    float: left;
+    position: relative;
+    left: 30px;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 30px;
+}
+</style>
 </head><script>
     $(function(){
         $(".sub-menu").prev().append("<span class='more'>+</span>");
@@ -47,7 +64,7 @@
                     <li>
                         <a href="#">판매관리</a>
                         <ul class="sub-menu">
-                                    <li><a href="/mypage.do">요청중</a></li>
+                                    <li><a href="#">요청중</a></li>
                                     <li><a href="#">진행중</a></li>
                                     <li><a href="#">완료</a></li>
                             
@@ -58,7 +75,7 @@
                         <ul class="sub-menu">
                             <li><a href="/fserviceFrm.do">서비스 등록</a></li>
                             <li><a href="/myserviceUpdateList.do?fsWriter=${sessionScope.m.memberId}">서비스 수정</a></li>
-                            <li><a href="/myserviceDeleteList.do?fsWriter=${sessionScope.m.memberId}">서비스 삭제</a></li>
+                            <li><a href="/myserviceDeleteList.do?fsWriter=${sessionScope.m.memberId }">서비스 삭제</a></li>
                         </ul>
                     
                     </li>
@@ -113,57 +130,43 @@
         </div>
         <div class="my_r">
 
-        <span style="font-size: 20px; display: inline-block; margin-bottom: 10px;">판매관리</span>&nbsp;&nbsp;&nbsp;   요청중
+        <span style="font-size: 20px; display: inline-block; margin-bottom: 10px;">나의 서비스</span>&nbsp;&nbsp;&nbsp;   서비스 수정
         <div class="my_list">
 
             <table class="table-sm table-bordered table-hover text-center center">
                 <thead>
                     <tr class="my_list_tr">
-                        <th><input type="checkbox" id="allCheck"></th>
+                        
                         <th>번호</th>
                         <th>서비스제목 (fstitle)</th>
                         <th>대분류</th>
                         <th>중분류</th>
-                        <th>신청인</th>
+                      	<th>가격</th>
                         <th>확인</th>
                     </tr>
                 </thead>
 
                 <tbody class="text-center">
-                    <c:forEach items="${list }" var="rs" varStatus="i">
+                    <c:forEach items="${list }" var="fs" varStatus="i">
                         <tr>
-                            <td><input type="checkbox" name="requestService"></td>
                             <td>${i.count }</td>
-                            <td>기타 경력 60년입니다</td>
-                            <td>${rs.fsCategory}</td>
-                            <td>${rs.fsChildCategory}</td>
-                            <td>${rs.requestId}</td>
+                            <td>${fs.fsTitle} </td>
+                            <td>${fs.fsCategory}</td>
+                            <td>${fs.fsChildCategory}</td>
+                            <td>${fs.fsPrice }</td>
+                            
                             <td>
-                                <button class="mybtn">승인</button>
-                                <button class="mybtn">반려</button>
+                            <a href="/updateService.do?fsNo=${fs.fsNo}" class="utbtn">수정</a>
+                                
+                              
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td><input type="checkbox" name="requestService"></td>
-                        <td>2</td>
-                        <td class="list_title">수학 레알누구보다 려요</td>
-                        <td>레슨</td>
-                        <td>수학과외</td>
-                        <td>user01</td>
-                        <td>
-                            <button class="mybtn">승인</button>
-                            <button class="mybtn">반려</button>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <br>
-            <div class="submit_btn">
-                
-                <button class="mybtn2">체크 수락</button>
-                <button class="mybtn2">체크 거절</button>
-            </div>
+           
         </div>
 
         </div >
