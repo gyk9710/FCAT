@@ -62,7 +62,7 @@
                 <table class="table bg-light text-center" style="width:100%;">
                   <thead>
                   <tr class="text-muted">
-                    <th><input type="checkbox" class="allchk"></th><th>아이디</th><th>이름</th><th>전화번호</th><th>주소</th><th>가입일</th><th>회원등급</th><th>쪽지보내기</th>
+                    <th><input type="checkbox" class="allchk"></th><th>아이디</th><th>이름</th><th>전화번호</th><th>주소</th><th>가입일</th><th>회원등급</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,7 +87,6 @@
 						</c:when>
 					</c:choose>
 				  </th>
-                  <th><button type="button" class="btn btn-info btn-sm">쪽지</button></th>
                 </tr>
                 </c:forEach>
                 </tbody>
