@@ -98,18 +98,19 @@
                 </div>
               </div> 
               <!-- bar chart -->
-              <div class="col-md-6 col-sm-6  ">
+              <div class="col-md-6 col-sm-6" >
                 <div class="container">
                   <canvas id="myChart"></canvas>
                 </div>
               </div>
+               <!--  
               <div class="col-md-6 col-sm-6  ">
                 <div class="container">
                     <div class="card-body">
                         <canvas id="chDonut2"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> -->
             </div>
           </div>
         </div>
