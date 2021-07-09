@@ -104,6 +104,13 @@
 	<insert id="addVisit" >
 		INSERT INTO VISIT (V_DATE) VALUES (to_char(sysdate,'yyyy-mm-dd'))
 	</insert>
+	<select id="totalPayment" resultType="int">
+		select count(*) from payment_info
+	</select>
+	
+		<select id="totalPay" resultType="String">
+		select TO_CHAR(sum(amount) , '999,999,999,999,999') from payment_info
+	</select>
 	
 	<select id="todayVisitor" resultType="int">
 		select count(*) from visit where v_Date = to_char(sysdate, 'yyyy-mm-dd')

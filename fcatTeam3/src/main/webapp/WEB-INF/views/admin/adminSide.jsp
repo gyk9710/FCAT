@@ -27,7 +27,7 @@
           <div class="row">
             <!-- sidebar -->
             <div class="col-xl-2 sidebar fixed-top">
-              <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4
+              <a href="/main.do" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4
               bottom-border">fCat</a>
               <div class="bottom-border pb-3">
                 <a href="#" class="text-white">관리자</a>

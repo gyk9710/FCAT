@@ -169,4 +169,14 @@ public class AdminDao {
 		return sqlSession.delete("admin.deleteSeller" , saNo);
 	}
 
+	public int totalPayment() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.totalPayment");
+	}
+
+	public String totalPay() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.totalPay");
+	}
+
 }
