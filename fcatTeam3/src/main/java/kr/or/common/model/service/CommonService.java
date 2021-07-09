@@ -17,6 +17,8 @@ import kr.or.common.model.vo.SaveChat;
 import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.SellerAsk;
 import kr.or.common.model.vo.Tattle;
+import kr.or.seller.model.vo.ServiceRequest;
+import kr.or.seller.model.vo.ServiceRequestData;
 
 @Service
 public class CommonService {
@@ -141,6 +143,11 @@ public class CommonService {
 
 	public int insertSeller(SellerAsk sa) {
 		return dao.insertSeller(sa);
+	}
+
+	// 서비스 요청 리스트 불러오기
+	public List<ServiceRequest> selectSrList(ServiceRequestData srd) {
+		return dao.selectSrList(srd);
 	}
 
 }
