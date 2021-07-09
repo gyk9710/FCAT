@@ -98,10 +98,10 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value = "/payment.do")
-	public String payment(HttpSession session) {
-		return "member/payment";
-	}
+//	@RequestMapping(value = "/payment.do")
+//	public String payment(HttpSession session) {
+//		return "member/payment";
+//	}
 
 	@RequestMapping(value = "/deleteMember.do")
 	public String deleteMember(HttpSession session, Model model) {
@@ -198,6 +198,9 @@ public class MemberController {
 		if (couponList != null) {
 			model.addAttribute("couponList", couponList);
 		}
+		for (FService item : likeServiceList) {
+			System.out.println("fsNo: " + item.getFsNo());
+		}
 		model.addAttribute("likeServiceList", likeServiceList);
 		return "member/myPage";
 	}
@@ -232,14 +235,12 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/deleteMyId.do")
-	public String deleteMyId(HttpSession session, String memberId, String memberPw, Model model) {
-//		Member m = new Member();
-//		m.setMemberId(memberId);
-//		m.setMemberPw(memberPw);
-//		int result = service.deleteMember(m);
-//		session.invalidate();
-//		model.addAttribute("msg","다시 로그인 해주세요.");
-//		model.addAttribute("loc", "/");
+	public String deleteMyId(HttpSession session, String memberId, Model model) {
+		System.out.println(memberId);
+		int result = service.deleteMember(memberId);
+		session.invalidate();
+		model.addAttribute("msg","해당 회원님의 정보가 정상적으로 삭제되었습니다.");
+		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
 
