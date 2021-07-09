@@ -383,6 +383,16 @@ public class AdminService {
 		// TODO Auto-generated method stub
 		return dao.deleteSeller(saNo);
 	}
+
+	public int totalPayment() {
+		// TODO Auto-generated method stub
+		return dao.totalPayment();
+	}
+
+	public String totalPay() {
+		// TODO Auto-generated method stub
+		return dao.totalPay();
+	}
 	
 
 }

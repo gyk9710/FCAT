@@ -32,10 +32,12 @@
                       </div>
                     </div>
                   </div>
+                  <!-- 
                   <div class="card-footer text-secondary">
                     <i class="fas fa-sync mr-3"></i>
                     <span>Updated Now</span>
                   </div>
+                   -->
                 </div>
               </div>
               <div class="col-sm-6 p-2">
@@ -49,10 +51,12 @@
                       </div>
                     </div>
                   </div>
+                  <!-- 
                   <div class="card-footer text-secondary">
                     <i class="fas fa-sync mr-3"></i>
                     <span>Updated Now</span>
                   </div>
+                   -->
                 </div>
               </div>
               <div class="col-sm-6 p-2">
@@ -61,15 +65,17 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-shopping-cart fa-3x text-warning"></i>
                       <div class="text-right text-secondary">
-                        <h5>금일 거래 채결 수</h5>
-                        <h3>10건</h3>
+                        <h5>총 거래 채결 수</h5>
+                        <h3 id="totalPayment"></h3>
                       </div>
                     </div>
                   </div>
+                  <!-- 
                   <div class="card-footer text-secondary">
                     <i class="fas fa-sync mr-3"></i>
                     <span>Updated Now</span>
                   </div>
+                   -->
                 </div>
               </div>
               <div class="col-sm-6 p-2">
@@ -79,14 +85,16 @@
                       <i class="fas fa-credit-card fa-3x "></i>
                       <div class="text-right text-secondary">
                         <h5>총 거래 채결 액</h5>
-                        <h3>1,000,000원</h3>
+                        <h3 id="totalPay"></h3>
                       </div>
                     </div>
                   </div>
+                  <!-- 
                   <div class="card-footer text-secondary">
                     <i class="fas fa-sync mr-3"></i>
                     <span>Updated Now</span>
                   </div>
+                   -->
                 </div>
               </div> 
               <!-- bar chart -->
@@ -122,6 +130,22 @@
           url : "todayVisitor.do",
           success : function(data){
               $("#todayVisitor").html(data+"명") ;
+          }  
+      });
+      
+      $.ajax({
+          type : "GET",
+          url : "totalPayment.do",
+          success : function(data){
+              $("#totalPayment").html(data+"건") ;
+          }  
+      });
+      
+      $.ajax({
+          type : "GET",
+          url : "totalPay.do",
+          success : function(data){
+              $("#totalPay").html(data+"원") ;
           }  
       });
       
