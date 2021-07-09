@@ -222,6 +222,19 @@ public class AdminController {
 	public int todayVisitor() {
 		return service.todayVisitor();
 	}	
+	//대시보드 총 거래 수
+	@ResponseBody
+	@RequestMapping(value="totalPayment.do")
+	public int totalPayment() {
+		return service.totalPayment();
+	}	
+
+	//대시보드 총 거래 합계 액
+	@ResponseBody
+	@RequestMapping(value="totalPay.do")
+	public String totalPay() {
+		return service.totalPay();
+	}	
 	
 	//대시보드 방문자 차트
 	@ResponseBody
