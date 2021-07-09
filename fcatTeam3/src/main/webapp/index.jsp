@@ -851,71 +851,7 @@ ul, li {
 				$("#chatBtn").hide();
 			}
 			
-			
-			var ws;
-			var id;
-			var name;
 
-
-			function initChat(cs)
-			//웹소켓을 초기화
-			{
-				console.log(cs);
-				id='${sessionScope.m.id}';
-				name='${sessionScope.m.name}';
-				ws=new WebSocket("ws://127.0.0.1/chat.do");
-						// 웹소켓 생성시 ip랑 chat.do를 매개변수로 넣어준다 
-				if(cs===1)
-					ws.onopen=startCsChat;
-				else
-					ws.onopen=startChat;
-				
-				ws.onmessage=receiveMsg;
-				ws.onclose=endChat;
-				$(".chatting").slideDown();
-			}
-			function startCsChat()
-			{
-				var data={type:"csEnter",msg:"상담사("+name+")"};
-				ws.send(JSON.stringify(data));
-				appendChat("<p>채팅방에 입장했습니다</p>");
-			}
-
-			function startChat()
-			{
-				var data={type:"enter",msg:id+"("+name+")"};
-				ws.send(JSON.stringify(data));
-				appendChat("<p>채팅방에 입장했습니다</p>");
-			}
-
-			function receiveMsg(pram)
-			{
-				appendChat(pram.data);
-			}
-			function endChat()
-			{
-				appendChat("<p>채팅이 종료되었습니다</p>");
-			}
-			function appendChat(msg)
-			{
-				console.log($(".chatPaper")[0]);
-				console.log($(".chatPaper")[0].scrollHeight);
-				$(".chatPaper").append(msg);
-				$(".chatPaper").scrollTop($(".chatPaper")[0].scrollHeight);
-			}
-			function sendMessage()
-			{
-				var message=$("#sendMsg").val();
-				if(message!=="")
-				{	
-					var data={type:"chat",msg:message};
-					ws.send(JSON.stringify(data));
-					appendChat("<div class='chat right'><span>"+message+"</span></div>");
-					$("#sendMsg").val("");
-				}
-
-			}
-			
 			</script>
 	</body>
 

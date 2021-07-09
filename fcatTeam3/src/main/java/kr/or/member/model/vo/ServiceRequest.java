@@ -2,8 +2,8 @@ package kr.or.member.model.vo;
 
 public class ServiceRequest {
 	private int srNo;
-	private int srServiceNo;
-	private String srRequestId;
+	private int fsNo;
+	private String requestId;
 	private int srState;	
 	
 	public ServiceRequest() {
@@ -11,11 +11,11 @@ public class ServiceRequest {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ServiceRequest(int srNo, int srServiceNo, String srRequestId, int srState) {
+	public ServiceRequest(int srNo, int fsNo, String requestId, int srState) {
 		super();
 		this.srNo = srNo;
-		this.srServiceNo = srServiceNo;
-		this.srRequestId = srRequestId;
+		this.fsNo = fsNo;
+		this.requestId = requestId;
 		this.srState = srState;
 	}
 
@@ -27,20 +27,20 @@ public class ServiceRequest {
 		this.srNo = srNo;
 	}
 
-	public int getSrServiceNo() {
-		return srServiceNo;
+	public int getFsNo() {
+		return fsNo;
 	}
 
-	public void setSrServiceNo(int srServiceNo) {
-		this.srServiceNo = srServiceNo;
+	public void setFsNo(int fsNo) {
+		this.fsNo = fsNo;
 	}
 
-	public String getSrRequestId() {
-		return srRequestId;
+	public String getRequestId() {
+		return requestId;
 	}
 
-	public void setSrRequestId(String srRequestId) {
-		this.srRequestId = srRequestId;
+	public void setRequestId(String requestId) {
+		this.requestId = requestId;
 	}
 
 	public int getSrState() {
@@ -50,6 +50,8 @@ public class ServiceRequest {
 	public void setSrState(int srState) {
 		this.srState = srState;
 	}
+
+	
 	
 	
 }

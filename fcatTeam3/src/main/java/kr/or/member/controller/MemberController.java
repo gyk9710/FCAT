@@ -171,8 +171,8 @@ public class MemberController {
 		paymentInfo.setFsNo(Integer.parseInt(request.getParameter("srServiceNo")));
 		
 		ServiceRequest sr= new ServiceRequest();
-		sr.setSrRequestId(request.getParameter("buyerId"));
-		sr.setSrServiceNo(Integer.parseInt(request.getParameter("srServiceNo")));
+		sr.setRequestId(request.getParameter("buyerId"));
+		sr.setSrState(Integer.parseInt(request.getParameter("srServiceNo")));
 
 		int result2=service.insertServiceRequest(sr);
 		if (result2 > 0) {
