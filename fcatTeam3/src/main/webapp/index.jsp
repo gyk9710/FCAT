@@ -486,11 +486,6 @@ ul, li {
 	<body>
 		<!--  헤더  -->
 		<%@include file="/WEB-INF/views/common/header.jsp" %>
-
-			<!-- 관리자 페이지 테스트 -->
-			<h3>
-				<a href="/adminPage.do">관리자 페이지</a>
-			</h3>
 			
 			<!-- 고객센터 테스트 -->
 			<h3>

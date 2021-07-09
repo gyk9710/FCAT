@@ -92,7 +92,9 @@
             로그아웃 하시겠습니까?
           </div>
           <div class="modal-footer">
-            <a href="/logout.do" class="btn btn-danger" data-dismiss="modal">네</a>
+          <form action="/logout.do" >
+            <button type="submit" class="btn btn-danger" >네</button>
+            </form> 
             <button type="button" class="btn btn-success" data-dismiss="modal">아니요</button>
           </div>
         </div>

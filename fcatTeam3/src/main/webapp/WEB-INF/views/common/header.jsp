@@ -186,7 +186,12 @@ input:focus {outline:none;}
 						</c:when>
 						<c:otherwise>
 							<li style="float:left; width:200px;"><span style="font-weight:bold;">[${sessionScope.m.memberName}]님 환영합니다.</span></li>
+							<c:if test="${m.grade == 3 }">
+							<li style="float:left; width:100px;"><a href="/adminPage.do"style="color:black;text-decoration:none;">관리자페이지</a></li>
+							</c:if>
+							<c:if test="${m.grade != 3 }">
 							<li style="float:left; width:100px;"><a href="/mypage.do"style="color:black;text-decoration:none;">마이페이지</a></li>
+							</c:if>
 							<li style="float:left; width:100px;"><a href="/logout.do"style="color:black;text-decoration:none;">로그아웃</a></li>
 						</c:otherwise>
 						</c:choose>
