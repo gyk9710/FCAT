@@ -172,7 +172,7 @@ public class MemberController {
 		
 		ServiceRequest sr= new ServiceRequest();
 		sr.setRequestId(request.getParameter("buyerId"));
-		sr.setSrState(Integer.parseInt(request.getParameter("srServiceNo")));
+		sr.setFsNo(Integer.parseInt(request.getParameter("srServiceNo")));
 
 		int result2=service.insertServiceRequest(sr);
 		if (result2 > 0) {

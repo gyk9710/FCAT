@@ -118,8 +118,8 @@
   	<insert id="insertServiceRequest" parameterType="sr">
   	insert into service_request values(
   	sr_seq.nextval,
-  	#{srServiceNo},
-  	#{srRequestId},
+  	#{fsNo},
+  	#{requestId},
   	0)
   </insert>
 
