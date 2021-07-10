@@ -28,6 +28,11 @@
 	width: 1080px;
 }
 </style>
+<script>
+function sendRequest(msgSender){	
+	location.href="/payment.do";
+	}
+</script>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
