@@ -127,6 +127,17 @@ select
     (select count(*) from visit where v_Date = to_char(sysdate,'yyyy-mm-dd')) as today
 from dual
 	</select>
+	<select id="joinMember" resultType="joinMember">
+select
+    (select count(*) from member where enroll_date like '2021-02%') as feb,
+    (select count(*) from member where enroll_date like '2021-03%') as mar,
+    (select count(*) from member where enroll_date like '2021-04%') as apr,
+    (select count(*) from member where enroll_date like '2021-05%') as may,
+    (select count(*) from member where enroll_date like '2021-06%') as jun,
+    (select count(*) from member where enroll_date like '2021-07%') as jul
+    from dual	
+	</select>
+	
 	
 	<select id="adminSeller" resultType="sa">
 select 

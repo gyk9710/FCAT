@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.admin.model.vo.Board;
+import kr.or.admin.model.vo.JoinMember;
 import kr.or.admin.model.vo.MemberVisitor;
 import kr.or.common.model.vo.SellerAsk;
 import kr.or.member.model.vo.Member;
@@ -177,6 +178,11 @@ public class AdminDao {
 	public String totalPay() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("admin.totalPay");
+	}
+
+	public JoinMember joinMember() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.joinMember");
 	}
 
 }

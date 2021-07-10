@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.admin.model.dao.AdminDao;
 import kr.or.admin.model.vo.Board;
 import kr.or.admin.model.vo.BoardpageData;
+import kr.or.admin.model.vo.JoinMember;
 import kr.or.admin.model.vo.MemberPageData;
 import kr.or.admin.model.vo.MemberVisitor;
 import kr.or.common.model.vo.SellerAsk;
@@ -392,6 +393,11 @@ public class AdminService {
 	public String totalPay() {
 		// TODO Auto-generated method stub
 		return dao.totalPay();
+	}
+
+	public JoinMember joinMember() {
+		// TODO Auto-generated method stub
+		return dao.joinMember();
 	}
 	
 

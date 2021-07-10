@@ -36,6 +36,8 @@
 		<typeAlias type="kr.or.member.model.vo.PaymentInfo" alias="p"/>
 		<!-- 방문자 -->
 		<typeAlias type="kr.or.admin.model.vo.MemberVisitor" alias="visitor"/>
+		<!-- 회원가입수 -->
+		<typeAlias type="kr.or.admin.model.vo.JoinMember" alias="joinMember"/>		
 		<!-- 서비스 리퀘스트 -->
 		<typeAlias type="kr.or.member.model.vo.ServiceRequest" alias="sr"/>
 	</typeAliases>
