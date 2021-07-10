@@ -13,7 +13,11 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/resources/css/styles.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>	    
+        
+<script src="/resources/summernote/summernote-lite.js"></script>
+<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 </head>
 <style>
         .s1{
@@ -135,6 +139,11 @@
     height:0;
     overflow:hidden;
 }
+.tipm{
+padding-top : 30px;
+padding-bottom: 30px;
+line-height: 40px;
+}
 
 
     </style>
@@ -198,6 +207,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">서비스 등록 안내</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">기본정보</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">서비스 설명</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#imginsert">작업물 등록</a></li>
                 
                     
                 </ul>
@@ -449,20 +459,133 @@
                                 </td>
                                 
                             </tr>
+                           
                         </table>
-                        <div class="sdr">
-                            <input type="submit" value="등록하기" class="btn btn-outline-danger">
-                            <a href="#" class="btn btn-outline-danger">취소하기</a>
-                        </div>
+                        
                 </div>
             </section>
-            </form>
+            
             <hr class="m-0" />
+            <section class="resume-section" id="imginsert">
+                <div class="resume-section-content">
+                    
+                        <div class="s1">
+
+                            <h3>작업물 등록</h3>
+                            
+                        </div>
+                    
+                    <div class="s2">
+                      
+                        
+                    </div>
+                    <div>
+                        <table class="t1">
+                            <tr>
+                                <td colspan="3" class="t1-1">이미지 등록 <span style="color: rgb(196, 189, 255); font-weight: bolder;">tip</span></td>
+                            </tr>
+                            <tr>
+                                <td class="t1-2 tipm" colspan="3">
+                                  
+• 개인 연락처 혹은 홍보 이미지는 등록하실 수 없습니다.<br>
+• 상업적인 이용 및 허가에 대한 부분을 확인하시어 등록해주시기 바랍니다.<br>
+• 무단/부정한 이용으로 제3자의 권리를 침해하는 동영상은 등록할 수 없습니다.<br>
+• 선명한 고해상도의 사진을 올려 구매자들의 시선을 사로잡아보세요.<br>
+
+                                </td>
+                                
+                            </tr>
+                            
+                           
+                            
+                        </table>
+                    </div>
+                    
+                    <br><br>
+                    <textarea id="summernote" class="form-control" rows="5" name="fsDescriptionText" ></textarea>
+                    
+                    
+                </div>
+           
+            
+                
+            </section>
+            
+            
             
         </div>
+        
+         <div class="sdr">
+                            <input type="submit" value="등록하기" class="btn btn-outline-danger">
+                            <a href="#" class="btn btn-outline-danger">취소하기</a>
+                        </div>    
+                        
+                        </form>
+                        
+                        <br><br><br>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="/resources/js/scripts.js"></script>
     </body>
+    <script>
+//여기 아래 부분 
+ $(function(){
+      
+   
+   $("#summernote").summernote({
+       height: 500, // editor height
+         focus: true, // set focus editable area
+         lang: "ko-KR", // 한글설정
+         placeholder: "내용을 입력하세요.",
+         callbacks: {
+           // 이미지 첨부 시
+           onImageUpload: function (files) {
+             // 다중 업로드 처리
+             for (var i = 0; i < files.length; i++) {
+               uploadImage(files[i], this);
+             }
+           }
+         }
+       });
+   });
+       // 이미지 업로드
+       function uploadImage(file, editor) {
+        console.log(file)
+         var formData = new FormData();
+         formData.append("file", file);
+         $.ajax({
+           data: formData,
+           type: "POST",
+           url: "/uploadImage.do",
+           enctype: 'multipart/form-data',
+           cache: false,
+           contentType: false,
+           processData: false,
+           success: function (data) {
+             console.log(data);
+             // 파일 네임 전송용
+             $("[name=filename]").val(data);
+             // 이미지 경로 설정
+             data = "/resources/upload/notice/" + data;
+             // 이미지 미리보기
+             $(editor).summernote('insertImage', data);
+           }
+         });
+       }
+
+     
+
+
+
+//$('#summernote').summernote({
+	//  height: 300,                 // 에디터 높이
+	 // minHeight: null,             // 최소 높이
+	//  maxHeight: null,             // 최대 높이
+	//  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+	//  lang: "ko-KR",					// 한글 설정
+	//  placeholder : "내용 입력",
+//});
+
+</script>
 </html>

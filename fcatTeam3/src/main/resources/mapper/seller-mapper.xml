@@ -14,7 +14,8 @@
 		#{fsChildCategory},
 		#{fsPhoto},
 		' ',
-		' '
+		#{fsDescriptionText}
+		
 		) 
 	</insert>
 	
