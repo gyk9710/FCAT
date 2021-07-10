@@ -102,10 +102,10 @@ public class MemberController {
 	}
 
 	// 결제 페이지 이동
-		@RequestMapping(value = "/payment.do")
-		public String payment(HttpSession session) {
-			return "search/payment";
-		}
+	@RequestMapping(value = "/payment.do")
+	public String payment(HttpSession session) {
+		return "search/payment";
+	}
 
 	@RequestMapping(value = "/deleteMember.do")
 	public String deleteMember(HttpSession session, Model model) {
@@ -169,12 +169,12 @@ public class MemberController {
 		paymentInfo.setBuyerId(request.getParameter("buyerId"));
 		paymentInfo.setSellerId(request.getParameter("sellerId"));
 		paymentInfo.setFsNo(Integer.parseInt(request.getParameter("srServiceNo")));
-		
-		ServiceRequest sr= new ServiceRequest();
+
+		ServiceRequest sr = new ServiceRequest();
 		sr.setRequestId(request.getParameter("buyerId"));
 		sr.setSrState(Integer.parseInt(request.getParameter("srServiceNo")));
 
-		int result2=service.insertServiceRequest(sr);
+		int result2 = service.insertServiceRequest(sr);
 		if (result2 > 0) {
 			System.out.println("서비스리퀘스트 삽입 완료");
 		} else {
@@ -208,16 +208,28 @@ public class MemberController {
 		ArrayList<Coupon> couponList = service.selectCoupon(m.getMemberId());
 		ArrayList<Integer> likeList = service.selectMemberLike(m.getMemberId());
 		ArrayList<FService> likeServiceList = new ArrayList<FService>();
+//		서비스 조회
+		ArrayList<Integer> serviceProceedingList = service.selectProceeding(m.getMemberId());
+		ArrayList<Integer> serviceCompeleteList = service.selectCompelete(m.getMemberId());
+		ArrayList<FService> proceedingList = new ArrayList<FService>();
+		ArrayList<FService> compeleteList = new ArrayList<FService>();
 		for (Integer item : likeList) {
 			likeServiceList.add(service.selectServiceLike(item));
+		}
+		for (Integer item : serviceProceedingList) {
+			proceedingList.add(service.selectServiceLike(item));
+			System.out.println("proceedItem: " + item);
+		}
+		for (Integer item : serviceCompeleteList) {
+			compeleteList.add(service.selectServiceLike(item));
+			System.out.println("compeleteList: " + item);
 		}
 		if (couponList != null) {
 			model.addAttribute("couponList", couponList);
 		}
-		for (FService item : likeServiceList) {
-			System.out.println("fsNo: " + item.getFsNo());
-		}
 		model.addAttribute("likeServiceList", likeServiceList);
+		model.addAttribute("proceedingList", proceedingList);
+		model.addAttribute("compeleteList", compeleteList);
 		return "member/myPage";
 	}
 
@@ -255,7 +267,7 @@ public class MemberController {
 		System.out.println(memberId);
 		int result = service.deleteMember(memberId);
 		session.invalidate();
-		model.addAttribute("msg","해당 회원님의 정보가 정상적으로 삭제되었습니다.");
+		model.addAttribute("msg", "해당 회원님의 정보가 정상적으로 삭제되었습니다.");
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}

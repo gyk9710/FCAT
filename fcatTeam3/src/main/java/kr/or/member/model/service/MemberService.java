@@ -93,5 +93,13 @@ public class MemberService {
 		return dao.insertServiceRequest(sr);
 	}
 
+	public ArrayList<Integer> selectProceeding(String memberId) {
+		return dao.selectProceeding(memberId);
+	}
+
+	public ArrayList<Integer> selectCompelete(String memberId) {
+		return dao.selectCompelete(memberId);
+	}
+
 	
 }
