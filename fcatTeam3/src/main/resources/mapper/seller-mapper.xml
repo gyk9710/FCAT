@@ -13,7 +13,6 @@
 		#{fsWorking},
 		#{fsChildCategory},
 		#{fsPhoto},
-		' ',
 		#{fsDescriptionText}
 		
 		) 
