@@ -184,7 +184,6 @@
 		</div>
 
 		<div class="section-01 scroll" id="scroll1">
-			<img alt="" src="${fs.fsDescriptionImage }">
 			<div>${fs.fsDescriptionText}</div>
 
 		</div>
