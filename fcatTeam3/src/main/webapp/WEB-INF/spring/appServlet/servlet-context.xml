@@ -70,6 +70,11 @@
 		<websocket:mapping handler="chatting" path="/chatting.do"/>
 	</websocket:handlers>
 	
+	<!-- 상담사와 1:1채팅 -->
+	<beans:bean id="oneToOneChat" class="kr.or.member.model.service.OneToOneChat"/>
+	<websocket:handlers>
+		<websocket:mapping handler="oneToOneChat" path="/chat.do"/>
+	</websocket:handlers>
 	
 	<context:component-scan base-package="kr.or.iei" />
 	<context:component-scan base-package="kr.or.seller" />
