@@ -163,7 +163,6 @@
                             fs_working as fsWorking,
                             fs_child_category as fsChildCategory,
                             fs_photo as fsPhoto,
-                            fs_description_image as fsDescriptionImage,
                             fs_description_text as fsDescriptionText 
 						FROM fservice 
                          where
