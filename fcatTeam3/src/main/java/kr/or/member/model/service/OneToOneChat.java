@@ -1,5 +1,6 @@
 package kr.or.member.model.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,7 +56,7 @@ public class OneToOneChat extends TextWebSocketHandler{
 			if(count>0)
 			{
 				WebSocketSession buyerSession=sessionListBuyer.get(0);
-				String sendMessage="<p>"+msg+"님의 채팅방에"+ memberList.get(buyerSession) +"님이 참여했습니다.</p>";
+				String sendMessage="<p>"+msg+"님의 채팅방에"+ memberList.get(buyerSession) +"님이 참여했습니다.</p><br>";
 				oneToOneRoom.put(session,buyerSession);
 				oneToOneRoom.put(buyerSession,session);
 				
@@ -92,17 +93,28 @@ public class OneToOneChat extends TextWebSocketHandler{
 			WebSocketSession target=oneToOneRoom.get(session);
 			if(target==null)
 				return;
-			String sendMessage="<div class='chat left'><span>"+memberList.get(session)+" : "+msg+"</span></div>";
+			String sendMessage="<div class='chat chatLeft'><span>"+memberList.get(session)+" : "+msg+"</span></div>";
 			TextMessage tm=new TextMessage(sendMessage);
 			target.sendMessage(tm);
 		}
-		
+		if(type.equals("close"))
+		{
+			System.out.println("asdasdas으아아아아앙ㄱ");
+			clean(session);
+		}
 		
 	}
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		clean(session);
+	}
+	
+	
+	private void clean(WebSocketSession session) throws IOException
+	{
 		String sendMessage="<p>"+memberList.get(session)+"님이 퇴장하셨습니다</p>";
 		WebSocketSession target=oneToOneRoom.get(session);
+		System.out.println(sendMessage);
 		if(target!=null)
 		{
 		oneToOneRoom.replace(target, null);

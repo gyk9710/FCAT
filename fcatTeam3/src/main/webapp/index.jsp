@@ -452,7 +452,7 @@ ul, li {
 	display: none;
 }
 
-.chatPaper>p {
+#chatPaperMessage>p {
 	text-align: center;
 	width: 100%;
 }
@@ -472,18 +472,21 @@ ul, li {
 	border-radius: 10px;
 }
 
-.chat.right {
-	background-color: #ffeb33;
+.chat.chatRight {
+	background-color: #A6F2DB;
 	align-self: flex-end;
 }
 
-.chat.left {
-	background-color: #ffffff;
+.chat.chatLeft {
+	background-color: #F0F0F1;
 	align-self: flex-start;
 }
 
-#chatPaperMeassage {
+#chatPaperMessage {
 	height: 600px;
+	overflow-y:auto;
+	display:flex;
+	flex-direction:column;
 }
 
 #messageInsert {
@@ -514,6 +517,17 @@ ul, li {
 	width:60px;
 	float:left;
 	padding:15px 12px;
+}
+.waitChat{
+	visibility:visible;
+	margin-top: 160px;
+	text-align: center;
+	height:600px;
+}
+.chatEmpty{
+	width:0px;
+	height:0px;
+	visibility:hidden;
 }
 </style>
 </head>
@@ -894,18 +908,21 @@ ul, li {
 				<div class="chatPaperhead">
 					<div class="chatPaperheadleft">&nbsp</div>
 					<div class="chatPaperheadCenter">&nbsp</div>
-					<div class="chatPaperheadRight"><a href="" style="color:black; text-decoration:none;">닫기</a></div>
+					<div class="chatPaperheadRight"><div style="color:black; text-decoration:none; cursor:pointer"onclick="closeChat();">닫기</div></div>
 				</div>
-				
-				<div id="chatPaperMeassage">					
+				<div class="waitChat" id="waiting">잠시만 기다려주세요</div>
+				<div id="chatPaperMessage">					
 				</div><hr>
 				<div id="messageInsert">
 					<div id="messageLeft">&nbsp</div>
 					<div id="messageCenter">
-					<input type="text" style="padding: 20px 10px; width:248px; border: 0px;" placeholder="메세지를 입력해주세요" >
-					</div>
+					<input id="chatMessage" type="text" style="padding: 20px 10px; width:248px; border: 0px;" placeholder="메세지를 입력해주세요" onKeypress="javascript:if(event.keyCode==13){$('#messageRightBtn').trigger('onclick')}">
+					</div>		
 					<div id="messageRight">
-						<button type="button" style="border:0px;"><img src="/resources/img/send.png" style="padding:15px 12px; "></button>						
+					<button id="messageRightBtn" type="button"style="border:0px;" onclick="sendMessage();"><img src="/resources/img/send.png" style="padding:15px 12px;"></button>						
+						<!--  
+						<button id="messageRightBtn2" type="button" style="border:0px;"><img src="/resources/img/send.png" style="padding:15px 12px;"onclick="sendMessage();"></button>						
+					-->
 					</div>
 				</div>
 			</div>
@@ -921,6 +938,7 @@ ul, li {
 			<hr>
 			<br>
 		</div>
+		</div>
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 		<script>
 			jQuery(document).ready(function () {
@@ -930,10 +948,18 @@ ul, li {
 				$("#chatPaper").show();
 				$("#chatBtn").hide();
 				
+				$("#waiting").removeClass("chatEmpty");
+				$("#waiting").addClass("waitChat");
+				
 				initChat(${m.grade});
 			}
 			
-
+			function closeChat(){				
+				$("#chatPaper").hide();
+				$("#chatBtn").show();
+				var data={type:"close"};
+				ws.send(JSON.stringify(data));
+			}
 			</script>
 		<script>
 			var ws;
@@ -954,7 +980,6 @@ ul, li {
 				
 				ws.onmessage=firstMessage;
 				ws.onclose=endChat;
-				console.log("d");
 			}
 			function startCsChat()
 			{
@@ -971,7 +996,9 @@ ul, li {
 			}
 		
 			function firstMessage(param){
-				$("#waiting").hide();
+				$("#waiting").addClass("chatEmpty");
+				$("#waiting").removeClass("waitChat");
+				$("#chatPaperMessage").html("");
 				appendChat(param.data);
 				ws.onmessage=receiveMsg;
 			}
@@ -986,20 +1013,20 @@ ul, li {
 			}
 			function appendChat(msg)
 			{
-				console.log($(".chatPaper")[0]);
-				console.log($(".chatPaper")[0].scrollHeight);
-				$(".chatPaper").append(msg);
-				$(".chatPaper").scrollTop($(".chatPaper")[0].scrollHeight);
+				console.log($("#chatPaperMessage")[0]);
+				console.log($("#chatPaperMessage")[0].scrollHeight);
+				$("#chatPaperMessage").append(msg);
+				$("#chatPaperMessage").scrollTop($("#chatPaperMessage")[0].scrollHeight);
 			}
 			function sendMessage()
 			{
-				var message=$("#sendMsg").val();
+				var message=$("#chatMessage").val();
 				if(message!=="")
 				{	
 					var data={type:"chat",msg:message};
 					ws.send(JSON.stringify(data));
-					appendChat("<div class='chat right'><span>"+message+"</span></div>");
-					$("#sendMsg").val("");
+					appendChat("<div class='chat chatRight'><span>"+message+"</span></div>");
+					$("#chatMessage").val("");
 				}
 
 			}
