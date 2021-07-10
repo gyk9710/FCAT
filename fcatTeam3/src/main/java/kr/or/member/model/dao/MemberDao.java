@@ -104,4 +104,14 @@ public class MemberDao {
 		return sqlSession.insert("member.insertServiceRequest",sr);
 	}
 
+	public ArrayList<Integer> selectProceeding(String memberId) {
+		List<Integer> list = sqlSession.selectList("member.selectProceeding",memberId);
+		return (ArrayList<Integer>) list;
+	}
+
+	public ArrayList<Integer> selectCompelete(String memberId) {
+		List<Integer> list = sqlSession.selectList("member.selectCompelete",memberId);
+		return (ArrayList<Integer>) list;
+	}
+
 }

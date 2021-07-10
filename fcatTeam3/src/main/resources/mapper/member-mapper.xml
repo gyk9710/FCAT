@@ -178,6 +178,16 @@
 			member_phone = #{memberPhone}
 			where member_id = #{memberId}
 	</update>
+	<select id="selectProceeding" parameterType="string" resultType="int">
+		select fs_no as fsNo
+		from service_request
+		where request_id = #{memberId} and sr_state = 1 
+	</select>
+	<select id="selectCompelete" parameterType="string" resultType="int">
+		select fs_no as fsNo
+		from service_request
+		where request_id = #{memberId} and sr_state = 2
+	</select>
 </mapper>
 
 
