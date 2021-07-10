@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import kr.or.admin.model.service.AdminService;
 import kr.or.admin.model.vo.Board;
 import kr.or.admin.model.vo.BoardpageData;
+import kr.or.admin.model.vo.JoinMember;
 import kr.or.admin.model.vo.MemberPageData;
 import kr.or.admin.model.vo.MemberVisitor;
 import kr.or.common.model.vo.SellerAsk;
@@ -242,6 +243,14 @@ public class AdminController {
 	public String memberVisitor() {
 		MemberVisitor visitor = service.memberVisitor();
 		return new Gson().toJson(visitor);
-	}		
+	}
+	
+	//대시보드 회원가입 추세
+	@ResponseBody
+	@RequestMapping(value="joinMember.do",produces = "application/json; charset:utf-8")
+	public String joinMember() {
+		JoinMember joinMember = service.joinMember();
+		return new Gson().toJson(joinMember);
+	}	
 	
 }

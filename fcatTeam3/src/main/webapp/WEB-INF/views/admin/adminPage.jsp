@@ -103,14 +103,14 @@
                   <canvas id="myChart"></canvas>
                 </div>
               </div>
-               <!--  
+               
               <div class="col-md-6 col-sm-6  ">
                 <div class="container">
                     <div class="card-body">
-                        <canvas id="chDonut2"></canvas>
+                        <canvas id="myChart2"></canvas>
                     </div>
                 </div>
-            </div> -->
+            </div> 
             </div>
           </div>
         </div>
@@ -170,6 +170,45 @@
                     label: '방문자수',
                     data: arr,
                     borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }]
+                  }
+                }
+              });
+          }  
+      });
+      
+      $.ajax({
+          type : "GET",
+          url : "joinMember.do",
+          success : function(returnData){
+              var d = new Date();
+              var month = d.getMonth();
+              var arr = new Array();
+              for(var key in returnData){
+            	  arr.push(returnData[key]);
+              }
+              console.log(arr);
+              var ctx = document.getElementById('myChart2');
+              var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: [month-4+"월",month-3+"월",month-2+"월",month-1+"월",month+"월",month+1+"월"],
+                  datasets: [{
+                    label: '가입한 회원 수',
+                    data: arr,
+                    fill: false,
+                    borderColor : 'rgb(255, 192, 192)',
+                    backgroundColor: 'transparent',
+                    borderWidth: 3
+                    
                   }]
                 },
                 options: {

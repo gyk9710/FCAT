@@ -34,7 +34,7 @@
 
 <body>
 <%@include file="/WEB-INF/views/common/header.jsp" %>
-<br><br><br><br><br><br><br><br>
+<br><br><br>
 	<div class="container">
 		<section class="section knowledge-base">
 			<div class="home-list-title">
@@ -45,7 +45,7 @@
 			</div>
 			<c:forEach items="${list }" var="board" varStatus="i">
 					<li class="home-list" data-toggle="collapse" data-target="#A${board.boardNo }" ><a href="#">${board.boardTitle}</a></li>
-					<li class="text-center collapse" id="A${board.boardNo }"> ${board.boardContent }</li>
+					<li class="text-center home-list collapse" id="A${board.boardNo }"> ${board.boardContent }</li>
 			</c:forEach>
 		</section>
 
