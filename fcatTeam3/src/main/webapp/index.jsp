@@ -77,7 +77,7 @@ input::-moz-placeholder {
 }
 
 .emptyRightUp {
-	height: 200px;
+	height: 100px;
 }
 
 .SearchDown {
@@ -536,18 +536,6 @@ ul, li {
 	<!--  헤더  -->
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 
-	<!-- 고객센터 테스트 -->
-	<h3>
-		<a href="boardList.do">고객센터</a>
-	</h3>
-
-	<!-- 셀러 페이지 테스트 -->
-	<h3>
-		<a href="/sellerPage.do">판매자 마이 페이지</a> <a href="/serviceFrm.do">서비스등록페이지</a>
-		<a href="/userMyPage.do">유저 마이페이지</a> <a href="/headerTemporarily.do">임시
-			헤더</a>
-	</h3>
-
 	<div class="wrapper">
 		<div class="wrapperContent">
 			<div class="wrapperLeft">
@@ -622,8 +610,8 @@ ul, li {
 			<div class="wrapperRight">
 				<div class="emptyRightUp"></div>
 				<div class="wrapperpicture">
-					<img src="/resources/img/empty.png"
-						style="width: 350px; height: 300px">
+					<img src="/resources/img/capture.png"
+						style="width: 350px; height: 400px">
 				</div>
 			</div>
 		</div>
