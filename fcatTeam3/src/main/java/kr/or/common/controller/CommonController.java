@@ -34,6 +34,8 @@ import kr.or.common.model.vo.Search;
 import kr.or.common.model.vo.SellerAsk;
 import kr.or.common.model.vo.Tattle;
 import kr.or.member.model.vo.Member;
+import kr.or.seller.model.vo.ServiceRequest;
+import kr.or.seller.model.vo.ServiceRequestData;
 
 @Controller
 public class CommonController {
@@ -281,8 +283,13 @@ public class CommonController {
 		return "/";
 	}
 
-	@RequestMapping(value = "mypage.do")
-	public String mypage() {
+	// 요청중인 서비스 
+	@RequestMapping(value = "/mypage.do")
+	public String mypage(ServiceRequestData srd, Model model) {
+		List<ServiceRequest> list = service.selectSrList(srd);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("srState",srd.getSrState());
 		return "/common/mypage";
 	}
 

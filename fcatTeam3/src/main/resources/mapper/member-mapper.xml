@@ -115,7 +115,7 @@
   	#{fsNo})
   </insert>
   
-  	<insert id="insertServiceRequest" parameterType="sr">
+  	<insert id="insertServiceRequest" parameterType="msr">
   	insert into service_request values(
   	sr_seq.nextval,
   	#{fsNo},

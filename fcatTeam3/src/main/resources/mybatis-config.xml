@@ -8,8 +8,10 @@
 
 	<!-- 별칭 설정 -->
 	<typeAliases>
-		<!-- 서비스 요청 테이블 
-		<typeAlias type="kr.or.seller.model.vo.ServiceRequest" alias="sr" />-->
+		<!-- 서비스 요청 테이블 -->
+		<typeAlias type="kr.or.seller.model.vo.ServiceRequest" alias="sr" />
+		<!-- 서비스 요청 데이터 -->
+		<typeAlias type="kr.or.seller.model.vo.ServiceRequestData" alias="srd"/>
 
 		<!-- 신고 접수 테이블 -->
 		<typeAlias type="kr.or.common.model.vo.Tattle" alias="tt" />
@@ -39,6 +41,6 @@
 		<!-- 회원가입수 -->
 		<typeAlias type="kr.or.admin.model.vo.JoinMember" alias="joinMember"/>		
 		<!-- 서비스 리퀘스트 -->
-		<typeAlias type="kr.or.member.model.vo.ServiceRequest" alias="sr"/>
+		<typeAlias type="kr.or.member.model.vo.ServiceRequest" alias="msr"/>
 	</typeAliases>
 </configuration>

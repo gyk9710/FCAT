@@ -22,6 +22,24 @@
 	
 </insert>
 
+	<!-- 서비스 요청 리스트 불러오기 -->
+	<select id="selectSrList" parameterType="srd" resultType="sr">
+		SELECT
+			FS.FS_TITLE as fsTitle,
+			FS.FS_CATEGORY as fsCategory,
+			FS.FS_CHILD_CATEGORY as fsChildCategory,
+			SR.REQUEST_ID as requestId,
+			SR.SR_STATE as srState 
+		FROM
+			SERVICE_REQUEST SR
+		JOIN
+			FSERVICE FS
+		ON
+			SR.FS_NO = FS.FS_NO
+		WHERE
+			FS.FS_WRITER = #{fsWriter} AND SR.SR_STATE = #{srState}
+	</select>
+
 	<!-- 채팅 내용 db 저장 -->
 	<insert id="insertChatMsg" parameterType="sc">
 		insert into save_chat values(#{scNo}, #{scContent}, #{scFlag}, sysdate)
