@@ -483,7 +483,7 @@ ul, li {
 }
 
 #chatPaperMessage {
-	height: 600px;
+	height: 550px;
 	overflow-y:auto;
 	display:flex;
 	flex-direction:column;
