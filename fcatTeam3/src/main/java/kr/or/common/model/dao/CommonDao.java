@@ -154,8 +154,14 @@ public class CommonDao {
 
 	}
 
-	public List<ServiceRequest> selectSrList(ServiceRequestData srd) {
-		return sqlSession.selectList("common.selectSrList", srd);
+	// 판매자 서비스 요청 리스트 불러오기
+	public List<ServiceRequest> selectSellerSrList(ServiceRequestData srd) {
+		return sqlSession.selectList("common.selectSellerSrList", srd);
+	}
+
+	// 구매자 서비스 요청 리스트 불러오기
+	public List<ServiceRequest> selectBuyerSrList(ServiceRequestData srd) {
+		return sqlSession.selectList("common.selectBuyerSrList", srd);
 	}
 
 }

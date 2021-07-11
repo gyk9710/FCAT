@@ -145,9 +145,14 @@ public class CommonService {
 		return dao.insertSeller(sa);
 	}
 
-	// 서비스 요청 리스트 불러오기
-	public List<ServiceRequest> selectSrList(ServiceRequestData srd) {
-		return dao.selectSrList(srd);
+	// 판매자 서비스 요청 리스트 불러오기
+	public List<ServiceRequest> selectSellerSrList(ServiceRequestData srd) {
+		return dao.selectSellerSrList(srd);
+	}
+	
+	// 구매자 서비스 요청 리스트 불러오기
+	public List<ServiceRequest> selectBuyerSrList(ServiceRequestData srd) {
+		return dao.selectBuyerSrList(srd);
 	}
 
 }

@@ -53,27 +53,28 @@ public class CommonController {
 		return "common/chatList";
 	}
 
-	//판매자 전환신청 페이지 이동
-	@RequestMapping (value = "/sellerAskFrm.do")
+	// 판매자 전환신청 페이지 이동
+	@RequestMapping(value = "/sellerAskFrm.do")
 	public String sellerAskFrm() {
 		return "seller/sellerAskFrm";
 	}
-	//판매자 전환 신청
-	@RequestMapping (value = "/sellerAsk.do")
-	public String insertSeller(SellerAsk sa,MultipartFile file, HttpServletRequest request, Model model) {
-		if(file.isEmpty()) {
-			//첨부파일이 없는경우
-		}else {
-			//첨부파일이 있는경우 파일처리
-			
+
+	// 판매자 전환 신청
+	@RequestMapping(value = "/sellerAsk.do")
+	public String insertSeller(SellerAsk sa, MultipartFile file, HttpServletRequest request, Model model) {
+		if (file.isEmpty()) {
+			// 첨부파일이 없는경우
+		} else {
+			// 첨부파일이 있는경우 파일처리
+
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/seller/");
 			String filename = file.getOriginalFilename();
 			// 유저가 올린 파일명을 마지막 . 기준으로 분리 test.txt ->test_1.txt img01.jpg -> img01_1.jpg
 			String onlyFilename = filename.substring(0, filename.indexOf("."));
 			String extention = filename.substring(filename.indexOf("."));
-			
-			String filepath= null;
-			
+
+			String filepath = null;
+
 			int count = 0;
 			while (true) {
 				if (count == 0) {
@@ -89,7 +90,7 @@ public class CommonController {
 
 			}
 			sa.setSaProfile(filepath);
-			System.out.println("filepath  :" + filepath) ;
+			System.out.println("filepath  :" + filepath);
 			System.out.println(savePath);
 			try {
 				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
@@ -97,7 +98,7 @@ public class CommonController {
 				byte[] bytes = file.getBytes();
 				bos.write(bytes);
 				bos.close();
-				
+
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -106,18 +107,17 @@ public class CommonController {
 				e.printStackTrace();
 			}
 		}
-			
+
 		int result = service.insertSeller(sa);
-		if(result>0) {
-			model.addAttribute("msg","판매자 전환 신청이 완료되었습니다");
+		if (result > 0) {
+			model.addAttribute("msg", "판매자 전환 신청이 완료되었습니다");
+		} else {
+			model.addAttribute("msg", "판매자 전환 신청이 실패했습니다.");
 		}
-		else {
-			model.addAttribute("msg","판매자 전환 신청이 실패했습니다.");
-		}
-		model.addAttribute("loc","/");
+		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
-	
+
 	// 신고 접수
 	@Transactional
 	@RequestMapping(value = "/insertTattle.do")
@@ -283,13 +283,19 @@ public class CommonController {
 		return "/";
 	}
 
-	// 요청중인 서비스 
+	// 요청중인 서비스
 	@RequestMapping(value = "/mypage.do")
 	public String mypage(ServiceRequestData srd, Model model) {
-		List<ServiceRequest> list = service.selectSrList(srd);
-		
+		List<ServiceRequest> list = null;
+		// 판매자
+		if (srd.getRequestId() == null) {
+			list = service.selectSellerSrList(srd);
+		} else { // 구매자
+			list = service.selectBuyerSrList(srd);
+		}
+
 		model.addAttribute("list", list);
-		model.addAttribute("srState",srd.getSrState());
+		model.addAttribute("srState", srd.getSrState());
 		return "/common/mypage";
 	}
 
@@ -465,28 +471,10 @@ public class CommonController {
 		service.deleteComment(qNo);
 		return "/";
 	}
-	
-	@RequestMapping(value="/headerTemporarily.do")
+
+	@RequestMapping(value = "/headerTemporarily.do")
 	public String headerTemporarily() {
 		return "common/headerTemporarily";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

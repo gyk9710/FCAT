@@ -4,19 +4,26 @@ body {
 }
 .container {
   padding-top: 30px;
-  /* width: 1200px;
-  margin: auto;
-  overflow: hidden; */
+  overflow: hidden;
 }
+th {
+  font-size: 17px;
+}
+
+td {
+  font-size: 15px;
+}
+
 .my_l {
   border-right: 1px solid rgb(202, 202, 202);
   float: left;
-  width: 30%;
+  width: 20%;
   height: 500px;
-  padding-right: 5%;
+  padding-right: 2%;
+  text-align: center;
 }
 .my_r {
-  width: 68%;
+  width: 78%;
   margin-left: 2%;
   float: left;
   height: 500px;
@@ -26,11 +33,10 @@ body {
 }
 
 .menu {
-  width: 250px;
-  float: left;
-  margin: auto;
-  margin-left: 25px;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .menu ul {
   list-style-type: none;
   padding: 0;
@@ -44,7 +50,8 @@ body {
   display: block;
   text-decoration: none;
   color: black;
-  padding-left: 20px;
+  text-align: left;
+  padding-left: 15px;
 }
 .main-menu > li:hover > a {
   border-bottom: 2px solid #00c7ae;
@@ -68,6 +75,6 @@ body {
   transform: rotate(45deg);
 }
 
-.my_list {
-  height: 500px;
+.footerRight li {
+  list-style: none;
 }
