@@ -1,5 +1,10 @@
 package kr.or.member.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
@@ -20,8 +26,10 @@ import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.Report;
 import kr.or.member.model.vo.ServiceRequest;
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Review;
 import kr.or.member.model.service.MemberService;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
@@ -256,19 +264,113 @@ public class MemberController {
 		m.setMemberPhone(memberPhone);
 		int result = service.updateMember(m);
 		session.invalidate();
-		model.addAttribute("msg", "다시 로그인 해주세요.");
-		model.addAttribute("loc", "/");
+		if (result != 0) {
+			model.addAttribute("msg", "다시 로그인 해주세요.");
+			model.addAttribute("loc", "/");
+		} else {
+			model.addAttribute("msg", "서버이상");
+			model.addAttribute("loc", "/");
+		}
 		return "common/msg";
 
 	}
 
 	@RequestMapping(value = "/deleteMyId.do")
 	public String deleteMyId(HttpSession session, String memberId, Model model) {
-		System.out.println(memberId);
 		int result = service.deleteMember(memberId);
 		session.invalidate();
-		model.addAttribute("msg", "해당 회원님의 정보가 정상적으로 삭제되었습니다.");
-		model.addAttribute("loc", "/");
+		if (result != 0) {
+			model.addAttribute("msg", "해당 회원님의 정보가 정상적으로 삭제되었습니다.");
+			model.addAttribute("loc", "/");
+		} else {
+			model.addAttribute("msg", "서버이상");
+			model.addAttribute("loc", "/");
+		}
+		return "common/msg";
+	}
+
+	@RequestMapping(value = "/insertReivew.do")
+	public String insertReivew(HttpSession session, String reviewTitle, String reviewScore, String reviewContent,
+			String fsNo, String getToday, Model model) {
+		Member m = (Member) session.getAttribute("m");
+		Review r = new Review();
+		r.setReviewContent(reviewContent);
+		r.setFsWorking(m.getMemberId());
+		r.setReviewTitle(reviewTitle);
+		r.setReviewScore(Integer.parseInt(reviewScore));
+		r.setFsNo(Integer.parseInt(fsNo));
+		r.setToday(getToday);
+		int result = service.insertReivew(r);
+		if (result != 0) {
+			model.addAttribute("msg", "리뷰 등록 완료");
+			model.addAttribute("loc", "/");
+		} else {
+			model.addAttribute("msg", "서버이상");
+			model.addAttribute("loc", "/");
+		}
+		return "common/msg";
+	}
+
+	@RequestMapping(value = "/insertReport.do")
+	public String insertReport(HttpSession session, String fsNo, String reportCategory, MultipartFile reportImage,
+			String reportContent, String reportDate, String today, Model model, HttpServletRequest request) {
+		Member m = (Member) session.getAttribute("m");
+		Report r = new Report();
+		r.setReportCategory(reportCategory);
+		r.setReportContent(reportContent);
+		r.setReportDate(reportDate);
+		r.setFsNo(Integer.parseInt(fsNo));
+		r.setMemberId(m.getMemberId());
+//		r.setReportImage(reportImage);
+		r.setReportDate(today);
+		
+		if (reportImage == null) {
+			// 첨부파일이 없는경우
+		} else {
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/report/");
+			// 실제 유저가 올린 파일명(filename)
+			String filename = reportImage.getOriginalFilename();
+			// 유저가 올린 파일명을 마지막 . 기준으로 분리 test.txt -> test / .txt
+			String onlyFilename = filename.substring(0, filename.indexOf("."));// test
+			String extention = filename.substring(filename.indexOf("."));// .txt
+			String filepath = null;
+			int count = 0;
+			while (true) {
+				if (count == 0) {
+					filepath = onlyFilename + extention;// text.txt
+				} else {
+					filepath = onlyFilename + "_" + count + extention;// test_4.txt
+				}
+				File checkFile = new File(savePath + filepath);
+				if (!checkFile.exists()) {
+					break;
+				}
+				count++;
+			}
+			r.setReportImage(filepath);
+			System.out.println("filepath : " + filepath);
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(savePath + filepath));
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				byte[] bytes = reportImage.getBytes();
+				bos.write(bytes);
+				bos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		int result = service.insertReport(r);
+		if (result != 0) {
+			model.addAttribute("msg", "신고 등록 완료");
+			model.addAttribute("loc", "/");
+		} else {
+			model.addAttribute("msg", "서버이상");
+			model.addAttribute("loc", "/");
+		}
 		return "common/msg";
 	}
 

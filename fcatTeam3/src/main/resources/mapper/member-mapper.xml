@@ -188,6 +188,16 @@
 		from service_request
 		where request_id = #{memberId} and sr_state = 2
 	</select>
+	<insert id="insertReivew" parameterType="kr.or.common.model.vo.Review">
+		insert into review_service values(
+			review_seq.nextval, #{fsNo}, #{fsWorking}, null,#{reviewScore}, #{reviewTitle}, #{reviewContent}, null, #{today}
+		)
+	</insert>
+	<insert id="insertReport" parameterType="kr.or.member.model.vo.Report">
+		insert into report_service values(
+			report_seq.nextval, #{reportContent}, 0, #{reportDate}, #{reportImage}, #{reportCategory}, #{fsNo}, #{memberId}
+		)
+	</insert>
 </mapper>
 
 
