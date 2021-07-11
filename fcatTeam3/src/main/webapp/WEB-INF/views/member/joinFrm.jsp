@@ -231,13 +231,13 @@ input[type=search1] {
 .inputid {
 	width: 500px;
 	height: 50px;
-	border: 2px dashed #bcbcbc;
+	border: solid 1px #dadada;
 }
 
 .inputid1 {
 	width: 250px;
 	height: 50px;
-	border: 2px dashed #bcbcbc;
+	border: solid 1px #dadada;
 }
 
 input:focus {
@@ -247,10 +247,12 @@ input:focus {
 .success {
 	width: 500px;
 	height: 60px;
-	background-color: black;
-	color: white;
+	background-color: #A6F2DB;
+	color: black;
 	text-align: center;
-}
+	font-weight:bold;
+	border : 0px;
+	}
 
 .success>a {
 	color: white;
@@ -366,7 +368,7 @@ select::-ms-expand {
                 location.href = "https://search.naver.com/search.naver?query=" + search2;
             });
            
-            $("#check1").on("click",function()//클릭하면 행동할 함수넣어줌
+            $("#checkemail").on("click",function()//클릭하면 행동할 함수넣어줌
                     {
                        var email= $("#email");
                        if(email.hasClass("invisible"))
@@ -418,11 +420,11 @@ select::-ms-expand {
 
             // ^,$ 뜻,
             if (idReg.test(id)) {             //test뜻    name = id가 왜 조건과 이름인지
-                $("[name=memberId]").css("border", "2px dashed #bcbcbc");
+                $("[name=memberId]").css("border", "solid 1px #dadada");
                	$("[name=memberId]").next().next().html("아이디 입력 완료")
                 flag1 = true;
             } else {
-                $("[name=memberId]").css("border", "2px dashed #BE2457");
+                $("[name=memberId]").css("border", "solid 1px #dadada");
                 $("[name=memberId]").next().next().html("아이디는 영어 대/소문자/숫자로 4~12글자입니다.")
                 flag1 = false;
             }
@@ -432,12 +434,12 @@ select::-ms-expand {
             var pw = $("[name=memberPw]").val();
 
             if (pwReg.test(pw)) {
-                $("[name=memberPw]").css("border", "2px dashed #bcbcbc")
+                $("[name=memberPw]").css("border", "solid 1px #dadada")
                 $("[name=memberPw]").next().html("비밀번호 입력 완료");
                 flag2 = true;
             }
             else {
-                $("[name=memberPw]").css("border", "2px dashed #BE2457");
+                $("[name=memberPw]").css("border", "solid 1px #dadada");
                 $("[name=memberPw]").next().html("비밀번호는 영어 대/소문자/숫자로 8~16글자입니다.")
                 flag2 = false;
             }
@@ -445,12 +447,12 @@ select::-ms-expand {
 
         function check3() {
             if ($("[name=memberPw]").val() == $("[name=pw_re]").val()) {
-                $("[name=pw_re]").css("border", "2px dashed #bcbcbc")
+                $("[name=pw_re]").css("border", "solid 1px #dadada")
                 $("[name=pw_re]").next().html("비밀번호가 일치합니다.");
                 flag3 = true;
             }
             else {
-                $("[name=pw_re]").css("border", "2px dashed #BE2457");
+                $("[name=pw_re]").css("border", "solid 1px #dadada");
                 $("[name=pw_re]").next().html("비밀번호가 일치하지 않습니다.");
                 flag3 = false;
             }
@@ -460,11 +462,11 @@ select::-ms-expand {
             var nameReg = /^[가-힣]{2,5}$/;
             var name = $("[name=memberName]").val();
             if (nameReg.test(name)) {
-                $("[name=memberName]").css("border", "2px dashed #bcbcbc");
+                $("[name=memberName]").css("border", "solid 1px #dadada");
                 $("[name=memberName]").next().html("사용 가능한 이름입니다.");
                 flag4 = true;
             } else {
-                $("[name=memberName]").css("border", "2px dashed #BE2457");
+                $("[name=memberName]").css("border", "solid 1px #dadada");
                 $("[name=memberName]").next().html("이름 2 ~ 5 글자로 입력해주세요");
                 flag4 = false;
             }
@@ -475,11 +477,11 @@ select::-ms-expand {
             var phoneReg = /^[0-9]{3}-[0-9]{4}-[0-9]{4}/
             var phone = $("[name=memberPhone]").val();
             if (phoneReg.test(phone)) {
-                $("[name=memberPhone]").css("border", "2px dashed #bcbcbc");
+                $("[name=memberPhone]").css("border", "solid 1px #dadada");
                 $("[name=memberPhone]").next().html("");
                 flag5 = true;
             } else {
-                $("[name=memberPhone]").css("border", "2px dashed #BE2457");
+                $("[name=memberPhone]").css("border", "solid 1px #dadada");
                 $("[name=memberPhone]").next().html("올바른 핸드폰번호를 작성해주세요");
                 flag5 = false;
             }
@@ -491,11 +493,11 @@ select::-ms-expand {
             //var phoneReg = /^[0-9]{3}[0-9]{4}[0-9]{4}/
             var phone = $("[name=memberEmail]").val();
             if (phoneReg.test(phone)) {
-                $("[name=memberEmail]").css("border", "2px dashed #bcbcbc");
+                $("[name=memberEmail]").css("border", "solid 1px #dadada");
                 $("[name=memberEmail]").next().html("");
                 flag5 = true;
             } else {
-                $("[name=memberEmail]").css("border", "2px dashed #BE2457");
+                $("[name=memberEmail]").css("border", "solid 1px #dadada");
                 $("[name=memberEmail]").next().html("올바른 핸드폰번호를 작성해주세요");
                 flag5 = false;
             }
@@ -524,10 +526,12 @@ select::-ms-expand {
 					if(data==0)
 					{
 						flag1=false;
-						$("#idCheckComment").html("으딜 감히");
+						alert("중복입니다.");
+						//$("#idCheckComment").html("아이디가 중복입니다.");
 					}
 					else
-						$("#idCheckComment").html("가능");
+						alert("사용 가능합니다.");
+						//$("#idCheckComment").html("");
 				}
 			})
 		}
@@ -535,11 +539,11 @@ select::-ms-expand {
     </script>
 <body>
 	<div>
-		<div class="main">
+		<div class="main" style="background-color:#F5F6F7">
 			<br>
 			<div class="contents">
 				<form action="/join.do" method="post">
-					<div class="num1">회원정보 입력</div>
+					<div class="num1"><a href="/main.do"><img src="/resources/img/main.png" style="width:300px;height:80px;"></a></div>
 					<br>
 					<br> 아이디<br>
 					<br>
@@ -581,7 +585,7 @@ select::-ms-expand {
 					<br> <input type="text" name="memberPhone" class="inputid"
 						placeholder="핸드폰번호를 입력해주세요" onblur="check5();">
 					<div class="pass1">핸드폰번호 입력 해주세요</div><br>
-					<input type="checkbox" id="check2" name="emailcheck">&nbsp&nbsp<span
+					<input type="checkbox" id="checkemail" name="emailcheck">&nbsp&nbsp<span
 						style="font-size: 13px; color: #5ABEFF; font-weight: bold;">
 						이메일은 다음에 입력합니다</span><br>
 					
@@ -607,22 +611,22 @@ select::-ms-expand {
 					<div class="container" id="addr" name="addr">
 						<div>
 							<span style="font-weight: bold;">주소</span> <input type="text"
-								id="postCode"  readonly>
+								id="postCode"  readonly style="width:300px; height:50px; border:solid 1px #dadada;">
 							<!-- 틀리는 경우가 많으니 사용자가 입력 못하게한다. -->
 							<button id="addrSearch" onclick="return addrSearch();"
 								>주소검색</button>
-						</div>
+						</div><br>
 						<div>
 							<input type="text" id="roadAddr" name="addr1"
-								class="form-control" placeholder="도로명주소">
-						</div>
+								class="form-control" placeholder="도로명주소" style="width:500px; height:50px; border:solid 1px #dadada;">
+						</div><br>
 						<div>
 							<input type="text" id="jibunAddr" name="addr2"
-								class="form-control" placeholder="지번주소">
-						</div>
+								class="form-control" placeholder="지번주소" style="width:500px; height:50px;border:solid 1px #dadada;">
+						</div><br>
 						<div>
 							<input id="detailAddr" type="text" name="addr3"
-								placeholder="상세주소" >
+								placeholder="상세주소" style="width:500px; height:50px;border:solid 1px #dadada;">
 						</div>
 					</div>
 					<br>
