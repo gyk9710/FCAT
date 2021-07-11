@@ -12,6 +12,7 @@ import kr.or.common.model.vo.Review;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.Report;
 import kr.or.member.model.vo.ServiceRequest;
 
 @Repository
@@ -112,6 +113,14 @@ public class MemberDao {
 	public ArrayList<Integer> selectCompelete(String memberId) {
 		List<Integer> list = sqlSession.selectList("member.selectCompelete",memberId);
 		return (ArrayList<Integer>) list;
+	}
+
+	public int insertReivew(Review r) {
+		return sqlSession.insert("member.insertReivew", r);
+	}
+
+	public int insertReport(Report r) {
+		return sqlSession.insert("member.insertReport", r);
 	}
 
 }

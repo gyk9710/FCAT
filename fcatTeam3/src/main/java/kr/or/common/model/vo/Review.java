@@ -1,15 +1,16 @@
 package kr.or.common.model.vo;
 
 public class Review {
-	int reviewNo;
-	int fsNo;
-	String fsWorking;
-	String fsChildCategory;
-	float reviewScore;
-	String reviewTitle;
-	String reviewContent;
-	String reviewPhoto;
-	String reviewDate;
+	private int reviewNo;
+	private int fsNo;
+	private String fsWorking;
+	private String fsChildCategory;
+	private float reviewScore;
+	private String reviewTitle;
+	private String reviewContent;
+	private String reviewPhoto;
+	private String reviewDate;
+	private String today;
 
 	public double xxx(double x) {
 		return Math.ceil(x * 2) / 2;
@@ -21,7 +22,7 @@ public class Review {
 	}
 
 	public Review(int reviewNo, int fsNo, String fsWorking, String fsChildCategory, float reviewScore,
-			String reviewTitle, String reviewContent, String reviewPhoto, String reviewDate) {
+			String reviewTitle, String reviewContent, String reviewPhoto, String reviewDate, String today) {
 		super();
 		this.reviewNo = reviewNo;
 		this.fsNo = fsNo;
@@ -32,38 +33,15 @@ public class Review {
 		this.reviewContent = reviewContent;
 		this.reviewPhoto = reviewPhoto;
 		this.reviewDate = reviewDate;
+		this.today = today;
 	}
 
-	public String getReviewDate() {
-		return reviewDate;
+	public String getToday() {
+		return today;
 	}
 
-	public void setReviewDate(String reviewDate) {
-		this.reviewDate = reviewDate;
-	}
-
-	public String getReviewTitle() {
-		return reviewTitle;
-	}
-
-	public void setReviewTitle(String reviewTitle) {
-		this.reviewTitle = reviewTitle;
-	}
-
-	public String getReviewContent() {
-		return reviewContent;
-	}
-
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
-	}
-
-	public String getReviewPhoto() {
-		return reviewPhoto;
-	}
-
-	public void setReviewPhoto(String reviewPhoto) {
-		this.reviewPhoto = reviewPhoto;
+	public void setToday(String today) {
+		this.today = today;
 	}
 
 	public int getReviewNo() {
@@ -104,6 +82,38 @@ public class Review {
 
 	public void setReviewScore(float reviewScore) {
 		this.reviewScore = reviewScore;
+	}
+
+	public String getReviewTitle() {
+		return reviewTitle;
+	}
+
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
+	}
+
+	public String getReviewContent() {
+		return reviewContent;
+	}
+
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+
+	public String getReviewPhoto() {
+		return reviewPhoto;
+	}
+
+	public void setReviewPhoto(String reviewPhoto) {
+		this.reviewPhoto = reviewPhoto;
+	}
+
+	public String getReviewDate() {
+		return reviewDate;
+	}
+
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 }

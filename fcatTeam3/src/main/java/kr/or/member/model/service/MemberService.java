@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.common.model.vo.FService;
+import kr.or.common.model.vo.Review;
 import kr.or.member.model.dao.MemberDao;
 import kr.or.member.model.vo.Coupon;
 import kr.or.member.model.vo.Member;
 import kr.or.member.model.vo.PaymentInfo;
+import kr.or.member.model.vo.Report;
 import kr.or.member.model.vo.ServiceRequest;
 
 @Service
@@ -99,6 +101,14 @@ public class MemberService {
 
 	public ArrayList<Integer> selectCompelete(String memberId) {
 		return dao.selectCompelete(memberId);
+	}
+
+	public int insertReivew(Review r) {
+		return dao.insertReivew(r);
+	}
+
+	public int insertReport(Report r) {
+		return dao.insertReport(r);
 	}
 
 	
