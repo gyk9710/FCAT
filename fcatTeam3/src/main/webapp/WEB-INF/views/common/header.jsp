@@ -218,7 +218,14 @@ background-position: right;
 	<!-- Dropdown Structure 마이페이지 드롭다운 -->
 	<!-- Dropdown Structure -->
 	<ul id="dropdown1" class="dropdown-content">
+	<c:choose>
+		<c:when test="${m.grade== 3 }">
+		<li><a href="adminPage.do"><i class="fa fa-user fa-fw"></i> adminPage</a></li>
+		</c:when>
+		<c:otherwise>
 		<li><a href="/mypage.do"><i class="fa fa-user fa-fw"></i> my page</a></li>
+		</c:otherwise>
+		</c:choose>
 		<li><a href="/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 	</ul>
 	<ul id="dropdown2" class="dropdown-content w250">

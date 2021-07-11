@@ -38,7 +38,8 @@
 	<div class="container">
 		<section class="section knowledge-base">
 			<div class="home-list-title">
-				
+				<a href="boardList.do">고객센터</a> > FAQ
+				<br><br>
 				<h1 style="display: inline">
 					FAQ
 				</h1>

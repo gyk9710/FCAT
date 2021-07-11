@@ -63,7 +63,7 @@
 			<c:forEach items="${list }" var="board" varStatus="i" >
 				<c:if test="${board.boardClass == 0 }">
 					<li class="home-list" data-toggle="collapse" data-target="#A${board.boardNo }" ><a href="#">${board.boardTitle}</a></li>
-					<li class="text-center collapse" id="A${board.boardNo }"> ${board.boardContent }</li>
+					<li class="text-center home-list collapse" id="A${board.boardNo }"> ${board.boardContent }</li>
 				</c:if>
 			</c:forEach>
 		</section>

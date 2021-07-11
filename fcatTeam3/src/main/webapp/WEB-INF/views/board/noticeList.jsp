@@ -38,7 +38,8 @@
 	<div class="container">
 		<section class="section knowledge-base">
 			<div class="home-list-title">
-				
+				<a href="boardList.do">고객센터</a> > 공지사항
+				<br><br>
 				<h1 style="display: inline">
 					공지사항
 				</h1>
