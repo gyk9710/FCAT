@@ -13,7 +13,7 @@ body {
 
 /* 채팅방 리스트 */
 .chat-list {
-  width: 32%;
+  width: 37%;
   height: 100%;
   float: left;
   border-right: 1px solid rgb(202, 202, 202);
@@ -24,7 +24,7 @@ body {
 
 /* 채팅 내용 */
 .chat-room {
-  width: 55%;
+  width: 51%;
   height: 100%;
   float: left;
   margin-right: 5%;
@@ -142,4 +142,8 @@ body {
 
 .bell-alarm {
   color: red;
+}
+
+.footerRight li {
+  list-style: none;
 }
