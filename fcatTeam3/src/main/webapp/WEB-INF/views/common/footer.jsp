@@ -17,7 +17,7 @@
               style="color:black;">크몽</a><br><a href="#" style="color:black;">재능넷</a>
           </li>
           <li style=" float:left; width:160px;">
-            <span style="font-weight : bold;">지원</span><br><a href="#" style="color:black;">공지사항</a><br><a href="#"
+            <span style="font-weight : bold;">지원</span><br><a href="boardList.do" style="color:black;">공지사항</a><br><a href="#"
               style="color:black;">이용약관</a><br><a href="#" style="color:black;">개인정보처리방침</a>
           </li>
         </ul>
