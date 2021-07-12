@@ -537,6 +537,9 @@
 					height: 0px;
 					visibility: hidden;
 				}
+				.category > a{
+					text-decoration: none;
+				}
 			</style>
 		</head>
 
