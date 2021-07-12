@@ -64,9 +64,9 @@
                     <li>
                         <a href="#">판매관리</a>
                         <ul class="sub-menu">
-                                    <li><a href="#">요청중</a></li>
-                                    <li><a href="#">진행중</a></li>
-                                    <li><a href="#">완료</a></li>
+                                    <li><a href="/mypage.do?fsWriter=${sessionScope.m.memberId}&srState=0">요청중</a></li>
+                      <li><a href="/mypage.do?fsWriter=${sessionScope.m.memberId}&srState=1">진행중</a></li>
+                      <li><a href="/mypage.do?fsWriter=${sessionScope.m.memberId}&srState=2">완료</a></li>
                             
                         </ul>
                     
