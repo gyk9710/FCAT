@@ -563,45 +563,63 @@
 
 								<br>
 								<ul style="padding-left: 0px;">
+								
 									<li class="category">
+									<a href="/categorySearch.do?category=레슨&nowPage=1">
 										<p>
 											<img src="/resources/img/search1.png" style="width: 52px; height: 52px;"><br>레슨
 										</p>
+											</a>
 									</li>
+									
 									<li class="category">
+										<a href="/categorySearch.do?category=홈/리빙&nowPage=1">
 										<p>
 											<img src="/resources/img/search2.png" style="width: 52px; height: 52px;"><br>홈/리빙
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=이벤트&nowPage=1">
 										<p>
 											<img src="/resources/img/search3.png" style="width: 52px; height: 52px;"><br>이벤트
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=비지니스&nowPage=1">
 										<p>
 											<img src="/resources/img/search4.png" style="width: 52px; height: 52px;"><br>비지니스
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=디자인/개발&nowPage=1">
 										<p>
 											<img src="/resources/img/search5.png" style="width: 52px; height: 52px;"><br>디자인/개발
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=건강/미용&nowPage=1">
 										<p>
 											<img src="/resources/img/search6.png" style="width: 52px; height: 52px;"><br>건강/미용
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=알바&nowPage=1">
 										<p>
 											<img src="/resources/img/search7.png" style="width: 52px; height: 52px;"><br>알바
 										</p>
+										</a>
 									</li>
 									<li class="category">
+										<a href="/categorySearch.do?category=기타&nowPage=1">
 										<p>
 											<img src="/resources/img/search8.png" style="width: 52px; height: 52px;"><br>기타
 										</p>
+										</a>
 									</li>
 								</ul>
 							</div>

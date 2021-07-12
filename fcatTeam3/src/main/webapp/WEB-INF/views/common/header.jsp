@@ -227,6 +227,8 @@
 					</c:when>
 
 					<c:when test="${m.grade == 0 }">
+						<li><a href="/userMyPage.do"><i class="fa fa-user fa-fw"></i>user my
+								page</a></li>
 						<li><a href="/mypage.do?requestId=${sessionScope.m.memberId}&srState=0"><i class="fa fa-user fa-fw"></i> my
 								page</a></li>
 					</c:when>
