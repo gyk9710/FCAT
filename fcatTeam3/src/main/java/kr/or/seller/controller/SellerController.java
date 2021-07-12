@@ -168,9 +168,9 @@ public class SellerController {
 	}
 	@RequestMapping (value = "/updateService.do")
 	public String updateService(int fsNo,Model model) {
-		FService fs = service.selectMyservice(fsNo);
+		 FService fs = service.selectMyservice(fsNo);
 		model.addAttribute("fs", fs);
-		System.out.println("가져온 번호 : " + fsNo);
+		System.out.println("가져온 번호가 무엇이냐 : " + fsNo);
 		model.addAttribute("fsNo",fsNo);
 		return "seller/myservice";
 	}
@@ -249,10 +249,10 @@ public class SellerController {
 			
 		
 	
-		System.out.println("가져온 번호 : " + fs.getFsNo());
-		System.out.println("수정할 제목 : " + fs.getFsTitle());
-		System.out.println("수정한 사진 : " + fs.getFsPhoto());
-		System.out.println("카테고리를 수정 안했음  : " +fs.getFsChildCategory());
+		System.out.println("수정시 가져온번호 : " + fs.getFsNo());
+		System.out.println("수정시 수정할 제목 : " + fs.getFsTitle());
+		System.out.println("수정시 수정한 사진 : " + fs.getFsPhoto());
+		System.out.println("수정시 카테고리를 수정 안했음  : " +fs.getFsChildCategory());
 		
 		int result = service.updateMyservice(fs);
 		if(result>0) {
@@ -262,8 +262,8 @@ public class SellerController {
 			model.addAttribute("msg","서비스등록을 실패하였습니다");
 		}
 		model.addAttribute("msg","수정되었습니다");
-		
-		model.addAttribute("loc","updateService.do?memberId="+m.getMemberId());
+		//model.addAttribute("loc","/");
+		model.addAttribute("loc","updateService.do?fsNo="+fs.getFsNo());
 		return "common/msg";
 		//return "redirect:/updateService.do?memberId="+m.getMemberId();
 	}

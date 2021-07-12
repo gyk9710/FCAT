@@ -70,7 +70,8 @@
   		fs_working as fsWorking,
   		fs_price as fsPrice,
   		fs_photo as fsPhoto,
-  		fs_content as fsContent
+  		fs_content as fsContent,
+  		fs_description_text as fsDescriptionText
   		from fservice where fs_no=#{fsNo}
   </select>
 	
@@ -100,7 +101,8 @@
   			fs_price=#{fsPrice},
   			fs_working=#{fsWorking},
 		
-		fs_photo=#{fsPhoto}
+		fs_photo=#{fsPhoto},
+		fs_description_text=#{fsDescriptionText}
   	where fs_no = #{fsNo}
   </update>
  
