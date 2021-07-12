@@ -164,4 +164,19 @@ public class CommonDao {
 		return sqlSession.selectList("common.selectBuyerSrList", srd);
 	}
 
+	// 서비스 수락
+	public int confirmServiceRequest(int srNo) {
+		return sqlSession.update("common.confirmServiceRequest", srNo);
+	}
+
+	// 서비스 완료
+	public int finishServiceRequest(int srNo) {
+		return sqlSession.update("common.finishServiceRequest", srNo);
+	}
+
+	// 채팅방 생성
+	public int createChat(ServiceRequestData srd) {
+		return sqlSession.insert("common.createChat", srd);
+	}
+
 }

@@ -22,6 +22,21 @@
 	
 </insert>
 
+	<!-- 채팅방 생성 -->
+	<insert id="createChat" parameterType="sr">
+		INSERT INTO CHAT VALUES(CHAT_SEQ.NEXTVAL, #{requestId}, #{fsWriter})
+	</insert>
+
+	<!-- 서비스 수락 -->
+	<update id="confirmServiceRequest" parameterType="int">
+		UPDATE SERVICE_REQUEST SET SR_STATE = 1 WHERE SR_NO = #{srNo}
+	</update>
+	
+	<!-- 서비스 완료 -->
+	<update id="finishServiceRequest" parameterType="int">
+		UPDATE SERVICE_REQUEST SET SR_STATE = 2 WHERE SR_NO = #{srNo}
+	</update>
+
 	<!-- 판매자 서비스 요청 리스트 불러오기 -->
 	<select id="selectSellerSrList" parameterType="srd" resultType="sr">
 		SELECT
@@ -29,7 +44,8 @@
 			FS.FS_CATEGORY as fsCategory,
 			FS.FS_CHILD_CATEGORY as fsChildCategory,
 			SR.REQUEST_ID as requestId,
-			SR.SR_STATE as srState 
+			SR.SR_STATE as srState,
+			SR.SR_NO as srNo 
 		FROM
 			SERVICE_REQUEST SR
 		JOIN
@@ -47,7 +63,8 @@
 			FS.FS_CATEGORY as fsCategory,
 			FS.FS_CHILD_CATEGORY as fsChildCategory,
 			FS.FS_WRITER as fsWriter,
-			SR.SR_STATE as srState 
+			SR.SR_STATE as srState,
+			SR.SR_NO as srNo 
 		FROM
 			SERVICE_REQUEST SR
 		JOIN

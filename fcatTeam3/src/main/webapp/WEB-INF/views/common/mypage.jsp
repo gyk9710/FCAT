@@ -141,7 +141,10 @@
                     <th>대분류</th>
                     <th>중분류</th>
                     <th>신청인</th>
-                    <th>확인</th>
+                    <c:if test="${srState != 2 }">
+                      <th>확인</th>
+                    </c:if>
+
                   </tr>
                 </thead>
                 <tbody class="text-center">
@@ -153,9 +156,13 @@
                       <td>${rs.fsCategory}</td>
                       <td>${rs.fsChildCategory}</td>
                       <td>${rs.requestId}</td>
-                      <td>
-                        <button class="btn btn-sm btn-outline-primary confirmService">승인</button>
-                      </td>
+                      <c:if test="${srState != 2 }">
+                        <td>
+                          <button class="btn btn-sm btn-outline-primary confirmService">승인</button>
+                        </td>
+                      </c:if>
+                      <td style="display: none;">${rs.srNo }</td>
+                      <td style="display: none;">${rs.srState }</td>
                     </tr>
                   </c:forEach>
                 </tbody>
@@ -180,28 +187,22 @@
 
               <table class="table table-bordered table-hover text-center">
                 <thead>
-                  <tr class="table-success text-center">
-                    <!-- <th><input type="checkbox" id="allCheck"></th> -->
+                  <tr class="table-success">
                     <th>번호</th>
                     <th>서비스제목</th>
                     <th>대분류</th>
                     <th>중분류</th>
                     <th>판매자</th>
-                    <!-- <th>확인</th> -->
                   </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                   <c:forEach items="${list }" var="rs" varStatus="i">
                     <tr>
-                      <!-- <td><input type="checkbox" name="requestService"></td> -->
                       <td>${i.count }</td>
                       <td>${rs.fsTitle}</td>
                       <td>${rs.fsCategory}</td>
                       <td>${rs.fsChildCategory}</td>
                       <td>${rs.fsWriter}</td>
-                      <!-- <td>
-                          <button class="btn btn-sm btn-outline-primary confirmService">승인</button>
-                        </td> -->
                     </tr>
                   </c:forEach>
                 </tbody>
@@ -212,8 +213,100 @@
         </div>
 
       </div>
-      <hr style="width: 970px;">
+      <hr style="width: 1140px;">
       <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+        <script>
+          // 서비스 요청 수락 / 거절
+          $(".confirmService").on("click", function () {
+            var srNo = $(this).parent().next().text(); // 요청한 서비스 요청 번호
+            var srState = $(this).parent().next().next().text(); // 현재 서비스 상태
+            var requestId = $(this).parent().prev().text();
+            var fsWriter = '${ sessionScope.m.memberId }';
+
+            // console.log(srNo);
+            // console.log(srState);
+            // console.log(fsWriter);
+
+            location.href = "/updateServiceRequest.do?srNo=" + srNo + "&srState=" + srState + "&fsWriter=" + fsWriter + "&requestId=" + requestId;
+            //console.log(requestId);
+
+            // $.ajax({
+            //   url: "/confirmRequestService.do",
+            //   type: "post",
+            //   data: { srNo: srNo },
+            //   success: function (data) {
+            //     // 요청 리스트 수락
+            //     if (confirm == '수락') {
+            //       if (data == 1) {
+            //         alert("요청 수락 성공!!");
+            //         confirmRequestService(requestId, 1); // 성공
+            //         location.reload();
+            //       } else {
+            //         alert("요청 수락 실패!!");
+            //       }
+            //     }
+
+            //   }
+            // });
+          });
+
+          // 알람
+          // var ws; // 웹소켓용 변수
+          // var sender = "${sessionScope.m.memberId}";
+
+          // // 웹 소켓 생성
+          // ws = new WebSocket("ws://127.0.0.1/alarmMsg.do"); // 웹 소켓 연결
+          // // ws://khdsa1.iptime.org:18080/ - 추 후 시연 주소
+          // ws.onopen = alarmStart;
+          // ws.onmessage = alarmMsg;
+          // ws.onclose = alarmEnd;
+
+          // // 웹 소켓 연결 성공 시
+          // function alarmStart() {
+          //   var data = {
+          //     type: "conn",
+          //     memberId: sender
+          //   };
+          //   ws.send(JSON.stringify(data)); // json 문자열로 전송
+          //   alarmCount(sender); // 현재 연결 된 세션 알람 체크
+          // };
+
+          // // 서버 소통 로직
+          // function alarmMsg(param) {
+          //   $("#alarmCount").text(param.data); // 알림 숫자 갱신
+          //   //console.log("통신 성공~!");
+          // };
+
+          // // 웹 소켓 연결 종료
+          // function alarmEnd() {
+
+          // };
+
+          // // 알람 확인
+          // function alarmCount(receiver) {
+          //   var data = {
+          //     type: "alarm",
+          //     memberId: receiver
+          //   };
+          //   ws.send(JSON.stringify(data));
+          // };
+
+          // // 요청 수락
+          // function confirmRequestService(requestId) {
+          //   var msgTitle = "서비스 요청 결과 알림!";
+          //   var msgContent = "";
+
+          //   var data = {
+          //     type: "confirm",
+          //     msgReceiver: requestId,
+          //     msgSender: sender,
+          //     msgTitle: msgTitle,
+          //     msgContent: msgContent,
+          //   };
+          //   ws.send(JSON.stringify(data));
+          // };
+        </script>
     </body>
 
     </html>

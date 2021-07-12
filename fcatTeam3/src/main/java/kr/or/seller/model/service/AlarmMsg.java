@@ -23,7 +23,7 @@ public class AlarmMsg extends TextWebSocketHandler {
 
 	public AlarmMsg() {
 		memberList = new HashMap<String, WebSocketSession>();
-		//System.out.println("웹소켓 생성 됨");
+		System.out.println("알림 소켓 생성 됨");
 	}
 
 	// 클라이언트 접속

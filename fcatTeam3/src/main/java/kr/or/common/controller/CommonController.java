@@ -43,6 +43,35 @@ public class CommonController {
 	@Autowired
 	private CommonService service;
 
+	// 서비스 수락 + 채팅방 생성
+	@Transactional
+	@RequestMapping(value = "/updateServiceRequest.do")
+	public String updateServiceRequest(Model model, int srNo, ServiceRequestData srd) {
+		int result = 0;
+
+		// 요청중 서비스 수락
+		if (srd.getSrState() == 0) {
+			result = service.confirmServiceRequest(srNo);
+			int result2 = service.createChat(srd);
+
+			if (result > 0 && result2 > 0) {
+				model.addAttribute("msg", "서비스가 승인되었습니다.");
+			} else {
+				model.addAttribute("msg", "서비스를 승인하지 못하였습니다.");
+			}
+		} else { // 진행 중 서비스 완료
+			result = service.finishServiceRequest(srNo);
+
+			if (result > 0) {
+				model.addAttribute("msg", "서비스가 완료되었습니다.");
+			} else {
+				model.addAttribute("msg", "서비스를 완료하지 못하였습니다.");
+			}
+		}
+		model.addAttribute("loc", "/mypage.do?fsWriter=" + srd.getFsWriter() + "&srState=" + srd.getSrState());
+		return "common/msg";
+	}
+
 	// 1:1 채팅 창 이동 - 1:1 채팅 리스트 조회
 	@RequestMapping(value = "/chatList.do")
 	public String chatList(Model model, String memberId) {

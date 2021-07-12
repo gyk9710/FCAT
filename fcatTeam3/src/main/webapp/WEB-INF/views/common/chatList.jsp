@@ -78,7 +78,7 @@
           var sessionId = "${sessionScope.m.memberId}"
           //console.log("접속한 회원 ID : " + sessionId);
 
-          ws = new WebSocket("ws://192.168.10.14/chatting.do");
+          ws = new WebSocket("ws://127.0.0.1/chatting.do");
           //ws://khdsa1.iptime.org:18080/ - 추 후 시연 주소
           ws.onopen = startChat;
           ws.onmessage = receiveChat;

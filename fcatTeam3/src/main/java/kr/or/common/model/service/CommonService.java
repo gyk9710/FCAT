@@ -155,4 +155,19 @@ public class CommonService {
 		return dao.selectBuyerSrList(srd);
 	}
 
+	// 서비스 수락 
+	public int confirmServiceRequest(int srNo) {
+		return dao.confirmServiceRequest(srNo);
+	}
+
+	// 서비스 완료
+	public int finishServiceRequest(int srNo) {
+		return dao.finishServiceRequest(srNo);
+	}
+
+	// 채팅방 생성
+	public int createChat(ServiceRequestData srd) {
+		return dao.createChat(srd);
+	}
+
 }
