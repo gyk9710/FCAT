@@ -59,11 +59,14 @@ public class SellerDao {
 	}
 
 	public FService selectMyservice(int fsNo) {
+		System.out.println("dao 까지 no" + fsNo);
 		return sqlSession.selectOne("seller.selectMyservice",fsNo);
 	}
 
 	public int updateMyservice(FService fs) {
+		System.out.println("수정버튼 누르면 dao 까지여기까지 잘오냐?" + fs.getFsNo());
 		return sqlSession.update("seller.updateMyservice",fs);
+		
 		
 	}
 }

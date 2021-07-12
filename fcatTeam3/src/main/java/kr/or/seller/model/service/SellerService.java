@@ -59,10 +59,12 @@ public class SellerService {
 	}
 
 	public FService selectMyservice(int fsNo) {
+		System.out.println("서비스까지 잘오냐? " + fsNo);
 		return dao.selectMyservice(fsNo);
 	}
 
 	public int updateMyservice(FService fs) {
+		System.out.println("여기까지 잘오냐?" + fs.getFsNo());
 		return dao.updateMyservice(fs);
 		
 	}
