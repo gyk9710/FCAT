@@ -92,7 +92,7 @@
 				<div class="searchItem">
 					<div class="box-shadow">
 						<div id="thumbnail">
-							<img class="img-thumbnail" src="${fs.fsPhoto }" alt="..." />
+							<img class="img-thumbnail" src="/resources/upload/seller/${fs.fsPhoto }"  alt="..." />
 						</div>
 						<span id="fsWriterFont">${fs.fsWriter }</span>
 						<div class="icon-wrap">
