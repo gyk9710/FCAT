@@ -8,10 +8,10 @@
 ----------------
 #### 1.검색
 ![검색화면](https://user-images.githubusercontent.com/78743780/126873299-fa7b3ab8-73b4-492e-96a2-1e10e4fe6d35.png)
-  + 기능
-    + 정규표현식을 통해 입력값 제한
-    + 조건에 맞지 않을 경우 모달 폼 출력되지 않음(bool 변수를 통해 구현)
-    + 등록하고자하는 이미지 파일 화면에 출력
++ 기능
+  + 정규표현식을 통해 입력값 제한
+  + 조건에 맞지 않을 경우 모달 폼 출력되지 않음(bool 변수를 통해 구현)
+  + 등록하고자하는 이미지 파일 화면에 출력
 ![카테고리내 검색](https://user-images.githubusercontent.com/78743780/126873301-2a65f687-86bb-400b-897c-7d2c6192b280.png)
 ![리뷰화면](https://user-images.githubusercontent.com/78743780/126873305-8410669a-8a23-44de-afe1-f9bbda95f934.png)
 ![서비스문의화면](https://user-images.githubusercontent.com/78743780/126873307-21027685-ffa6-4754-bd6c-8e45fc1050bd.png)
