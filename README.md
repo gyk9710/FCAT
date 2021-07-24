@@ -1,12 +1,12 @@
 # 프로젝트 명: FCAT
 #### 프로젝트 목표: 프리랜서 오픈마켓 구현
 
- + 깃 허브 주소: https://github.com/gyk9710/FCAT/tree/bowwow2115
+ + 깃 허브 주소: https://github.com/gyk9710/FCAT/edit/bowwow2115
  + 수행기간: 21년 05월 07일 ~ 21년 05월 21일(약 2주)
- + 개발환경: Java(1.8), Oracle(11g), Eclipse, Git
+ + 개발환경: Java(1.8), Spring(5.0.6), Oracle(11g), Mybatis, Git
 
 ----------------
-#### 1.검색
+#### 1. 검색
 ![검색화면](https://user-images.githubusercontent.com/78743780/126873299-fa7b3ab8-73b4-492e-96a2-1e10e4fe6d35.png)
 + 기능
   + 정규표현식을 통해 입력값 제한
