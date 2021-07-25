@@ -34,9 +34,26 @@
 + 기능
  + 사용자가 자신의 위치를 쉽게 파악할 수 있도록 카테고리 별 서비스리스트 페이지 및 상세페이지에만 네비게이션 구현
  + 클릭 시 해당 카테고리 리스트 페이지로 이동
- + 
-![이용중서비스-모달](https://user-images.githubusercontent.com/78743780/126873312-7fd24ef2-eaa4-4cd4-bcb6-d254caca111b.png)
-![리뷰남기기](https://user-images.githubusercontent.com/78743780/126873313-c9cbc981-90fb-41ff-8846-f3891c749e58.png)
-![이용한서비스-모달](https://user-images.githubusercontent.com/78743780/126873315-0dd0bfb9-d11b-41d0-a732-e72e5f9bbdd2.png)
-![회원정보변경폼](https://user-images.githubusercontent.com/78743780/126873319-1d1e9049-7080-439c-abd9-0f0ce5d18968.png)
+ + Ajax를 통해 찜하기 기능 구현
 
+#### 6. 마이페이지(이용 중 서비스)
+![이용중서비스-모달](https://user-images.githubusercontent.com/78743780/126873312-7fd24ef2-eaa4-4cd4-bcb6-d254caca111b.png)
++ 기능
+ + 모달창을 통해 페이지 이동없이 기능 선택 및 실행가능
+ + 이용 중인 서비스의 경우 신고만 가능
+
+#### 7. 마이페이지(이용한 서비스)
+![이용한서비스-모달](https://user-images.githubusercontent.com/78743780/126873315-0dd0bfb9-d11b-41d0-a732-e72e5f9bbdd2.png)
++ 기능
+ + 이용한 서비스 만 리뷰하기 가능
+
+#### 8. 마이페이지(리뷰 남기기)
+![리뷰남기기](https://user-images.githubusercontent.com/78743780/126873313-c9cbc981-90fb-41ff-8846-f3891c749e58.png)
++ 기능
+ + 원하는 리뷰 점수 선택 후 리뷰 제목 및 내용 작성
+ 
+#### 9. 마이페이지(회원정보 변경)
+![회원정보변경폼](https://user-images.githubusercontent.com/78743780/126873319-1d1e9049-7080-439c-abd9-0f0ce5d18968.png)
++ 기능
+ + Ajax를 통해 비밀번호 확인 후 값이 일치하면 모달 폼 오픈
+ + 정규표현식으로 입력값 제한(값이 제한을 벗어난 경우 alert를 통해 값 변경 지시)
