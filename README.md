@@ -22,13 +22,19 @@
 + 기능
  + jquery 스크롤 함수를 통해 각각의 기능을 쉽게 볼 수 있도록 구현
  + 총 리뷰점수는 점수 평균을 0.5단위로 반올림 해 0.5단위의 별 점수로 보일 수 있게 구현
+
+#### 4. 상세페이지(서비스 문의)
 ![서비스문의화면](https://user-images.githubusercontent.com/78743780/126873307-21027685-ffa6-4754-bd6c-8e45fc1050bd.png)
 + 기능
  + 로그인 한 유저만 문의를 하도록 구현
  + 답글은 해당 게시물을 올린 프리랜서만 달 수 있도록 구현(삭제 가능)
+
+#### 5. 상세페이지(찜하기 및 네비게이션)
 ![찜하기and네비](https://user-images.githubusercontent.com/78743780/126873310-106769fb-b911-473f-b193-9f45b34d8229.png)
 + 기능
- + 가장
+ + 사용자가 자신의 위치를 쉽게 파악할 수 있도록 카테고리 별 서비스리스트 페이지 및 상세페이지에만 네비게이션 구현
+ + 클릭 시 해당 카테고리 리스트 페이지로 이동
+ + 
 ![이용중서비스-모달](https://user-images.githubusercontent.com/78743780/126873312-7fd24ef2-eaa4-4cd4-bcb6-d254caca111b.png)
 ![리뷰남기기](https://user-images.githubusercontent.com/78743780/126873313-c9cbc981-90fb-41ff-8846-f3891c749e58.png)
 ![이용한서비스-모달](https://user-images.githubusercontent.com/78743780/126873315-0dd0bfb9-d11b-41d0-a732-e72e5f9bbdd2.png)
